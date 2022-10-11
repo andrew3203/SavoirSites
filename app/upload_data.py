@@ -4,11 +4,11 @@ import requests
 import csv
 import re
 from django.core.files import File
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'big_site.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'abig.settings')
 django.setup()
 
 from property.models import AreaPeculiarity, Area, Specialist, Image
-from primary_property.models import PrimaryProperty
+from primary.models import PrimaryProperty
 
 
 def read_csv(url):

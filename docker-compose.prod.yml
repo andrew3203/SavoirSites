@@ -2,12 +2,11 @@ version: '3.8'
 
 services:
 
-  big_web:
-    container_name: big_web
+  web:
     build:
       context: ./app
       dockerfile: Dockerfile.prod
-    command: gunicorn big_site.wsgi:application --bind :8079
+    command: gunicorn abig.wsgi:application --bind :8079
     volumes:
       - static_volume:/home/app/web/staticfiles
       - media_volume:/home/app/web/mediafiles
@@ -18,31 +17,22 @@ services:
     depends_on:
       - big_db
 
-  big_nginx:
-    container_name: big_nginx
+  nginx:
     build: ./nginx
     volumes:
       - static_volume:/home/app/web/staticfiles
       - media_volume:/home/app/web/mediafiles
     ports:
-      - 8081:8081
+      - 8088:8088
     depends_on:
-      - big_web
+      - web
   
-  big_db:
-    container_name: big_db
-    image: postgres:13.0-alpine
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    env_file:
-      - ./.env.prod.db
 
-networks:
-  default:
-    name: nginxproxymanager_default
-    external: true
+#networks:
+#  default:
+#    name: nginxproxymanager_default
+#    external: true
 
 volumes:
-  postgres_data:
   static_volume:
   media_volume:

@@ -1,8 +1,7 @@
 version: '3.8'
 
 services:
-  big_web:
-    container_name: big_web
+  web:
     build: ./app
     command: python manage.py runserver 0.0.0.0:8080
     volumes:
@@ -22,7 +21,7 @@ services:
     environment:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=user_pwd
-      - POSTGRES_DB=big_site
+      - POSTGRES_DB=big_sites
 
 volumes:
   postgres_data:
