@@ -27,6 +27,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", 'nSAVJHASBVFDHJL23R3434BR45234114R')
 DEBUG = int(os.environ.get("DEBUG", default=0))
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['*']
 
 
 # Application definition
