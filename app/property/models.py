@@ -72,7 +72,7 @@ class Specialist(models.Model):
     )
     role = models.CharField(
         'Роль в проекте',
-        max_length=80
+        max_length=180
     )
     phone = models.CharField(
         'Номер телефона',
@@ -104,7 +104,7 @@ class Area(models.Model):
 
     name = models.CharField(
         'Название района',
-        max_length=80
+        max_length=180
     )
 
     class Meta:
