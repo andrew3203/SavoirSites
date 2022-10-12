@@ -5,7 +5,7 @@ from aproperty.models import *
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ['name', 'phone', 'email', 'created_at']
+    list_display = ['name', 'phone', 'email', 'complex', 'created_at']
     search_fields = ['name', 'phone', 'email']
 
 @admin.register(Image)

@@ -21,6 +21,10 @@ class Client(models.Model):
         'ФИО',
         max_length=180,**nb
     )
+    complex = models.CharField(
+        'Страница',
+        max_length=180,
+    )
     phone = models.CharField(
         "Телефон",
         max_length=80, **nb
