@@ -164,6 +164,7 @@ for n, row in enumerate(primary):
             max_square=float(max_square[0]) if len(max_square)==1 else 0,
             short_phrase=row[21],
             description=row[22],
+            lots_number=row[18],
             area=Area.objects.get(pk=areas_keys[row[8]]),
             specialist=specialist,
         )
