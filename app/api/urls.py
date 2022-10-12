@@ -9,5 +9,6 @@ router = DefaultRouter()
 router.register('primary', views.PrimaryPropertyViewSet)
 
 urlpatterns = [
+    path('primary/', views.PrimaryPropertyListView.as_view()),
     path('', include(router.urls))
 ]

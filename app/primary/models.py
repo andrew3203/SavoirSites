@@ -120,6 +120,10 @@ class PrimaryProperty(models.Model):
         return reverse('primary', args=[str(self.slug)])
     
     @property
+    def url(self):
+        return self.get_absolute_url()
+    
+    @property
     def price_from(self):
         price = re.findall('\d+', self.price.replace(' ', ''))
         if price:
