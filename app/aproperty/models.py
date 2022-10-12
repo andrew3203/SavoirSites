@@ -19,7 +19,7 @@ def complex_dir_path(instance, filename):
 class Client(models.Model):
     name = models.CharField(
         'ФИО',
-        max_length=180
+        max_length=180,**nb
     )
     phone = models.CharField(
         "Телефон",
@@ -29,9 +29,16 @@ class Client(models.Model):
         'Email',
         max_length=80, **nb
     )
+    created_at = models.DateTimeField(
+        'Создан',
+        auto_now_add=True
+    )
     class Meta:
         verbose_name = 'Клиент'
         verbose_name_plural = 'Клиенты'
+    
+    def __str__(self) -> str:
+        return f'{self.name}'
 
 
 class Image(models.Model):

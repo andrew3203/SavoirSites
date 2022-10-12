@@ -9,6 +9,7 @@ router = DefaultRouter()
 router.register('primary', views.PrimaryPropertyViewSet)
 
 urlpatterns = [
+    path('create-client/', views.ClientCreateAPIView.as_view()),
     path('primary/', views.PrimaryPropertyListView.as_view()),
-    path('', include(router.urls))
+    path('', include(router.urls)),
 ]
