@@ -7,7 +7,7 @@ from django.core.files import File
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'abig.settings')
 django.setup()
 
-from property.models import AreaPeculiarity, Area, Specialist, Image
+from aproperty.models import AreaPeculiarity, Area, Specialist, Image
 from primary.models import PrimaryProperty
 
 

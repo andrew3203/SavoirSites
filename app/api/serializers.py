@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from aproperty.models import Specialist, Area, Image
 from primary.models import PrimaryProperty
-from resale.models import ResaleProperty
 
 
 class PrimaryPropertySerializer(serializers.ModelSerializer):
@@ -30,11 +29,4 @@ class ImageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Image
-        fields = '__all__'
-
-
-class ResalePropertySerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = ResaleProperty
         fields = '__all__'

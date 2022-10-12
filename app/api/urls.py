@@ -6,13 +6,8 @@ from api import views
 
 
 router = DefaultRouter()
-# router.register('primary-property', views.PrimaryPropertyViewSet)
-
-router = DefaultRouter()
-router.register('api', views.ResalePropertyViewSet)
-
-router = DefaultRouter()
-router.register('api1', views.PrimaryPropertyViewSet)
+router.register('primary', views.PrimaryPropertyViewSet)
 
 urlpatterns = [
+    path('', include(router.urls))
 ]
