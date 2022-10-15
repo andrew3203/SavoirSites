@@ -5,11 +5,15 @@ from aproperty.models import Client
 
 
 class PrimaryMainSerializer(serializers.ModelSerializer):
+    url = serializers.CharField()
+    price_from = serializers.CharField()
+    squares = serializers.CharField()
+    get_logo = serializers.CharField()
 
     class Meta:
         model = PrimaryProperty
         exclude = [
-            'map_script', 'short_phrase', 'description', 
+            'map_script', 'short_phrase', 'description', 'logo',
             'second_image', 'presentation', 'images', 'specialist'
         ]
         depth = 1

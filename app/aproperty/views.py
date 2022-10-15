@@ -8,8 +8,8 @@ def index(request):
     areas = Area.objects.all().values_list('name', flat=True)
     context = {
         'main_complexses': queryset.exclude(logo='')[:10],
-        'first_complexses': queryset[:4],
         'areas': areas,
+        'count': queryset.count() 
     }
     return render(request, 'aproperty/index.html', context)
 

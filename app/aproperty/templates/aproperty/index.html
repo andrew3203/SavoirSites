@@ -178,20 +178,22 @@
               <div class="w-layout-grid grid-4">
                 <div id="w-node-_60305fa7-b517-e70e-4ae1-037cdce7321d-16e3a100" class="w-form">
                 <form id="filter-form" name="filter-form" data-name="filter Form" method="get" class="form-9 w-clearfix">
-                  <a fs-cmsfilter-element="reset" id="w-node-_60305fa7-b517-e70e-4ae1-037cdce7321f-16e3a100" href="#" class="link-5"> Сбросить фильтры</a>
-                  <div id="w-node-_60305fa7-b517-e70e-4ae1-037cdce73221-16e3a100" class="_w-search">
-                    <div class="div-block-51 w-clearfix"><input type="text" class="_w-inp-search-2 w-input" maxlength="256" name="field-2" fs-cmsfilter-field="name" data-name="Field 2" placeholder="Название комплекса" id="field-2" required=""></div>
+                  <a href="#" class="link-5 reset" id="reset"> Сбросить фильтры</a>
+                  <div class="_w-search">
+                    <div class="div-block-51 w-clearfix">
+                      <input type="text" class="_w-inp-search-2 w-input" maxlength="256" name="field-2" data-name="Field 2" placeholder="Название комплекса" id="search-input" required="">
+                    </div>
                   </div>
                   <div id="w-node-_60305fa7-b517-e70e-4ae1-037cdce73224-16e3a100"><label class="label-2">Районы</label>
                     <div id="w-node-_60305fa7-b517-e70e-4ae1-037cdce73227-16e3a100" class="collection-list-wrapper-5 w-dyn-list">
                       <div class="collection-list-6">
                         
                         {% for area_name in areas %}
-                        <div id="w-node-_60305fa7-b517-e70e-4ae1-037cdce73229-16e3a100" class="collection-item-6">
-                          <label class="w-checkbox filter-items-2">
+                        <div class="collection-item-6">
+                          <label class="w-checkbox filter-items-2 areas">
                             <div class="w-checkbox-input w-checkbox-input--inputType-custom filter-items-btn-2"></div>
-                            <input type="checkbox" id="checkbox-3" name="checkbox-3" data-name="checkbox-3" style="opacity:0;position:absolute;z-index:-1">
-                            <span fs-cmsfilter-field="areas" class="checkbox-label-3 w-form-label" for="checkbox-3">{{ area_name }}</span>
+                            <input type="checkbox" id="checkbox-3" name="checkbox-3" data-name="checkbox-3" class="area-checkbox" style="opacity:0;position:absolute;z-index:-1">
+                            <span class="checkbox-label-3 w-form-label" for="checkbox-3">{{ area_name }}</span>
                           </label>
                         </div>
                         {% endfor %}
@@ -201,61 +203,30 @@
                   </div>
                     <div id="w-node-_60305fa7-b517-e70e-4ae1-037cdce7322d-16e3a100" class="div-block-43">
                       <div class="text-block-53">Колличество комплексов:</div>
-                      <div fs-cmsload-element="visible-count" class="text-block-52">5</div>
+                      <div id="visible-count" class="text-block-52">4</div>
                       <div class="text-block-52 dat">/</div>
-                      <div fs-cmsload-element="items-count" class="text-block-52">34</div>
+                      <div id="items-count" class="text-block-52">{{ count }}</div>
                     </div>
                 </form>
                 </div>
                 <div id="w-node-_60305fa7-b517-e70e-4ae1-037cdce7323c-16e3a100" class="complex-base">
                   <div id="w-node-_60305fa7-b517-e70e-4ae1-037cdce7323d-16e3a100">
-                    <div fs-cmsfilter-duration="120" fs-cmsload-resetix="true" fs-cmsload-mode="load-under" class="collection-list-7" fs-cmsload-stagger="150" fs-cmsload-duration="200" fs-cmsfilter-easing="ease">
+                    <div class="collection-list-7" id="complex-collection">
                       
-                      {% for complex in first_complexses %}
-                      <div class="collection-item-5">
-                        <div data-w-id="32da13cd-eac5-e877-d785-b77c3b085bb5" class="wrapper-2">
-                          <img src="{{ complex.title_image.url }}" width="500" style="-webkit-transform:translate3d(0, 0, 0) scale3d(null, null, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(null, null, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(null, null, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(null, null, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" loading="lazy" alt="" class="image-43">
-                          <div class="cover cover-3">
-                            <div class="w-layout-grid grid-26">
-                              <div id="w-node-_32da13cd-eac5-e877-d785-b77c3b085bb9-16e3a100" class="div-block-3 gb">
-                                <a id="w-node-_32da13cd-eac5-e877-d785-b77c3b085bba-16e3a100" href="#" class="link-block-4 w-inline-block">
-                                  <div fs-cmsfilter-field="areas" class="text-block-68">{{ complex.area.name }}</div>
-                                  <h2 fs-cmsfilter-field="name" class="heading-7 text-link">{{ complex.name }}</h2>
-                                  <div fs-cmsfilter-field="name" class="text-block-35">Перевод названия</div>
-                                </a>
-                                <div id="w-node-_32da13cd-eac5-e877-d785-b77c3b085bc1-16e3a100" class="div-block-9">
-                                  <div class="text-block-67 ttx-left">{{ complex.squares }} м<sup>2</sup></div>
-                                  <div id="w-node-_32da13cd-eac5-e877-d785-b77c3b085bc4-16e3a100" class="text-block-67"></div>
-                                </div>
-                                <div id="w-node-_32da13cd-eac5-e877-d785-b77c3b085bc7-16e3a100" class="div-block-1108">
-                                  <div class="text-block-21 txtx-left">{{ complex.price_from }} ₽/м²</div>
-                                  <div id="w-node-_32da13cd-eac5-e877-d785-b77c3b085bca-16e3a100" class="text-block-21 txt-center"></div>
-                                </div>
-                              </div>
-                              <a id="w-node-_32da13cd-eac5-e877-d785-b77c3b085bce-16e3a100" data-w-id="32da13cd-eac5-e877-d785-b77c3b085bce" href="#" class="button-5 download dw-btn w-button">Запросить презентацию</a>
-                              <a href="#" id="w-node-_32da13cd-eac5-e877-d785-b77c3b085bd0-16e3a100" class="hidden-link">{{ complex.get_absolute_url }}</a>
-                              <img src="{{ complex.get_logo }}" id="w-node-_32da13cd-eac5-e877-d785-b77c3b085bd2-16e3a100" loading="lazy" alt="" class="image-39">
-                              <a id="w-node-_32da13cd-eac5-e877-d785-b77c3b085bd3-16e3a100" href="{{ complex.get_absolute_url }}" class="link-block-21 w-inline-block">
-                                <div class="text-block-69">Подробнее</div>
-                              </a>
-                              <div id="w-node-_32da13cd-eac5-e877-d785-b77c3b085bd6-16e3a100" class="card-logo-wrappper"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      {% endfor %}
                       
                     </div>
-
                     <div class="w-pagination-wrapper">
-                      <a href="#" aria-label="Next Page" class="w-pagination-next next-2 w-clearfix">
+                      <a href="#" aria-label="Next Page" class="w-pagination-next next-2 w-clearfix" id="show-more">
                         <div class="html-embed-1018 w-embed"><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="100%" viewbox="0 0 96.000000 96.000000" preserveaspectratio="xMidYMid meet">
                             <g transform="translate(0.000000,96.000000) scale(0.100000,-0.100000)" fill="currentcolor" stroke="none">
                               <path d="M370 884 c-308 -82 -412 -474 -186 -700 241 -240 651 -107 709 230 51 296 -230 548 -523 470z m208 -38 c73 -20 132 -57 185 -116 65 -72 91 -144 91 -250 0 -118 -27 -185 -108 -266 -81 -81 -148 -108 -266 -108 -118 0 -185 27 -266 108 -82 82 -108 148 -108 271 0 81 3 97 32 156 81 167 263 252 440 205z"></path>
                               <path d="M467 694 c-4 -4 -7 -49 -7 -100 l0 -93 -97 -3 c-79 -2 -98 -6 -98 -18 0 -12 19 -16 97 -18 l97 -3 3 -97 c2 -78 6 -97 18 -97 12 0 16 19 18 97 l3 97 97 3 c78 2 97 6 97 18 0 12 -19 16 -97 18 l-97 3 -3 96 c-3 89 -12 116 -31 97z"></path>
                             </g>
                           </svg></div>
-                        <div class="link-7 w-inline-block">ПОКАЗАТЬ ЕЩЁ</div>
+                        <div class="link-7 w-inline-block" style="display: inline-flex; flex-direction: column;--gap:5px;">
+                          <span>ПОКАЗАТЬ ЕЩЁ</span>
+                          <span id="compl-left">(осталось 16)</span>
+                        </div>
                       </a>
                     </div>
                   </div>
@@ -626,12 +597,14 @@
   <!--  MODAL -->
   <div class="modal section wf-section">
     <div class="container w-container">
-      <div class="form-block-5">
-        <div data-w-id="81cf4f42-35dd-79a0-eb1f-59fdeea575ce" class="close-icon-2 w-embed"><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="100%" viewbox="0 0 512.000000 512.000000" preserveaspectratio="xMidYMid meet">
+      <div class="form-block-5" id="m-body">
+        <div data-w-id="81cf4f42-35dd-79a0-eb1f-59fdeea575ce" class="close-icon-2 w-embed">
+          <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="100%" viewbox="0 0 512.000000 512.000000" preserveaspectratio="xMidYMid meet">
             <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="currentcolor" stroke="none">
               <path d="M271 5109 c-104 -20 -194 -91 -239 -187 -22 -47 -27 -71 -27 -137 0 -155 -68 -78 1075 -1220 l1010 -1010 -1019 -1020 c-827 -829 -1022 -1029 -1041 -1070 -34 -71 -35 -199 -2 -270 29 -63 93 -129 157 -163 72 -37 187 -42 270 -12 58 22 94 56 1083 1044 l1022 1021 1018 -1016 c817 -816 1027 -1021 1067 -1040 42 -20 65 -24 145 -24 83 0 101 4 145 27 62 32 129 103 158 166 32 68 30 197 -3 267 -19 41 -214 241 -1041 1070 l-1019 1020 1010 1010 c1143 1142 1075 1065 1075 1220 0 65 -5 90 -26 135 -81 172 -284 242 -454 158 -26 -13 -391 -370 -1057 -1036 l-1018 -1017 -1017 1017 c-667 666 -1032 1023 -1058 1036 -34 17 -145 45 -164 41 -3 -1 -26 -5 -50 -10z"></path>
             </g>
-          </svg></div>
+          </svg>
+        </div>
         <h1 class="heading-58">Заполните форму,<br>чтобы скачать презентацию</h1>
         <div id="Contact-Form" class="form-block-2 w-form">
           <form id="wf-form-Request-Prez-Form" name="wf-form-Request-Prez-Form" data-name="Request Prez Form" method="post" class="form" action="api/create-client/">
