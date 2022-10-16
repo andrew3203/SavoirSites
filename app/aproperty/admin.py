@@ -53,3 +53,8 @@ class AreaAdmin(admin.ModelAdmin):
     inlines = [
         AreaPeculiarityInline,
     ]
+
+admin.site.site_header = 'STATUS Админ панель'
+admin.site.site_title ='Панель администратора STATUS'
+admin.site.index_title = 'Администратор'
+
