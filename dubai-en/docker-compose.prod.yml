@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+
+  web:
+    build:
+      context: ./app
+      dockerfile: Dockerfile.prod
+    command: gunicorn abig.wsgi:application --bind :8083
+    volumes:
+      - static_volume:/home/app/web/staticfiles
+      - media_volume:/home/app/web/mediafiles
+    expose:
+      - 8083
+    env_file:
+      - ./.env.prod
+
+  nginx:
+    build: ./nginx
+    volumes:
+      - static_volume:/home/app/web/staticfiles
+      - media_volume:/home/app/web/mediafiles
+    ports:
+      - 8088:8088
+    depends_on:
+      - web
+  
+
+networks:
+  default:
+    name: nginxproxymanager_default
+    external: true
+
+volumes:
+  static_volume:
+  media_volume:
