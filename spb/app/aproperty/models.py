@@ -66,6 +66,7 @@ class Image(models.Model):
         verbose_name = 'Фото'
         verbose_name_plural = 'Фотографии'
         ordering = ['-name']
+        db_table = "spb_images"
 
     def __str__(self) -> str:
         return f'{self.name}'
@@ -122,6 +123,7 @@ class Area(models.Model):
         verbose_name = 'Район'
         verbose_name_plural = 'Районы'
         ordering = ['-name']
+        db_table = "spb_areas"
 
     def __str__(self) -> str:
         return f'{self.name}'
@@ -154,6 +156,7 @@ class AreaPeculiarity(models.Model):
         verbose_name = 'Особенность района'
         verbose_name_plural = 'Особенности района'
         ordering = ['-name']
+        db_table = "spb_areas_peculiarity"
 
     def __str__(self) -> str:
         return f'{self.name}'

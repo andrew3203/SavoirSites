@@ -112,6 +112,7 @@ class PrimaryProperty(models.Model):
         verbose_name = 'Новостройка'
         verbose_name_plural = 'Новостройки'
         ordering = ['-name']
+        db_table = "spb_primary_property"
     
     def __str__(self) -> str:
         return f'{self.name}'
