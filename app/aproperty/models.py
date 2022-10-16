@@ -35,7 +35,7 @@ class SiteData(models.Model):
     )
     scripts = models.TextField(
         'Скрипты аналитики',
-        max_length=500
+        max_length=1500
     )
     header_phone = models.CharField(
         'Телефон',

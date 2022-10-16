@@ -1,3 +1,4 @@
+from curses.ascii import SI
 import os, django
 from urllib import request
 import requests
@@ -7,8 +8,8 @@ from django.core.files import File
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'abig.settings')
 django.setup()
 
-from aproperty.models import AreaPeculiarity, Area, Specialist, Image
-from primary.models import PrimaryProperty
+from aproperty.models import AreaPeculiarity, Area, Specialist, Site, SiteData
+from primary.models import PrimaryProperty, Image
 
 
 def read_csv(url):
@@ -105,13 +106,16 @@ for i, p in enumerate(photos):
         f.write(p)
 
 
+site_pk = input('Enter Site Data PK :\n')
+site_data = SiteData.objects.get(pk=int(site_pk))
+
 areas_keys = {}
 area_file_dir = input('Enter the file dir with Area Peculiarity:\n')
 areas = read_csv(area_file_dir)
 indexes = areas.pop(0)
 for n, row in enumerate(areas):
     if len(row) > 1:
-        obj = Area.objects.create(name=row[0])
+        obj = Area.objects.create(name=row[0], site=site_data)
         obj.save()
         areas_keys[row[1]] = obj.pk
         for k, i in enumerate(range(7, len(row)-1, 2)):
@@ -153,6 +157,7 @@ for n, row in enumerate(primary):
         min_square = re.findall('\d+', row[19])
         max_square = re.findall('\d+', row[20])
         obj = PrimaryProperty.objects.create(
+            site=site_data,
             name=row[0],
             slug=row[1],
             price=row[12],
@@ -186,10 +191,13 @@ for n, row in enumerate(primary):
 
         for photo in row[28].split(';'):
             name, file = __get_file(photo.replace(' ', ''))
-            ph = Image.objects.create(name=row[0])
-            ph.photo.save(name, file)
-            ph.save()
-            obj.images.add(ph)
+            im = Image.objects.create(
+                property=obj,
+                name=row[0]
+            )
+            im.save()
+            im.photo.save(name, file)
+            im.save()
         obj.save()
         print(f'#{n:4}:  PrimaryProperty {obj} created')
 

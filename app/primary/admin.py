@@ -14,7 +14,7 @@ class PrimaryPropertyAdmin(admin.ModelAdmin):
         'min_square', 'max_square',
         'area', "specialist", 'is_published',
     ]
-    list_filter = ['site', 'specialist', 'district', 'area', 'is_published']
+    list_filter = ['site', 'specialist', 'is_published']
     search_fields = ('site', 'name', 'slug')
     inlines = [
         ImageInline,

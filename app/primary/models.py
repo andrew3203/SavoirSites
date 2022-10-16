@@ -133,6 +133,10 @@ class PrimaryProperty(models.Model):
         return self.get_absolute_url()
     
     @property
+    def images(self):
+        return Image.objects.filter(property=self)
+    
+    @property
     def price_from(self):
         price = re.findall('\d+', self.price.replace(' ', ''))
         if price:
@@ -158,11 +162,6 @@ class PrimaryProperty(models.Model):
     
     
 class Image(models.Model):
-    site = models.ForeignKey(
-        SiteData,
-        on_delete=models.CASCADE,
-        verbose_name='Сайт'
-    )
     property = models.ForeignKey(
         PrimaryProperty,
         on_delete=models.CASCADE,

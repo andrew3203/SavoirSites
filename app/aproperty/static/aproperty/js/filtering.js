@@ -50,7 +50,8 @@ function insertComplexes(data) {
 
 var obj;
 function loadInsertComplexes(url=NaN) {
-    var lurl = (`https://${document.domain}/${url}`) ?  url: obj.next.replace("http", "https");
+    let mmethod = 'http'
+    var lurl = (url) ?  `http://${document.domain}:8081/${url}` : obj.next.replace("http", mmethod);
 
     $.ajax({
         url: lurl,
@@ -81,7 +82,7 @@ function removeComplexes(){
 }
 
 $(function () {
-    loadInsertComplexes('/api/primary/?ordering=-click_amount&limit=4&offset=0');
+    loadInsertComplexes('api/primary/?ordering=-click_amount&limit=4&offset=0');
     var typingTimer;                
     var doneTypingInterval = 800;  
     var $input = $('#search-input');
@@ -96,7 +97,7 @@ $(function () {
         let queru = $input.val()
         if(queru.length > 2){
             $('#complex-collection').children('.collection-item-5').remove();
-            loadInsertComplexes(`/api/primary/?search=${queru}&limit=4`);
+            loadInsertComplexes(`api/primary/?search=${queru}&limit=4`);
         }
     }
     $("#show-more").click( function() {
@@ -109,14 +110,12 @@ $(function () {
         if(arr.size > 0){
             let nam = arr.values().next().value;
             $('#complex-collection').children('.collection-item-5').remove();
-            console.log(`api/primary/?area__name=${nam}&limit=4`);
             loadInsertComplexes(`api/primary/?area__name=${nam}&limit=4`);
-            console.log(arr);
         }
         else {
             $input.val('');
             $('#complex-collection').children('.collection-item-5').remove();
-            loadInsertComplexes('/api/primary/?ordering=-click_amount&limit=4&offset=0');
+            loadInsertComplexes('api/primary/?ordering=-click_amount&limit=4&offset=0');
             $("#show-more").show();
         }
         
@@ -126,7 +125,7 @@ $(function () {
         arr.clear();
         $(".areas").children('.w--redirected-checked').removeClass('w--redirected-checked');
         $('#complex-collection').children('.collection-item-5').remove();
-        loadInsertComplexes('/api/primary/?ordering=-click_amount&limit=4&offset=0');
+        loadInsertComplexes('api/primary/?ordering=-click_amount&limit=4&offset=0');
         $("#show-more").show();
     });
     $('#complex-collection').on('click', '.dw-btn', function() {

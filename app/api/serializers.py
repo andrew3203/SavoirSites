@@ -14,7 +14,7 @@ class PrimaryMainSerializer(serializers.ModelSerializer):
         model = PrimaryProperty
         exclude = [
             'map_script', 'short_phrase', 'description', 'logo',
-            'second_image', 'presentation', 'images', 'specialist'
+            'second_image', 'presentation', 'specialist', 'site'
         ]
         depth = 1
 
