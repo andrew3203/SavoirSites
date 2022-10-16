@@ -50,7 +50,8 @@ function insertComplexes(data) {
 
 var obj;
 function loadInsertComplexes(url=NaN) {
-    var lurl = (`https://${document.domain}/${url}`) ?  url: obj.next
+    var lurl = (`https://${document.domain}/${url}`) ?  url: obj.next.replace("http", "https");
+
     $.ajax({
         url: lurl,
         type: "GET",
