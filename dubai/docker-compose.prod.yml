@@ -15,8 +15,6 @@ services:
       - 8082
     env_file:
       - ./.env.prod
-    depends_on:
-      - big_db
 
   nginx:
     container_name: dubai_nginx
