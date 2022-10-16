@@ -7,12 +7,12 @@ services:
     build:
       context: ./app
       dockerfile: Dockerfile.prod
-    command: gunicorn abig.wsgi:application --bind :8084
+    command: gunicorn abig.wsgi:application --bind :8086
     volumes:
       - static_volume:/home/app/web/staticfiles
       - media_volume:/home/app/web/mediafiles
     expose:
-      - 8084
+      - 8086
     env_file:
       - ./.env.prod
 
@@ -22,7 +22,7 @@ services:
       - static_volume:/home/app/web/staticfiles
       - media_volume:/home/app/web/mediafiles
     ports:
-      - 8084:8084
+      - 8087:8087
     depends_on:
       - web
   
