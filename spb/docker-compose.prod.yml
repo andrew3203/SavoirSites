@@ -7,22 +7,23 @@ services:
     build:
       context: ./app
       dockerfile: Dockerfile.prod
-    command: gunicorn abig.wsgi:application --bind :8088
+    command: gunicorn abig.wsgi:application --bind :8084
     volumes:
       - static_volume:/home/app/web/staticfiles
       - media_volume:/home/app/web/mediafiles
     expose:
-      - 8088
+      - 8084
     env_file:
       - ./.env.prod
 
   nginx:
+    container_name: spb_nginx
     build: ./nginx
     volumes:
       - static_volume:/home/app/web/staticfiles
       - media_volume:/home/app/web/mediafiles
     ports:
-      - 8089:8089
+      - 8085:8085
     depends_on:
       - web
   
@@ -35,3 +36,4 @@ networks:
 volumes:
   static_volume:
   media_volume:
+  postgres_data:

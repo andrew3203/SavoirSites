@@ -6,14 +6,14 @@
   <meta content="Портал Элитной недвижимости Дубая. 19 Жилых комплексов премиум класса в самых элитных районах города! Наши телефоны: +7 958 577-17-66, +7 499 647-58-44" name="description">
   <meta content="Элитная недвижимость Дубай" aproperty="og:title">
   <meta content="Портал Элитной недвижимости Дубая. 19 Жилых комплексов премиум класса в самых элитных районах города! Наши телефоны: +7 958 577-17-66, +7 499 647-58-44" aproperty="og:description">
-  <meta content="https://uploads-ssl.webflow.com/620b4a04443ebde9319eea03/62416ef1bfd0363a7ab757af_%D0%9E%D0%B1%D0%BB%D0%BE%D0%B6%D0%BA%D0%B0%20Facebook%205.png" aproperty="og:image">
+  {% load static %}
+  <meta content="{% static 'aproperty/images/meta-image.png' %}" aproperty="og:image">
   <meta content="Элитная недвижимость Дубай" aproperty="twitter:title">
   <meta content="Портал Элитной недвижимости Дубая. 19 Жилых комплексов премиум класса в самых элитных районах города! Наши телефоны: +7 958 577-17-66, +7 499 647-58-44" aproperty="twitter:description">
-  <meta content="https://uploads-ssl.webflow.com/620b4a04443ebde9319eea03/62416ef1bfd0363a7ab757af_%D0%9E%D0%B1%D0%BB%D0%BE%D0%B6%D0%BA%D0%B0%20Facebook%205.png" aproperty="twitter:image">
+  <meta content="{% static 'aproperty/images/meta-image.png' %}" aproperty="twitter:image">
   <meta aproperty="og:type" content="website">
   <meta content="summary_large_image" name="twitter:card">
   <meta content="width=device-width, initial-scale=1" name="viewport">
-  {% load static %}
   <link href="{% static 'aproperty/css/normalize.css' %}" rel="stylesheet" type="text/css">
   <link href="{% static 'aproperty/css/webflow.css' %}" rel="stylesheet" type="text/css">
   <link href="{% static 'aproperty/css/dubai-big.webflow.css' %}" rel="stylesheet" type="text/css">
@@ -56,11 +56,13 @@
         <div id="w-node-_2928a421-2ed5-d745-3063-00c905e72f15-8f6d7a48" class="menu-button w-nav-button">
           <div class="w-icon-nav-menu"></div>
         </div>
-        <a href="/" aria-current="page" class="brand w-nav-brand w--current"><img src="{% static 'aproperty/images/logo-new.png' %}" loading="eager" height="Auto" width="100" sizes="(max-width: 479px) 27vw, 100px" srcset="{% static 'aproperty/images/logo-new-p-500.png' %} 500w, {% static 'aproperty/images/logo-new-p-800.png' %} 800w, {% static 'aproperty/images/logo-new.png' %} 823w" alt="" class="image-37"></a>
+        <a href="/" aria-current="page" class="brand w-nav-brand w--current">
+          <img src="{% static 'aproperty/images/logo-new.png' %}" loading="eager" height="Auto" width="100" sizes="(max-width: 479px) 27vw, 100px" srcset="{% static 'aproperty/images/logo-new-p-500.png' %} 500w, {% static 'aproperty/images/logo-new-p-800.png' %} 800w, {% static 'aproperty/images/logo-new.png' %} 823w" alt="" class="image-37"></a>
         <a href="tel:+7958577-17-66" class="link-block-10 w-inline-block">
           <div class="html-embed-16 w-embed"><svg width="20" height="20" viewbox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10.4327 6.92341C10.4327 6.92341 9.50024 2 7.47185 1.14147C2.70872 2.16682 0.217757 6.53442 1.70888 9.35267C5.02456 15.6194 9.15552 20.2065 16.049 23.9092C18.8433 25.4101 22.8112 23.8217 24.195 19.3497C23.5002 18 19.1459 15.9768 19.1459 15.9768C15.8611 19.9627 10.8907 14.0476 10.8907 14.0476C10.8907 14.0476 5.85721 9.70232 10.4327 6.92341Z" stroke="#151414" stroke-width="1.2"></path>
-            </svg></div>
+            </svg>
+          </div>
         </a>
       </div>
     </div>
@@ -101,14 +103,16 @@
         </div>
 
         <div id="w-node-f1ace0b2-5e64-4be1-9560-016399938a56-16e3a100" class="conserj-2">
-          <a href="concierge/" target="_blank" class="link-block-15 w-inline-block"><img src="https://uploads-ssl.webflow.com/62c72bc44d978624056da433/62ccef84dfafc00729b89140_photo_2022-07-12%2006.41.21.jpeg" loading="lazy" alt="" class="image-24">
+          <a href="concierge/" target="_blank" class="link-block-15 w-inline-block">
+            <img src="{% static 'aproperty/images/concierge.jpeg' %}" loading="lazy" alt="" class="image-24">
             <div class="div-block-65">
               <div class="text-block-56"> Ваш личный <br>консьерж </div><img src="{% static 'aproperty/images/status-concierge-new.png' %}" loading="lazy" srcset="{% static 'aproperty/images/status-concierge-new-p-500.png' %} 500w, {% static 'aproperty/images/status-concierge-new.png' %} 768w" sizes="100vw" alt="" class="image-38">
             </div>
           </a>
         </div>
 
-        <div id="w-node-_14c2697a-21fa-f569-5235-e364a978b8e5-16e3a100" class="ipoteka-3"><img src="{% static 'aproperty/images/SAFA_ONE_Metropolita.jpg' %}" loading="lazy" srcset="{% static 'aproperty/images/SAFA_ONE_Metropolita-p-500.jpg' %} 500w, {% static 'aproperty/images/SAFA_ONE_Metropolita-p-800.jpg' %} 800w, {% static 'aproperty/images/SAFA_ONE_Metropolita-p-1080.jpg' %} 1080w, {% static 'aproperty/images/SAFA_ONE_Metropolita.jpg' %} 2183w" sizes="100vw" alt="" class="image-31">
+        <div id="w-node-_14c2697a-21fa-f569-5235-e364a978b8e5-16e3a100" class="ipoteka-3">
+          <img src="{% static 'aproperty/images/SAFA_ONE_Metropolita.jpg' %}" loading="lazy" srcset="{% static 'aproperty/images/SAFA_ONE_Metropolita-p-500.jpg' %} 500w, {% static 'aproperty/images/SAFA_ONE_Metropolita-p-800.jpg' %} 800w, {% static 'aproperty/images/SAFA_ONE_Metropolita-p-1080.jpg' %} 1080w, {% static 'aproperty/images/SAFA_ONE_Metropolita.jpg' %} 2183w" sizes="100vw" alt="" class="image-31">
           <div class="div-block-61">
             <h3 class="heading-44">Старт продаж</h3>
             <a data-w-id="69b7f05f-c41f-6ac7-d8e6-9f02e095d46c" href="#" class="button-5 h-text my-text w-inline-block">
@@ -122,13 +126,17 @@
             <div class="w-slider-mask">
               <div class="slide-5 w-slide">
                 <div class="div-block-63">
-                  <a href="https://www.status-aproperty.com" target="_blank" class="link-block-14 w-inline-block"><img src="{% static 'aproperty/images/6316b3b0f959591df688b7b1_status-спб-new-p-500.png' %}" loading="lazy" srcset="{% static 'aproperty/images/6316b3b0f959591df688b7b1_status-спб-new-p-500-p-500.png' %} 500w, {% static 'aproperty/images/6316b3b0f959591df688b7b1_status-спб-new-p-500.png' %} 500w" sizes="70px" alt="" class="image-32"></a>
-                </div><img src="{% static 'aproperty/images/3152-kazanskij-sobor-panorama-sankt-peterburga.jpg' %}" loading="lazy" srcset="{% static 'aproperty/images/3152-kazanskij-sobor-panorama-sankt-peterburga-p-500.jpg' %} 500w, {% static 'aproperty/images/3152-kazanskij-sobor-panorama-sankt-peterburga-p-800.jpg' %} 800w, {% static 'aproperty/images/3152-kazanskij-sobor-panorama-sankt-peterburga-p-1080.jpg' %} 1080w, {% static 'aproperty/images/3152-kazanskij-sobor-panorama-sankt-peterburga-p-1600.jpg' %} 1600w, {% static 'aproperty/images/3152-kazanskij-sobor-panorama-sankt-peterburga.jpg' %} 2000w" sizes="100vw" alt="" class="image-33">
+                  <a href="https://www.status-property.com" target="_blank" class="link-block-14 w-inline-block">
+                    <img src="{% static 'aproperty/images/6316b3b0f959591df688b7b1_status-спб-new-p-500.png' %}" loading="lazy" srcset="{% static 'aproperty/images/6316b3b0f959591df688b7b1_status-спб-new-p-500-p-500.png' %} 500w, {% static 'aproperty/images/6316b3b0f959591df688b7b1_status-спб-new-p-500.png' %} 500w" sizes="70px" alt="" class="image-32"></a>
+                </div>
+                <img src="{% static 'aproperty/images/3152-kazanskij-sobor-panorama-sankt-peterburga.jpg' %}" loading="lazy" srcset="{% static 'aproperty/images/3152-kazanskij-sobor-panorama-sankt-peterburga-p-500.jpg' %} 500w, {% static 'aproperty/images/3152-kazanskij-sobor-panorama-sankt-peterburga-p-800.jpg' %} 800w, {% static 'aproperty/images/3152-kazanskij-sobor-panorama-sankt-peterburga-p-1080.jpg' %} 1080w, {% static 'aproperty/images/3152-kazanskij-sobor-panorama-sankt-peterburga-p-1600.jpg' %} 1600w, {% static 'aproperty/images/3152-kazanskij-sobor-panorama-sankt-peterburga.jpg' %} 2000w" sizes="100vw" alt="" class="image-33">
               </div>
               <div class="w-slide">
                 <div class="div-block-63">
-                  <a href="https://www.status-aproperty.ru" target="_blank" class="link-block-14 w-inline-block"><img src="{% static 'aproperty/images/Status-moscow.png' %}" loading="lazy" srcset="{% static 'aproperty/images/Status-moscow-p-500.png' %} 500w, {% static 'aproperty/images/Status-moscow.png' %} 768w" sizes="70px" alt="" class="image-36"></a>
-                </div><img src="{% static 'aproperty/images/moskva.jpeg' %}" loading="lazy" srcset="{% static 'aproperty/images/moskva-p-500.jpeg' %} 500w, {% static 'aproperty/images/moskva-p-800.jpeg' %} 800w, {% static 'aproperty/images/moskva-p-1080.jpeg' %} 1080w, {% static 'aproperty/images/moskva.jpeg' %} 1600w" sizes="100vw" alt="" class="image-33">
+                  <a href="https://www.status-property.ru" target="_blank" class="link-block-14 w-inline-block">
+                    <img src="{% static 'aproperty/images/Status-moscow.png' %}" loading="lazy" srcset="{% static 'aproperty/images/Status-moscow-p-500.png' %} 500w, {% static 'aproperty/images/Status-moscow.png' %} 768w" sizes="70px" alt="" class="image-36"></a>
+                </div>
+                <img src="{% static 'aproperty/images/moskva.jpeg' %}" loading="lazy" srcset="{% static 'aproperty/images/moskva-p-500.jpeg' %} 500w, {% static 'aproperty/images/moskva-p-800.jpeg' %} 800w, {% static 'aproperty/images/moskva-p-1080.jpeg' %} 1080w, {% static 'aproperty/images/moskva.jpeg' %} 1600w" sizes="100vw" alt="" class="image-33">
               </div>
             </div>
             <div class="w-slider-arrow-left">
@@ -766,9 +774,9 @@
         <div id="w-node-_0b4287be-766c-9e57-f34e-4ff97e4d40f4-43b38ac1" class="footer-info-2">
           <h4 class="heading-45">Наши контакты</h4>
           <div class="contacts">
-            <a href="tel:+74996475844" class="text-link-2 black footer-klink"></a>
             <a href="tel:+79585771766" class="text-link-2 black footer-klink">+7 499 647 58 44</a>
-            <a href="tel:+97142154847" class="text-link-2 black footer-klink">+971 4 215 48 47</a>
+            <a href="tel:+97142154847" class="text-link-2 black footer-klink">+9 714 215 48 47</a>
+            <a href="mailto:info@status-realty.com" class="text-link-2 black footer-klink">info@status-realty.com</a>
           </div>
           <a href="tel:+74996475844" class="text-link-2 black footer-klink"></a>
           <a href="tel:+74996475844" class="text-link-2 black footer-klink"></a>
@@ -806,7 +814,8 @@
                   </svg></div>
               </a>
             </div>
-            <a href="tel:+7499647-58-44" class="link-6">+7 499 647-58-44</a>
+            <a href="tel:+74996475844" class="link-6">+7 499 647-58-44</a>
+            <a href="mailto:info@status-realty.com" class="link-6">info@status-realty.com</a>
           </div>
         </div>
         <div id="w-node-_0b4287be-766c-9e57-f34e-4ff97e4d410f-43b38ac1" class="oferta-2">

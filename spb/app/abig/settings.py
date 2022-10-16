@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'aproperty.apps.APropertyConfig',
     'primary.apps.PrimaryConfig',
-    #'resale.apps.ResaleConfig'
 ]
 
 MIDDLEWARE = [

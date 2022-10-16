@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./app
+    command: python manage.py runserver 0.0.0.0:8080
+    volumes:
+      - ./app/:/usr/src/app/
+    ports:
+      - 8081:8080
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - big_db
+
+  big_db:
+    container_name: big_db
+    image: postgres:13.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=user_pwd
+      - POSTGRES_DB=big_sites
+
+volumes:
+  postgres_data:
