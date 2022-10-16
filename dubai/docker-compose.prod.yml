@@ -21,7 +21,7 @@ services:
       - static_volume:/home/app/web/staticfiles
       - media_volume:/home/app/web/mediafiles
     ports:
-      - 8088:8088
+      - 8082:8082
     depends_on:
       - web
   
