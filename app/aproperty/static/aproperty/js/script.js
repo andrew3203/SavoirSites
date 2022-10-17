@@ -24,9 +24,9 @@ $(function () {
 
         var my_data = serializeForm($(this));
         disabled.attr('disabled', 'disabled');
-        var my_url = $(this).attr('action');
+        var action = $(this).attr('action');
         $.ajax({
-            url: my_url,
+            url: `https://${document.location.hostname}/${action}`,
             type: "POST",
             data: my_data,
             success: function (data, textStatus, jqXHR) {

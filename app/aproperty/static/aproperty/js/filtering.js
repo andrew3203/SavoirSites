@@ -49,17 +49,13 @@ function insertComplexes(data) {
 };
 
 var obj;
-function loadInsertComplexes(url=NaN) {
-    if(url != NaN){
-        var lurl = `https://${document.domain}/${url}`;
-    }
-    else {
-        var lurl = obj.next.replace("http", "https");
-    }
-    console.log(lurl)
+function loadInsertComplexes(method=NaN) {
+
+    let url1 = `https://${document.location.hostname}/${method}`;
+    let url = (method) ? url1 : obj.next.replace("http", "https");
 
     $.ajax({
-        url: lurl,
+        url: url,
         type: "GET",
         success: function (data, textStatus, jqXHR) {
             console.log(data.results)
