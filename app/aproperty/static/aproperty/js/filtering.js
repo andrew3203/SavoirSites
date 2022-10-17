@@ -50,8 +50,8 @@ function insertComplexes(data) {
 
 var obj;
 function loadInsertComplexes(url=NaN) {
-    let mmethod = 'http'
-    var lurl = (url) ?  `http://${document.domain}:8081/${url}` : obj.next.replace("http", mmethod);
+    let mmethod = 'https'
+    var lurl = (url) ?  `${mmethod}://${document.domain}/${url}` : obj.next.replace("http", mmethod);
 
     $.ajax({
         url: lurl,
@@ -66,7 +66,7 @@ function loadInsertComplexes(url=NaN) {
                 let offset = getQueryParam(data.next, 'offset')
                 $('#visible-count').text(offset)
                 let left = data.count - offset
-                $("#compl-left").text(`(Осталось ${left})`)
+                $("#compl-left").text(left)
             }
             obj = data
 
@@ -127,15 +127,5 @@ $(function () {
         $('#complex-collection').children('.collection-item-5').remove();
         loadInsertComplexes('api/primary/?ordering=-click_amount&limit=4&offset=0');
         $("#show-more").show();
-    });
-    $('#complex-collection').on('click', '.dw-btn', function() {
-        href = $(this).parent().find( ".hidden-link" ).prop('href');
-        let complex = $(this).parent().find( ".hidden-link" ).text();
-        $(document).find(".hidden-inp").val(complex);
-        $(".modal").css("display", "block");
-        $(".modal").css("opacity", "100%");
-    });
-    $('#complex-collection').on('click', '.close-icon-2', function() {
-        $(".modal").css("display", "none");
     });
 });

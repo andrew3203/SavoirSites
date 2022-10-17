@@ -9,8 +9,13 @@ function serializeForm(form_obj) {
 
 
 $(function () {
+    let hostname = document.location.hostname;
+    let pathname = document.location.pathname;
+    let complex =  (pathname == "/") ? hostname: pathname.replaceAll("/", " ");
+    $('.hidden-inp').each(function(){
+            $(this).val(complex);
+    })
     let submit_form_ids = "#Application-Form, #wf-form-Request-Prez-Form, #wf-form-Footer-Form-2, #wf-form-Footer-Form"
-
     $(submit_form_ids).submit(function (event) {
         event.preventDefault();
         var form = $(this);
@@ -21,7 +26,7 @@ $(function () {
         disabled.attr('disabled', 'disabled');
         var my_url = $(this).attr('action');
         $.ajax({
-            url: `https://${document.domain}/${my_url}`,
+            url: `httpы://${document.domain}/${my_url}`,
             type: "POST",
             data: my_data,
             success: function (data, textStatus, jqXHR) {
@@ -34,5 +39,26 @@ $(function () {
             }
         });
         return false;
+    });
+    $('#complex-collection').on('click', '.dw-btn', function() {
+        let complex = $(this).parent().find( ".hidden-link" ).text().replaceAll("/", " ");
+        $('.modal').find('.hidden-inp').val(complex);
+        $(".modal").css("display", "block");
+        $(".modal").css("opacity", "100%");
+        
+    });
+    $('#complex-collection').on('click', '.close-icon-2', function() {
+        $(".modal").css("display", "none");
+    });
+    $('.dw-btn').click(function (event) {
+        let hostname = document.location.hostname;
+        let pathname = document.location.pathname;
+        let complex =  (pathname == "/") ? hostname: pathname.replaceAll("/", " ");
+        $(document).find(".hidden-inp").val(complex);
+        $(".modal").css("display", "block");
+        $(".modal").css("opacity", "100%");
+    });
+    $('.close-icon-2').click(function (event) {
+        $(".modal").css("display", "none");
     });
 });

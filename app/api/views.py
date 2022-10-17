@@ -19,13 +19,9 @@ class PrimaryPropertyListView(generics.ListAPIView):
     filterset_fields = ['area__name', 'min_square', 'max_square']
 
 
-class PrimaryPropertyViewSet(viewsets.ModelViewSet):
+class PrimaryPropertyAPIView(generics.CreateAPIView):
     serializer_class = serializers.PrimaryPropertySerializer
     queryset = PrimaryProperty.objects.all()
-    permission_classes = [IsAdminUser]
-
-    def list(self, request, *args, **kwargs):
-        pass
 
 class ClientCreateAPIView(generics.CreateAPIView):
     serializer_class = serializers.ClientSerializer

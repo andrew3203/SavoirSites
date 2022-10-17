@@ -5,20 +5,25 @@ from django.contrib.sites.shortcuts import get_current_site
 # Create your views here.
 
 def index(request):
-    site = get_current_site(request)
-    site_data = SiteData.objects.get(site=site)
-    queryset = PrimaryProperty.objects.filter(site=site_data).order_by('main_order')
+    s = SiteData.objects.get(site=get_current_site(request))
+    queryset = PrimaryProperty.objects.filter(site=s).order_by('main_order')
     areas = Area.objects.all().values_list('name', flat=True)
     context = {
         'main_complexses': queryset.exclude(logo='')[:10],
         'areas': areas,
         'count': queryset.count(),
-        'site': site_data
+        'site': s,
+        'title_image': s.title_image,
+        'slides_count': s.slides.count(),
+        'slides': s.slides,
+        'site_id': s.site.pk
     }
-    return render(request, 'aproperty/ru/index.html', context)
+    return render(request, f'aproperty/{s.get_lan()}/index.html', context)
 
 def concierge(request):
-    return render(request, 'aproperty/concierge.html')
+    s = SiteData.objects.get(site=get_current_site(request))
+    return render(request, 'aproperty/{s.get_lan()}/concierge.html', {'site': s, 'site_id': s.site.pk})
 
 def privacy(request):
-    return render(request, 'aproperty/privacy.html')
+    s = SiteData.objects.get(site=get_current_site(request))
+    return render(request, 'aproperty/{s.get_lan()}/privacy.html', {'site': s, 'site_id': s.site.pk})

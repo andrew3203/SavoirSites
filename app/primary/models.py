@@ -131,6 +131,14 @@ class PrimaryProperty(models.Model):
     @property
     def url(self):
         return self.get_absolute_url()
+        
+    @property
+    def site_name(self):
+        return self.site.site.name
+    
+    @property
+    def areas_data(self):
+        return AreaPeculiarity.objects.filter(area=self.area)
     
     @property
     def images(self):
@@ -146,10 +154,25 @@ class PrimaryProperty(models.Model):
         return 'по запросу'
     
     @property
+    def price_from_en(self):
+        price = re.findall('\d+', self.price.replace(' ', ''))
+        if price:
+            price = int(price[0])
+            if price != 0 and self.min_square != 0:
+                return f'От  {price / self.min_square:,.0f}'.replace(',', ' ')
+        return 'on request'
+    
+    @property
     def squares(self):
         if self.min_square == 0 and self.max_square == 0:
-            return ' Метраж - по запросу'
-        return f' Метраж от {self.min_square} до {self.max_square}'
+            return 'Метраж - по запросу'
+        return f'Метраж от {self.min_square} до {self.max_square}'
+    
+    @property
+    def squares_en(self):
+        if self.min_square == 0 and self.max_square == 0:
+            return 'Metters - on requests'
+        return f'Metters от {self.min_square} до {self.max_square}'
     
     @property
     def get_logo(self):

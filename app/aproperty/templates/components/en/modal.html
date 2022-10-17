@@ -1,0 +1,75 @@
+<div class="modal section wf-section">
+    <div class="container w-container">
+    <div class="form-block-5" id="m-body">
+        <div data-w-id="81cf4f42-35dd-79a0-eb1f-59fdeea575ce" class="close-icon-2 w-embed">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="100%" viewbox="0 0 512.000000 512.000000" preserveaspectratio="xMidYMid meet">
+            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="currentcolor" stroke="none">
+            <path d="M271 5109 c-104 -20 -194 -91 -239 -187 -22 -47 -27 -71 -27 -137 0 -155 -68 -78 1075 -1220 l1010 -1010 -1019 -1020 c-827 -829 -1022 -1029 -1041 -1070 -34 -71 -35 -199 -2 -270 29 -63 93 -129 157 -163 72 -37 187 -42 270 -12 58 22 94 56 1083 1044 l1022 1021 1018 -1016 c817 -816 1027 -1021 1067 -1040 42 -20 65 -24 145 -24 83 0 101 4 145 27 62 32 129 103 158 166 32 68 30 197 -3 267 -19 41 -214 241 -1041 1070 l-1019 1020 1010 1010 c1143 1142 1075 1065 1075 1220 0 65 -5 90 -26 135 -81 172 -284 242 -454 158 -26 -13 -391 -370 -1057 -1036 l-1018 -1017 -1017 1017 c-667 666 -1032 1023 -1058 1036 -34 17 -145 45 -164 41 -3 -1 -26 -5 -50 -10z"></path>
+            </g>
+        </svg>
+        </div>
+        <h1 class="heading-58">Fill out the form<br>to download the presentation</h1>
+        <div id="Contact-Form" class="form-block-2 w-form">
+        <form id="wf-form-Request-Prez-Form" name="wf-form-Request-Prez-Form" data-name="Request Prez Form" method="post" class="form" action="api/create-client/">
+            {% csrf_token %}
+            <input type="text" class="input-2 w-input" autofocus="true" maxlength="256" name="name" data-name="name" placeholder="First Name *" id="name" required="">
+            <input type="tel" class="input-2 w-input" maxlength="256" name="phone" data-name="phone" placeholder="Phone *" id="phone" required="">
+            <input type="email" class="input-2 w-input" maxlength="256" name="email" data-name="email" placeholder="Email *" id="email" required="">
+            <input type="text" class="input-2 hidden w-input" maxlength="10" name="site" data-name="site" value="{{ site_id }}" hidden style='display: none;'>
+            <input type="text" class="input-2 hidden hidden-inp w-input" maxlength="256" name="complex" data-name="complex" placeholder="" value="">
+            <label data-w-id="81cf4f42-35dd-79a0-eb1f-59fdeea575d9" class="w-checkbox checkbox-field popcorn">
+            <input type="checkbox" id="checkbox-4" name="checkbox-4" data-name="Checkbox 4" required="" class="w-checkbox-input checkbox">
+            <span class="checkbox-label-2 w-form-label" for="checkbox-4">
+                I agree to the processing of my personal data
+            </span>
+            </label>
+            <div class="btn-block forb-btn-block">
+            <div class="policy-2 poli-modal w-embed">
+                <div>
+                <h4 style="font-size: 12px;margin:9px 0;">Privacy Policy</h4>
+                <p style="font-size: 10px;margin:5px 0;line-height:10px">
+                    By this confirmation, I give permission to STATUS LLC to any other third parties (including, but not limited to: insurance organizations; organizations owning servers; banking and other credit organizations; organizations providing services for making calls, SMS mailings, any other types of mailing lists and notifications;
+                </p>
+                <p style="font-size: 10px;margin:5px 0;line-height:10px">
+                    organizations providing services for conducting various surveys and research, etc. to inform about
+                    goods, works, services) for the processing of personal data and sending them to the address indicated by me
+                    e-mail address and / or mobile phone number for information and advertising about goods, works, services of LLC
+                    Specialized developer "STATUS" and its partners, using any means of communication.
+                </p>
+                <p style="font-size: 10px;margin:5px 0;line-height:10px">
+                    I agree and authorize Specialized
+                    the developer "STATUS" and other persons specified by him combine personal data into an information system
+                    personal data and process my personal data with or without automation
+                    use of automation tools, as well as with the help of other software tools.
+                </p>
+                <p style="font-size: 10px;margin:5px 0;line-height:10px">
+                    I understand that this is consent to the processing of my
+                    personal data and the receipt of advertising is perpetual, it can be revoked by me at any time by
+                    sending a written notice to the address: Moscow, Leningradsky Prospekt 35s2, Office 483.
+                    one
+                </p>
+                </div>
+            </div>
+                <input type="submit" value="Отправить" data-wait="Отправка..." class="button-5 form-btn w-button">
+            </div>
+        </form>
+        <div class="success-message w-form-done">
+            <div class="content">
+                <div class="text-block-4">Thank you! Your application is accepted!<br><br>We will send you a presentation soon!<br></div>
+                <div id="download-btn" data-w-id="81cf4f42-35dd-79a0-eb1f-59fdeea575e8" class="down-arrow-2 w-embed">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="100%" viewbox="0 0 512.000000 512.000000" preserveaspectratio="xMidYMid meet">
+                        <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="currentcolor" stroke="none">
+                            <path d="M2490 5104 c-45 -20 -68 -41 -91 -86 -18 -36 -19 -91 -19 -1850 l0 -1813 -312 312 c-319 318 -350 343 -420 343 -41 0 -106 -30 -135 -61 -47 -51 -57 -143 -24 -207 29 -55 957 -977 1003 -997 49 -20 94 -19 143 4 49 23 989 962 1004 1004 24 63 10 150 -32 196 -27 29 -93 61 -127 61 -80 0 -92 -9 -422 -338 l-318 -316 0 1812 c0 1759 -1 1814 -19 1850 -23 46 -46 67 -94 87 -45 19 -92 19 -137 -1z"></path>
+                            <path d="M295 1811 c-51 -23 -91 -70 -105 -122 -8 -27 -10 -233 -7 -642 3 -661 0 -625 67 -758 39 -76 132 -172 211 -217 32 -18 92 -41 135 -52 76 -20 115 -20 1964 -20 1849 0 1888 0 1964 20 187 47 325 181 394 379 14 40 16 129 19 648 3 409 1 615 -7 642 -20 75 -100 140 -173 141 -66 0 -137 -48 -168 -115 -17 -37 -19 -78 -19 -623 0 -472 -3 -589 -14 -615 -16 -39 -61 -82 -99 -96 -20 -8 -601 -11 -1898 -11 -1565 0 -1875 2 -1902 14 -39 16 -82 61 -96 99 -7 19 -11 224 -11 610 0 544 -2 585 -19 622 -22 48 -54 79 -103 100 -49 20 -84 19 -133 -4z"></path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="error-message-4 w-form-fail">
+            <div>Ouch! Something went wrong while submitting the form.</div>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>

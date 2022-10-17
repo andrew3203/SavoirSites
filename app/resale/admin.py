@@ -1,5 +1,6 @@
 from django.contrib import admin
 from resale.models import ResaleProperty, Image
+from aproperty.admin import SiteFilter
 
 
 class ImageInline(admin.TabularInline):
@@ -10,12 +11,12 @@ class ImageInline(admin.TabularInline):
 @admin.register(ResaleProperty)
 class ResalePropertyAdmin(admin.ModelAdmin):
     list_display = [
-        'site', 'name', 'price', 'click_amount', 'main_order', 'addres', 'district', 
+        'site_name', 'name', 'price', 'click_amount', 'main_order', 'addres', 'district', 
         'min_square', 'max_square',
         'area', "specialist", 'is_published',
     ]
-    list_filter = ['site', 'specialist', 'district', 'area', 'is_published']
-    search_fields = ('site', 'name', 'slug')
+    list_filter = [SiteFilter, 'specialist', 'district', 'area', 'is_published']
+    search_fields = ('name', 'slug')
     inlines = [
         ImageInline,
     ]

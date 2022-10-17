@@ -1,21 +1,25 @@
+from unicodedata import name
 from django.contrib import admin
 from primary.models import PrimaryProperty, Image
+from aproperty.admin import SiteFilter
 
 # Register your models here.
+
 
 class ImageInline(admin.TabularInline):
     model = Image
     extra = 1
 
+
 @admin.register(PrimaryProperty)
 class PrimaryPropertyAdmin(admin.ModelAdmin):
     list_display = [
-        'site', 'name', 'price', 'click_amount', 'main_order', 'addres', 'district', 
+        'site_name', 'name', 'price', 'click_amount', 'main_order', 'addres', 'district',
         'min_square', 'max_square',
         'area', "specialist", 'is_published',
     ]
-    list_filter = ['site', 'specialist', 'is_published']
-    search_fields = ('site', 'name', 'slug')
+    list_filter = [SiteFilter, 'specialist', 'is_published']
+    search_fields = ('name', 'slug')
     inlines = [
         ImageInline,
     ]

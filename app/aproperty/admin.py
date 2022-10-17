@@ -1,19 +1,47 @@
 from django.contrib import admin
-from aproperty.models import SiteData, Client, Specialist, Area, AreaPeculiarity
+from django.contrib.admin import SimpleListFilter
+from aproperty.models import *
 
-# Register your models here.
+
+class SiteFilter(SimpleListFilter):
+    title = 'Сайты'
+    parameter_name = 'site_pk'
+
+    def lookups(self, request, model_admin):
+        sites = set([o.site.site for o in model_admin.model.objects.all()])
+        return [(c.id, c.name) for c in sites]
+
+    def queryset(self, request, queryset):
+        if self.value():
+            return queryset.filter(site__site__pk=self.value())
+        else:
+            return queryset
+
+
+class YouTubeLinkInline(admin.TabularInline):
+    model = YouTubeLink
+    extra = 1
+
+
+class MainSliderInline(admin.TabularInline):
+    model = MainSlider
+    extra = 1
+
+
 @admin.register(SiteData)
 class SiteDataAdmin(admin.ModelAdmin):
-    list_display = ['site', 'header_phone', 'created_at']
-    search_fields = ['site', 'header_phone']
-    list_filter = ['site',]
-
+    list_display = ['site_name', 'header_phone', 'created_at']
+    search_fields = ['header_phone']
+    inlines = [
+        MainSliderInline,
+        YouTubeLinkInline,
+    ]
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ['site','name', 'phone', 'email', 'complex', 'created_at']
-    search_fields = ['site', 'name', 'phone', 'email']
-    list_filter = ['site',]
+    list_display = ['site_name','name', 'phone', 'email', 'complex', 'created_at']
+    search_fields = ['name', 'phone', 'email']
+    list_filter = [SiteFilter]
 
 
 @admin.register(Specialist)
@@ -47,9 +75,9 @@ class AreaPeculiarityInline(admin.TabularInline):
 
 @admin.register(Area)
 class AreaAdmin(admin.ModelAdmin):
-    list_display = ['site', 'name']
-    search_fields = ('site', 'name',)
-    list_filter = ['site',]
+    list_display = ['site_name', 'name']
+    search_fields = ('name',)
+    list_filter = [SiteFilter]
     inlines = [
         AreaPeculiarityInline,
     ]
