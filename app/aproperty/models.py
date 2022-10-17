@@ -104,7 +104,7 @@ class SiteData(models.Model):
         return self.site.name
     
     def get_lan(self):
-        dubai_en = ''
+        dubai_en = 'statusprime.com'
         return 'en' if self.site.domain == dubai_en else 'ru'
 
 

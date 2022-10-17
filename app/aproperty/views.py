@@ -7,7 +7,7 @@ from django.contrib.sites.shortcuts import get_current_site
 def index(request):
     s = SiteData.objects.get(site=get_current_site(request))
     queryset = PrimaryProperty.objects.filter(site=s).order_by('main_order')
-    areas = Area.objects.all().values_list('name', flat=True)
+    areas = Area.objects.filter(site=s).values_list('name', flat=True)
     context = {
         'main_complexses': queryset.exclude(logo='')[:10],
         'areas': areas,
