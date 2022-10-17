@@ -50,13 +50,19 @@ function insertComplexes(data) {
 
 var obj;
 function loadInsertComplexes(url=NaN) {
-    let mmethod = 'https'
-    var lurl = (url) ?  `${mmethod}://${document.domain}/${url}` : obj.next.replace("http", mmethod);
+    if(url != NaN){
+        var lurl = `https://${document.domain}/${url}`;
+    }
+    else {
+        var lurl = obj.next.replace("http", "https");
+    }
+    console.log(lurl)
 
     $.ajax({
         url: lurl,
         type: "GET",
         success: function (data, textStatus, jqXHR) {
+            console.log(data.results)
             insertComplexes(data.results);
             if(!data.next){
                 $("#show-more").hide();

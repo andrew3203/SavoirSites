@@ -26,7 +26,7 @@ $(function () {
         disabled.attr('disabled', 'disabled');
         var my_url = $(this).attr('action');
         $.ajax({
-            url: `httpы://${document.domain}/${my_url}`,
+            url: my_url,
             type: "POST",
             data: my_data,
             success: function (data, textStatus, jqXHR) {
