@@ -163,7 +163,7 @@ class PrimaryProperty(models.Model):
         if price:
             price = int(price[0])
             if price != 0 and self.min_square != 0:
-                return f'От  {price / self.min_square:,.0f}'.replace(',', ' ')
+                return f'from  {price / self.min_square:,.0f}'.replace(',', ' ')
         return 'on request'
     
     @property
@@ -176,7 +176,7 @@ class PrimaryProperty(models.Model):
     def squares_en(self):
         if self.min_square == 0 and self.max_square == 0:
             return 'Metters - on requests'
-        return f'Metters от {self.min_square} до {self.max_square}'
+        return f'from {self.min_square} to {self.max_square}'
     
     @property
     def get_logo(self):
@@ -185,7 +185,10 @@ class PrimaryProperty(models.Model):
         return ''
     
     def get_recomend(self):
-        return PrimaryProperty.objects.exclude(name=self.name).order_by('-click_amount')
+        queryset = PrimaryProperty.objects.filter(
+            site=self.site
+        ).exclude(name=self.name).order_by('-click_amount')
+        return queryset[:10]
     
     
 class Image(models.Model):

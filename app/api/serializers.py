@@ -9,7 +9,8 @@ class PrimaryMainSerializer(serializers.ModelSerializer):
     price_from = serializers.CharField()
     squares = serializers.CharField()
     get_logo = serializers.CharField()
-    domain = serializers.CharField(source='site_domain', read_only=True)
+    squares_en = serializers.CharField()
+    price_from_en = serializers.CharField()
 
     class Meta:
         model = PrimaryProperty
