@@ -84,7 +84,9 @@ function removeComplexes(){
 }
 
 $(function () {
-    loadInsertComplexes('api/primary/?ordering=-click_amount&limit=4&offset=0');
+    let domain = document.location.hostname
+    let base_url = `api/primary/?site__site__domain${domain}`;
+    loadInsertComplexes(`${base_url}&ordering=-click_amount&limit=4&offset=0`);
     var typingTimer;                
     var doneTypingInterval = 800;  
     var $input = $('#search-input');
@@ -99,7 +101,7 @@ $(function () {
         let queru = $input.val()
         if(queru.length > 2){
             $('#complex-collection').children('.collection-item-5').remove();
-            loadInsertComplexes(`api/primary/?search=${queru}&limit=4`);
+            loadInsertComplexes(`${base_url}&search=${queru}&limit=4`);
         }
     }
     $("#show-more").click( function() {
@@ -112,12 +114,12 @@ $(function () {
         if(arr.size > 0){
             let nam = arr.values().next().value;
             $('#complex-collection').children('.collection-item-5').remove();
-            loadInsertComplexes(`api/primary/?area__name=${nam}&limit=4`);
+            loadInsertComplexes(`${base_url}&area__name=${nam}&limit=4`);
         }
         else {
             $input.val('');
             $('#complex-collection').children('.collection-item-5').remove();
-            loadInsertComplexes('api/primary/?ordering=-click_amount&limit=4&offset=0');
+            loadInsertComplexes(`${base_url}&ordering=-click_amount&limit=4&offset=0`);
             $("#show-more").show();
         }
         

@@ -105,8 +105,8 @@ for n, row in enumerate(areas):
         for k, i in enumerate(range(7, len(row)-1, 2)):
             AreaPeculiarity.objects.create(
                 area=obj,
-                name=indexes[i],
-                amount=row[i+1] if row[i+1] else 0,
+                name=row[i+1],
+                amount=row[i] if row[i] else 0,
                 photo=File(open(f'file-{k}.svg', 'rb'))
             ).save()
         print(f'#{n:4}:  Area {obj} with 5 AreaPeculiarity created')

@@ -137,6 +137,10 @@ class PrimaryProperty(models.Model):
         return self.site.site.name
     
     @property
+    def site_domain(self):
+        return self.site.site.domain
+    
+    @property
     def areas_data(self):
         return AreaPeculiarity.objects.filter(area=self.area)
     

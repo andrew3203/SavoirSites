@@ -16,7 +16,7 @@ class PrimaryPropertyListView(generics.ListAPIView):
         DjangoFilterBackend,
         filters.OrderingFilter, 
     ]
-    filterset_fields = ['area__name', 'min_square', 'max_square']
+    filterset_fields = ['area__name', 'min_square', 'max_square', 'site__site__domain']
 
 
 class PrimaryPropertyAPIView(generics.CreateAPIView):
