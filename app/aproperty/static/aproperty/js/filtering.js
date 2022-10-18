@@ -54,7 +54,7 @@ function insertComplexes(data) {
 
 var obj;
 function loadInsertComplexes(method=NaN) {
-    let url1 = `https://${document.location.hostname}/${method}`;
+    let url1 = `https://${document.location.hostname}:8081/${method}`;
     let url = (method) ? url1 : obj.next.replace("http", "https");
 
     $.ajax({

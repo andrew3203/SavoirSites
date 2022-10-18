@@ -22,8 +22,8 @@ def index(request):
 
 def concierge(request):
     s = SiteData.objects.get(site=get_current_site(request))
-    return render(request, 'aproperty/{s.get_lan()}/concierge.html', {'site': s, 'site_id': s.site.pk})
+    return render(request, f'aproperty/{s.get_lan()}/concierge.html', {'site': s, 'site_id': s.site.pk})
 
 def privacy(request):
     s = SiteData.objects.get(site=get_current_site(request))
-    return render(request, 'aproperty/{s.get_lan()}/privacy.html', {'site': s, 'site_id': s.site.pk})
+    return render(request, f'aproperty/{s.get_lan()}/privacy.html', {'site': s, 'site_id': s.site.pk})
