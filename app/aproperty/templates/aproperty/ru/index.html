@@ -1,3 +1,4 @@
+
 {% extends 'aproperty/ru/index-base.html' %}
 {% load static %}
 
@@ -117,12 +118,27 @@
 
 {% block complexses %}
 <section data-w-id="983a5740-c762-b0ee-c2fc-3eb3c1b949ae" class="complexses wf-section">
-    <div class="container-8 w-container">
+    <div class="container-6 w-container">
       <div class="complex-head">
-        <h1 class="heading-42">НАШИ КОМПЛЕКСЫ</h1>
+        <h1 class="heading-3">НАШИ КОМПЛЕКСЫ</h1>
         <div data-current="Tab 1" data-easing="ease" data-duration-in="300" data-duration-out="100" class="w-tabs">
+          <div class="tabs-menu w-tab-menu">
+            {% if resale %}
+            <a data-w-tab="Tab 1" class="tab w-inline-block w-tab-link w--current">
+              <div class="tab-content">
+                <div class="moderntabs">Новостройки</div>
+              </div>
+            </a>
+            
+            <a data-w-tab="Tab 2" class="tab w-inline-block w-tab-link">
+              <div class="tab-content">
+                <div class="moderntabsactive">Вторичная</div>
+              </div>
+            </a>
+            {% endif %}
+          </div>
           <div class="w-tab-content">
-            <div data-w-tab="Tab 1" class="w-tab-pane w--tab-active">
+            <div data-w-tab="Tab 1" class="complex-primary w-tab-pane w--tab-active">
               <div class="w-layout-grid grid-4">
                 <div id="w-node-_60305fa7-b517-e70e-4ae1-037cdce7321d-16e3a100" class="w-form">
                 <form id="filter-form" name="filter-form" data-name="filter Form" method="get" class="form-9 w-clearfix">
@@ -152,9 +168,9 @@
                   </div>
                     <div id="w-node-_60305fa7-b517-e70e-4ae1-037cdce7322d-16e3a100" class="div-block-43">
                       <div class="text-block-53">Количество комплексов:</div>
-                      <div id="visible-count" class="text-block-52">4</div>
+                      <div class="text-block-52 visible-count">4</div>
                       <div class="text-block-52 dat">/</div>
-                      <div id="items-count" class="text-block-52">{{ count }}</div>
+                      <div class="text-block-52 items-count">{{ count }}</div>
                     </div>
                 </form>
                 </div>
@@ -168,7 +184,7 @@
                         display: block;
                       }
                     </style>
-                    <div class="collection-list-7" id="complex-collection">
+                    <div class="collection-list-7 complex-collection">
 
                       <!-- here will be complexses-->
                       
@@ -193,9 +209,144 @@
                 </div>
               </div>
             </div>
+            {% if resale %}
+            <div data-w-tab="Tab 2" class="complex-resale w-tab-pane">
+              <div class="w-layout-grid grid-4">
+                <div id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94a1a-e36ab9af" class="w-form">
+                  <form id="email-form" name="email-form" class="form-6 f2 w-clearfix">
+                    <div id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94a1e-e36ab9af" class="_w-100 _w-10"></div>
+                    <a id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94a1c-e36ab9af" href="#" class="link reset"> Сбросить фильтры</a>
+                    <div id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94a32-e36ab9af" class="div-block-43">
+                      <div class="text-block-34">Колличество комплексов:</div>
+                      <div class="text-block-33 visible-count">4</div>
+                      <div class="text-block-33 dat">/</div>
+                      <div class="text-block-33 items-count">52</div>
+                    </div>
+                    <div id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94a3b-e36ab9af" class="_w-100 _w-11">
+                      <label class="label ll1">Цена за м<sup>2</sup></label>
+                      <div class="div-block-25 d256">
+                        <div fs-rangeslider-update="release" fs-rangeslider-element="wrapper-2" fs-rangeslider-min="47368" fs-rangeslider-max="4000000" fs-rangeslider-step="50000" fs-rangeslider-start="4000000" class="fs-wrapper">
+                          <div fs-rangeslider-element="track-2" class="fs-track">
+                            <div fs-rangeslider-element="fill" class="fs-fill"></div>
+                            <div fs-rangeslider-element="handle" class="fs-handle"></div>
+                            <div fs-rangeslider-element="handle" class="fs-handle"></div>
+                          </div><input type="text" class="fs-input w-input" maxlength="256" name="field-3" fs-cmsfilter-field="price_per_meter" data-name="Field 3" fs-cmsfilter-range="from" placeholder="Example Text" id="field-3" required="">
+                          <input type="text" class="fs-input w-input" maxlength="256" name="field-3" fs-cmsfilter-field="price_per_meter" data-name="Field 3" fs-cmsfilter-range="to" placeholder="Example Text" id="field-3" required="">
+                          <div class="fs-range_values">
+                            <div class="div-block-47">
+                              <div fs-rangeslider-element="display-value" class="fs-value">0</div>
+                              <div>₽</div>
+                            </div>
+                            <div class="div-block-47">
+                              <div fs-rangeslider-element="display-value" class="fs-value">0</div>
+                              <div>₽</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94a53-e36ab9af" class="_w-100 _w-11">
+                      <label class="label">Площадь квартиры</label>
+                      <div class="div-block-25 d256">
+                        <div fs-rangeslider-update="release" fs-rangeslider-element="wrapper" fs-rangeslider-min="80" fs-rangeslider-max="1000" fs-rangeslider-step="10" fs-rangeslider-start="1000" class="fs-wrapper">
+                          <div fs-rangeslider-element="track" class="fs-track">
+                            <div fs-rangeslider-element="fill" class="fs-fill"></div>
+                            <div fs-rangeslider-element="handle" class="fs-handle"></div>
+                            <div fs-rangeslider-element="handle" class="fs-handle"></div>
+                          </div><input type="text" class="fs-input w-input" maxlength="256" name="field-3" fs-cmsfilter-field="square" data-name="Field 3" fs-cmsfilter-range="from" placeholder="Example Text" id="field-3" required=""><input type="text" class="fs-input w-input" maxlength="256" name="field-3" fs-cmsfilter-field="square" data-name="Field 3" fs-cmsfilter-range="to" placeholder="Example Text" id="field-3" required="">
+                          <div class="fs-range_values">
+                            <div class="div-block-47">
+                              <div fs-rangeslider-element="display-value" class="fs-value">0</div>
+                              <div>м<sup>2</sup></div>
+                            </div>
+                            <div class="div-block-47">
+                              <div fs-rangeslider-element="display-value" class="fs-value">0</div>
+                              <div>м<sup>2</sup></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94a6d-e36ab9af" class="_w-100 _w-11">
+                      <label class="label">Количество комнат в квартире</label>
+                      <div class="div-block-25 d256">
+                        <div fs-rangeslider-update="release" fs-rangeslider-element="wrapper-3" fs-rangeslider-min="1" fs-rangeslider-max="10" fs-rangeslider-step="1" fs-rangeslider-start="10" class="fs-wrapper">
+                          <div fs-rangeslider-element="track-3" class="fs-track">
+                            <div fs-rangeslider-element="fill" class="fs-fill"></div>
+                            <div fs-rangeslider-element="handle" class="fs-handle"></div>
+                            <div fs-rangeslider-element="handle" class="fs-handle"></div>
+                          </div><input type="text" class="fs-input w-input" maxlength="256" name="field-3" fs-cmsfilter-field="rooms" data-name="Field 3" fs-cmsfilter-range="from" placeholder="Example Text" id="field-3" required="">
+                          <input type="text" class="fs-input w-input" maxlength="256" name="field-3" fs-cmsfilter-field="rooms" data-name="Field 3" fs-cmsfilter-range="to" placeholder="Example Text" id="field-3" required="">
+                          <div class="fs-range_values">
+                            <div class="div-block-47">
+                              <div fs-rangeslider-element="display-value" class="fs-value">0</div>
+                            </div>
+                            <div class="div-block-47">
+                              <div fs-rangeslider-element="display-value" class="fs-value">0</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="div-block-25 d-25">
+                      <label class="filter-items radio bbtn w-radio">
+                        <label class="label">Ремонт</label>
+                        <input type="radio" id="radio-7" name="radio" value="Radio" data-name="Radio 7" class="w-form-formradioinput filter-items-btn h-bbtn w-radio-input">
+                        <span fs-cmsfilter-field="remont" class="radio-button-label-2 w-form-label" for="radio-7">Без ремонта</span></label>
+                        <label class="filter-items radio bbtn w-radio"><input type="radio" id="radio-7" name="radio" value="Radio" data-name="Radio 7" class="w-form-formradioinput filter-items-btn h-bbtn w-radio-input">
+                          <span fs-cmsfilter-field="remont" class="radio-button-label-2 w-form-label" for="radio-7">Дизайнерский</span>
+                        </label>
+                        <label class="filter-items radio bbtn w-radio"><input type="radio" id="radio-7" name="radio" value="Radio" data-name="Radio 7" class="w-form-formradioinput filter-items-btn h-bbtn w-radio-input">
+                          <span fs-cmsfilter-field="remont" class="radio-button-label-2 w-form-label" for="radio-7">Евроремонт</span>
+                        </label>
+                        <label class="filter-items radio bbtn w-radio"><input type="radio" id="radio-7" name="radio" value="Radio" data-name="Radio 7" class="w-form-formradioinput filter-items-btn h-bbtn w-radio-input">
+                          <span fs-cmsfilter-field="remont" class="radio-button-label-2 w-form-label" for="radio-7">Косметический</span>
+                        </label>
+                      </div>
+                  </form>
+                </div>
+                <div id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94a85-e36ab9af" class="complex-base">
+                  <div id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94a86-e36ab9af">
+                    <style>
+                      .en {
+                        display: none;
+                      }
+                      .ru {
+                        display: block;
+                      }
+                    </style>
+                    <div class="complex-collection collection-list-3">
+
+                       <!-- here will be complexses-->
+
+                    </div>
+                    <div class="w-pagination-wrapper">
+                      <a href="#" aria-label="Next Page" class="w-pagination-next next-2 w-clearfix" id="show-more">
+                        <div class="html-embed-1018 w-embed">
+                          <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="100%" viewbox="0 0 96.000000 96.000000" preserveaspectratio="xMidYMid meet">
+                            <g transform="translate(0.000000,96.000000) scale(0.100000,-0.100000)" fill="currentcolor" stroke="none">
+                              <path d="M370 884 c-308 -82 -412 -474 -186 -700 241 -240 651 -107 709 230 51 296 -230 548 -523 470z m208 -38 c73 -20 132 -57 185 -116 65 -72 91 -144 91 -250 0 -118 -27 -185 -108 -266 -81 -81 -148 -108 -266 -108 -118 0 -185 27 -266 108 -82 82 -108 148 -108 271 0 81 3 97 32 156 81 167 263 252 440 205z"></path>
+                              <path d="M467 694 c-4 -4 -7 -49 -7 -100 l0 -93 -97 -3 c-79 -2 -98 -6 -98 -18 0 -12 19 -16 97 -18 l97 -3 3 -97 c2 -78 6 -97 18 -97 12 0 16 19 18 97 l3 97 97 3 c78 2 97 6 97 18 0 12 -19 16 -97 18 l-97 3 -3 96 c-3 89 -12 116 -31 97z"></path>
+                            </g>
+                          </svg>
+                        </div>
+                        <div class="link-7 w-inline-block" style="display: inline-flex; flex-direction: column;--gap:5px;">
+                          <span>ПОКАЗАТЬ ЕЩЁ</span>
+                          <span>(осталось <span id="compl-left">16</span>)</span>
+                        </div>
+                      </a>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
           </div>
         </div>
       </div>
     </div>
-  </section>
+</section>
 {% endblock %}
+
+  

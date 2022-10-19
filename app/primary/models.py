@@ -188,7 +188,7 @@ class PrimaryProperty(models.Model):
         queryset = PrimaryProperty.objects.filter(
             site=self.site
         ).exclude(name=self.name).order_by('-click_amount')
-        return queryset[:10]
+        return queryset[:12]
     
     
 class Image(models.Model):

@@ -1,21 +1,20 @@
 from django.contrib import admin
-from resale.models import ResaleProperty, Image
+from resale.models import ResaleProperty, ReImage
 from aproperty.admin import SiteFilter
 
 
 class ImageInline(admin.TabularInline):
-    model = Image
+    model = ReImage
     extra = 1
 
 
 @admin.register(ResaleProperty)
 class ResalePropertyAdmin(admin.ModelAdmin):
     list_display = [
-        'site_name', 'name', 'price', 'click_amount', 'main_order', 'addres', 'district', 
-        'min_square', 'max_square',
+        'site_name', 'name', 'price', 'click_amount', 'addres', 
         'area', "specialist", 'is_published',
     ]
-    list_filter = [SiteFilter, 'specialist', 'district', 'area', 'is_published']
+    list_filter = [SiteFilter, 'specialist', 'area', 'is_published']
     search_fields = ('name', 'slug')
     inlines = [
         ImageInline,
@@ -25,23 +24,21 @@ class ResalePropertyAdmin(admin.ModelAdmin):
             'fields': (
                 ('site',),
                 ("name", 'slug',),
-                ('main_order', 'click_amount', 'is_published'),
+                ('click_amount', 'is_published'),
                 ('price',),
-                ('addres', 'district'),
+                ('addres',),
                 ('specialist',)
             ),
         }),
         ('О лоте (основное)', {
             'fields': (
-                ('short_phrase',),
                 ('description',),
-                ("title_image", "second_image"),
-                ('logo', 'presentation'),
+                ("title_image",),
             ),
         }),
         ('О лоте (дополнительно)', {
             'fields': (
-                ('subway', 'area',),
+                ('area', 'square'),
                 ('map_script'),
                 ('ownership',"penthouse", "terrace", "parking"),
                 ("rooms_on_floor", "rooms_in_hous"),
