@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from aproperty.models import Specialist, Area
-from primary.models import PrimaryProperty, Image
 from aproperty.models import Client
+from primary.models import PrimaryProperty
+from resale.models import ResaleProperty
 
 
 class PrimaryMainSerializer(serializers.ModelSerializer):
@@ -20,6 +20,18 @@ class PrimaryMainSerializer(serializers.ModelSerializer):
         ]
         depth = 1
 
+
+class ResaleMainSerializer(serializers.ModelSerializer):
+    url = serializers.CharField()
+
+    class Meta:
+        model = ResaleProperty
+        exclude = [
+            'map_script', 'description', 'specialist', 'site'
+        ]
+        depth = 1
+
+
 class PrimaryPropertySerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -28,25 +40,12 @@ class PrimaryPropertySerializer(serializers.ModelSerializer):
         depth = 1
 
 
-class SpecialistSerializer(serializers.ModelSerializer):
+class ResalePropertySerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Specialist
+        model = ResaleProperty
         fields = '__all__'
-
-
-class AreaSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Area
-        fields = '__all__'
-
-
-class ImageSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Image
-        fields = '__all__'
+        depth = 1
 
 
 class ClientSerializer(serializers.ModelSerializer):
@@ -54,5 +53,3 @@ class ClientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Client
         fields = '__all__'
-
-

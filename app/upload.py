@@ -1,15 +1,16 @@
-from curses.ascii import SI
 import os, django
-from urllib import request
 import requests
 import csv
+from urllib import request
 import re
 from django.core.files import File
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'abig.settings')
 django.setup()
 
-from aproperty.models import AreaPeculiarity, Area, Specialist, Site, SiteData
-from primary.models import PrimaryProperty, Image
+from aproperty.models import Area, SiteData, AreaPeculiarity, Specialist
+from primary.models import PrimaryProperty
+from primary.models import Image
+
 
 
 def read_csv(url):
@@ -23,18 +24,7 @@ def read_csv(url):
     os.remove('tmp.txt')
     return data
 
-def __get_file(url):
-    result = request.urlretrieve(url)
-    file = File(open(result[0], 'rb'))
-    file_name = os.path.basename(url).split('.')[-1]
-    return os.path.basename(url), file
 
-MAP = """<script 
-    type="text/javascript" 
-	charset="utf-8" 
-	async src="{url}">
-</script>
-"""
 kinder_carden = """
 <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="100%" viewBox="0 0 100.000000 100.000000" preserveAspectRatio="xMidYMid meet">
 <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="currentcolor" stroke="none">
@@ -84,6 +74,24 @@ beuty = """
 </g>
 </svg>
 """
+def __get_file(url):
+    result = request.urlretrieve(url)
+    file = File(open(result[0], 'rb'))
+    return os.path.basename(url), file
+
+MAP = """<script 
+    type="text/javascript" 
+	charset="utf-8" 
+	async src="{url}">
+</script>
+"""
+decode = {
+    'Детские сады': 'Детских садов',
+    'Общеобразовательные школы': 'Школ',
+    'Парки, скверы': 'Парков',
+    'Медицинские центры': 'Меди. центров',
+    'Салоны красоты': 'Салонов красоты',
+}
 photos = [kinder_carden, shool, parks, med, beuty]
 for i, p in enumerate(photos):
     with open(f'file-{i}.svg', 'w') as f:
@@ -92,97 +100,104 @@ for i, p in enumerate(photos):
 
 site_pk = input('Enter Site Data PK :\n')
 site_data = SiteData.objects.get(pk=int(site_pk))
+print()
 
-areas_keys = {}
+area_kw = {}
 area_file_dir = input('Enter the file dir with Area Peculiarity:\n')
 areas = read_csv(area_file_dir)
 indexes = areas.pop(0)
 for n, row in enumerate(areas):
     if len(row) > 1:
         obj = Area.objects.create(name=row[0], site=site_data)
+        area_kw[row[1]] = obj.pk
         obj.save()
-        areas_keys[row[1]] = obj.pk
         for k, i in enumerate(range(7, len(row)-1, 2)):
             AreaPeculiarity.objects.create(
                 area=obj,
-                name=row[i+1],
-                amount=row[i] if row[i] else 0,
+                name=row[i+1] if row[i+1] else decode[indexes[i]],
+                amount=re.findall('\d+', row[i])[0] if re.findall('\d+', row[i]) else 0,
                 photo=File(open(f'file-{k}.svg', 'rb'))
             ).save()
+        
         print(f'#{n:4}:  Area {obj} with 5 AreaPeculiarity created')
-print('Done')
-print()
+
+
 for i, p in enumerate(photos):
     os.remove(f'file-{i}.svg')
 
 
-primary_file_dir = input('Enter the file dir with Specialist:\n')
-for k, sp in enumerate(read_csv(primary_file_dir)[1:]):
-    specialist = Specialist.objects.create(
-        name=sp[0],
-        phone=sp[8],
-        email=sp[9] if sp[9] else '',
-        role=sp[10],
-        tg_link=sp[-2],
-        wh_link=sp[-1]
-    )
-    name, file = __get_file(sp[7])
-    specialist.photo.save(name, file)
-    specialist.save()
-    print(f'#{k:4}:  Specialist {specialist} created')
-print('Done')
+sp_file_dir = input('Enter the file dir with Specialist:\n')
+if len(sp_file_dir) > 1:
+    for k, sp in enumerate(read_csv(sp_file_dir)[1:]):
+        specialist = Specialist.objects.create(
+            site=site_data,
+            name=sp[0],
+            phone=sp[8],
+            email=sp[9] if sp[9] else '',
+            role=sp[10],
+            tg_link=sp[-2],
+            wh_link=sp[-1]
+        )
+        name, file = __get_file(sp[7])
+        specialist.photo.save(name, file)
+        specialist.save()
+        print(f'#{k:4}:  Specialist {specialist} created')
+    print('Done')
 print()
 
 
 primary_file_dir = input('Enter the file dir with Primary Property:\n')
-primary = read_csv(primary_file_dir)[1:]
-for n, row in enumerate(primary):
-    if len(row) > 1:
-        min_square = re.findall('\d+', row[19])
-        max_square = re.findall('\d+', row[20])
-        obj = PrimaryProperty.objects.create(
-            site=site_data,
-            name=row[0],
-            slug=row[1],
-            price=row[12],
-            addres=row[13].strip(),
-            district=row[14].replace('-', ''),
-            subway=row[15].replace('-', ''),
-            map_script=MAP.format(url=row[16]),
-            min_square=float(min_square[0]) if len(min_square)==1 else 0,
-            max_square=float(max_square[0]) if len(max_square)==1 else 0,
-            short_phrase=row[21],
-            description=row[22],
-            lots_number=row[18],
-            area=Area.objects.get(pk=areas_keys[row[8]]),
-            specialist=specialist,
-        )
-        obj.save()
-
-        if row[24]:
-            name, file = __get_file(row[24])
-            obj.title_image.save(name, file)
-        if row[25]:
-            name, file = __get_file(row[25])
-            obj.second_image.save(name, file)
-        if row[26]:
-            name, file = __get_file(row[26])
-            obj.logo.save(name, file)
-        if row[27]:
-            name, file = __get_file(row[27])
-            obj.presentation.save(name, file)
-        obj.save()
-
-        for photo in row[28].split(';'):
-            name, file = __get_file(photo.replace(' ', ''))
-            im = Image.objects.create(
-                property=obj,
-                name=row[0]
+if len(primary_file_dir) > 1:
+    primary = read_csv(primary_file_dir)[1:]
+    for n, row in enumerate(primary):
+        if len(row) > 1:
+            min_square = re.findall('\d+', row[19])
+            max_square = re.findall('\d+', row[20])
+            obj = PrimaryProperty.objects.create(
+                site=site_data,
+                name=row[0],
+                slug=row[1],
+                price=row[12],
+                addres=row[13].strip(),
+                district=row[14].replace('-', ''),
+                subway=row[15].replace('-', ''),
+                map_script=MAP.format(url=row[16]),
+                min_square=float(min_square[0]) if len(min_square)==1 else 0,
+                max_square=float(max_square[0]) if len(max_square)==1 else 0,
+                short_phrase=row[21],
+                description=row[22],
+                lots_number=row[18],
+                area=Area.objects.get(pk=area_kw[row[8]]),
+                specialist=Specialist.objects.filter(site=site_data).first(),
             )
-            im.save()
-            im.photo.save(name, file)
-            im.save()
-        obj.save()
-        print(f'#{n:4}:  PrimaryProperty {obj} created')
+            obj.save()
+
+            if row[24]:
+                name, file = __get_file(row[24])
+                obj.title_image.save(name, file)
+            if row[25]:
+                name, file = __get_file(row[25])
+                obj.second_image.save(name, file)
+            if row[26]:
+                name, file = __get_file(row[26])
+                obj.logo.save(name, file)
+            if row[27]:
+                name, file = __get_file(row[27])
+                obj.presentation.save(name, file)
+            obj.save()
+
+            for photo in row[28].split(';'):
+                name, file = __get_file(photo.replace(' ', ''))
+                im = Image.objects.create(
+                    property=obj,
+                    name=row[0]
+                )
+                im.save()
+                im.photo.save(name, file)
+                im.save()
+            obj.save()
+            print(f'#{n:4}:  Primary Property {obj} created')
 
 print(' - - - - - - - - - - Done - - - - - - - - - - ')
+
+

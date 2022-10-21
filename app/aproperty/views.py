@@ -6,7 +6,7 @@ from django.contrib.sites.shortcuts import get_current_site
 
 def index(request):
     s = SiteData.objects.get(site=get_current_site(request))
-    queryset = PrimaryProperty.objects.filter(site=s).order_by('main_order')
+    queryset = PrimaryProperty.objects.filter(site=s, is_published=True).order_by('main_order')
     areas = Area.objects.filter(site=s).values_list('name', flat=True)
     context = {
         'main_complexses': queryset.exclude(logo='')[:10],
@@ -16,7 +16,8 @@ def index(request):
         'title_image': s.title_image,
         'slides_count': s.slides.count(),
         'slides': s.slides,
-        'site_id': s.site.pk
+        'site_id': s.site.pk,
+        'resale': 1
     }
     return render(request, f'aproperty/{s.get_lan()}/index.html', context)
 

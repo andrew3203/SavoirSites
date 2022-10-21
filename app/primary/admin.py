@@ -1,4 +1,3 @@
-from unicodedata import name
 from django.contrib import admin
 from primary.models import PrimaryProperty, Image
 from aproperty.admin import SiteFilter
@@ -30,6 +29,7 @@ class PrimaryPropertyAdmin(admin.ModelAdmin):
                 ("name", 'slug',),
                 ('main_order', 'click_amount', 'is_published'),
                 ('price',),
+                ('lots_number',),
                 ('addres', 'district'),
                 ('specialist',)
             ),
@@ -52,3 +52,16 @@ class PrimaryPropertyAdmin(admin.ModelAdmin):
         }),
     )
     prepopulated_fields = {'slug': ('name',)}
+
+    def publish(self, request, queryset):
+        queryset.update(is_published=True)
+        self.message_user(request, f"{len(queryset)} опубликовано")
+
+    def unpublish(self, request, queryset):
+        queryset.update(is_published=False)
+        self.message_user(
+            request, f"{len(queryset)} обьектов снято с публикации")
+
+    actions = [publish, unpublish]
+    publish.short_description = 'Опубликовать обьекты'
+    unpublish.short_description = 'Снять с публикации'

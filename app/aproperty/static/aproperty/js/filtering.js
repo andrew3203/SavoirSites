@@ -11,7 +11,7 @@ class Complex {
         this.typingInterval = 800; 
         let me = this;   
         $.ajax({
-            url: `https://${document.location.hostname}/api/${complexKey}/?ordering=-click_amount`,
+            url: `http://${document.location.hostname}:8081/api/${complexKey}/?ordering=-click_amount`,
             type: "GET",
             success: function (data, textStatus, jqXHR) {
                 me.objList = data;
@@ -212,10 +212,9 @@ class Complex {
 
 $(function () {
     const primary = new Complex('primary'); 
-    
     var $primaryObj = $(primary.selector);
-
     var $input = $primaryObj.find('#search-input');
+
     $input.on('keyup', function () {
         primary.processSearching($input.val())
     });
@@ -234,5 +233,19 @@ $(function () {
     $primaryObj.find(".area-checkbox").change( function() {
         let choice = $(this).next().text();
         primary.processFltering($input.val(), choice, this.checked)
+    });
+
+
+    const resale = new Complex('resale'); 
+    var $resaleObj = $(resale.selector);
+
+    $resaleObj.find("#show-more").click( function() {
+        resale.show()
+    });
+    $resaleObj.find("#reset").click( function() {
+        $input.val('');
+        resale.clearResetResults();
+        resale.show()
+        $resaleObj.find('.w--redirected-checked').removeClass('w--redirected-checked');
     });
 });

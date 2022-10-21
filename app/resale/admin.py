@@ -1,17 +1,17 @@
 from django.contrib import admin
-from resale.models import ResaleProperty, ReImage
+from resale.models import ResaleProperty, Image
 from aproperty.admin import SiteFilter
 
 
 class ImageInline(admin.TabularInline):
-    model = ReImage
+    model = Image
     extra = 1
 
 
 @admin.register(ResaleProperty)
 class ResalePropertyAdmin(admin.ModelAdmin):
     list_display = [
-        'site_name', 'name', 'price', 'click_amount', 'addres', 
+        'site_name', 'name', 'price', 'click_amount', 'addres',
         'area', "specialist", 'is_published',
     ]
     list_filter = [SiteFilter, 'specialist', 'area', 'is_published']
@@ -40,9 +40,10 @@ class ResalePropertyAdmin(admin.ModelAdmin):
             'fields': (
                 ('area', 'square'),
                 ('map_script'),
-                ('ownership',"penthouse", "terrace", "parking"),
+                ('ownership', "penthouse", "terrace",),
+                ('parking',),
                 ("rooms_on_floor", "rooms_in_hous"),
-                ("floor", "floor_number"),
+                ("floor", "floors_number"),
                 ("elevators", "freight_elevators"),
                 ('window_to', 'rooms_number'),
                 ("bulding_material", "construction_year"),
@@ -51,3 +52,16 @@ class ResalePropertyAdmin(admin.ModelAdmin):
         }),
     )
     prepopulated_fields = {'slug': ('name',)}
+
+    def publish(self, request, queryset):
+        queryset.update(is_published=True)
+        self.message_user(request, f"{len(queryset)} опубликовано")
+
+    def unpublish(self, request, queryset):
+        queryset.update(is_published=False)
+        self.message_user(
+            request, f"{len(queryset)} обьектов снято с публикации")
+
+    actions = [publish, unpublish]
+    publish.short_description = 'Опубликовать обьекты'
+    unpublish.short_description = 'Снять с публикации'
