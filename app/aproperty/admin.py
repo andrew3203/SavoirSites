@@ -47,12 +47,13 @@ class ClientAdmin(admin.ModelAdmin):
 @admin.register(Specialist)
 class SpecialistAdmin(admin.ModelAdmin):
     list_display = [
-        'name', 'role', 'phone', 'email',
+        'name', 'role', 'phone', 'email', 'site',
     ]
     search_fields = ('name', 'role')
     fieldsets = (
         ('Основное', {
             'fields': (
+                ('site',),
                 ("name",),
                 ('role',),
                 ('photo',),

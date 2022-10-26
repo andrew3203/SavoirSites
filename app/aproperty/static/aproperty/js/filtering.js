@@ -133,7 +133,8 @@ class Complex {
         if(complexLeft == 0){
             $(this.selector).find(".show-more").hide();
         }
-        $(this.selector).find(".items-coun").text(complexLeft);
+        $(this.selector).find(".compl-left").text(complexLeft);
+        $(this.selector).find('.items-count').text(complexAmount);
         $(this.selector).find('.visible-count').text(this.shownAmount)
         return true
     }

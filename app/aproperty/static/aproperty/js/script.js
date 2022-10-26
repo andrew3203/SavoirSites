@@ -23,6 +23,7 @@ $(function () {
         var disabled = $(this).find(':input:disabled').removeAttr('disabled');
 
         var my_data = serializeForm($(this));
+        my_data.site = parseInt(my_data.site)
         disabled.attr('disabled', 'disabled');
         var action = $(this).attr('action');
         $.ajax({
@@ -40,14 +41,14 @@ $(function () {
         });
         return false;
     });
-    $('#complex-collection').on('click', '.dw-btn', function() {
+    $('.complex-collection').on('click', '.dw-btn', function() {
         let complex = $(this).parent().find( ".hidden-link" ).text().replaceAll("/", " ");
         $('.modal').find('.hidden-inp').val(complex);
         $(".modal").css("display", "block");
         $(".modal").css("opacity", "100%");
         
     });
-    $('#complex-collection').on('click', '.close-icon-2', function() {
+    $('.complex-collection').on('click', '.close-icon-2', function() {
         $(".modal").css("display", "none");
     });
     $('.dw-btn').click(function (event) {

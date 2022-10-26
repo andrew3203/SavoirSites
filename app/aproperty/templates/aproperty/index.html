@@ -167,7 +167,7 @@
 
                   <div id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b949c6-e36ab9af" class="_w-search">
                     <div class="div-block-67 w-clearfix">
-                      <input type="text" class="_w-inp-search w-input search-input" maxlength="256" name="field-2" data-name="Field 2" placeholder="Название комплекса" id="field-2" required="">
+                      <input type="text" class="_w-inp-search w-input search-input" maxlength="256" name="field-2" data-name="Field 2" placeholder="{% if en %}Name of the complex{% else %}Название комплекса{% endif %}" id="field-2" required="">
                     </div>
                   </div>
 
@@ -219,10 +219,10 @@
                       <div class="link-3 w-inline-block" style="display: inline-flex; flex-direction: column;--gap:5px;">
                         {% if en %}
                           <span>SHOW MORE</span>
-                          <span>(<span id="compl-left">16</span> left)</span>
+                          <span>(<span class="compl-left">16</span> left)</span>
                         {% else %}
                           <span>ПОКАЗАТЬ ЕЩЁ</span>
-                          <span>(осталось <span id="compl-left">16</span>)</span>
+                          <span>(осталось <span class="compl-left">16</span>)</span>
                         {% endif %}
                       </div>
                     </a>
@@ -386,10 +386,10 @@
                       <div class="link-3 w-inline-block" style="display: inline-flex; flex-direction: column;--gap:5px;">
                         {% if en %}
                           <span>SHOW MORE</span>
-                          <span>(<span id="compl-left">16</span> left)</span>
+                          <span>(<span class="compl-left">16</span> left)</span>
                         {% else %}
                           <span>ПОКАЗАТЬ ЕЩЁ</span>
-                          <span>(осталось <span id="compl-left">16</span>)</span>
+                          <span>(осталось <span class="compl-left">16</span>)</span>
                         {% endif %}
                       </div>
                     </a>
