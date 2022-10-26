@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html data-wf-page="62e165885f812ec544e3a102" data-wf-site="62e165885f812e777ce3a0fd" lang="ru">
+<html data-wf-page="6240390f2d3f14d04816426f" data-wf-site="620b4a04443ebde9319eea03" lang="{{ s.get_lang }}">
 <head>
   <meta charset="utf-8">
-  <title>Not Found</title>
-  <meta content="Not Found" aproperty="og:title">
-  <meta content="Not Found" aproperty="twitter:title">
+  <title>
+    {% if en %}Not Found{% else %}Страница не найдена{% endif %}
+  </title>
+  <meta content="{% if en %}Not Found{% else %}Страница не найдена{% endif %}" property="og:title">
+  <meta content="{% if en %}Not Found{% else %}Страница не найдена{% endif %}" property="twitter:title">
   <meta content="width=device-width, initial-scale=1" name="viewport">
   {% load static %}
   <link href="{% static 'aproperty/css/normalize.css' %}" rel="stylesheet" type="text/css">
   <link href="{% static 'aproperty/css/main.css' %}" rel="stylesheet" type="text/css">
-  <link href="{% static 'aproperty/css/base-styles.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'aproperty/css/base.css' %}" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
-  <script type="text/javascript">WebFont.load({  google: {    families: ["Exo:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic","Roboto:300,regular,italic,500,500italic,700,700italic,900:cyrillic,cyrillic-ext,latin","Manrope:200,300,regular,500,600,700,800:cyrillic,latin"]  }});</script>
-
+  <script type="text/javascript">WebFont.load({  google: {    families: ["Exo:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic","Roboto:300,regular,italic,500,500italic,700,700italic,900:cyrillic,cyrillic-ext,latin","Manrope:200,regular,500,600,700:cyrillic,latin","Prata:regular:cyrillic,latin"]  }});</script>
   <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
   <link href="{% static 'aproperty/images/favicon.png' %}" rel="shortcut icon" type="image/x-icon">
   <link href="{% static 'aproperty/images/webclip.png' %}" rel="apple-touch-icon">
@@ -22,20 +23,28 @@
 <body class="body-4">
 
   <!--  HEADER -->
-  {% include 'components/ru/header.html' %}
+  {% include 'components/header.html' %}
 
   <div class="utility-page-wrap">
-    <div class="utility-page-content"><img src="https://d3e54v103j8qbb.cloudfront.net/static/page-not-found.211a85e40c.svg" alt="" class="image-18">
-      <h2>Страница не найдена</h2>
-      <div>Страница, которую вы ищете, не существует или была перемещена<br></div>
+    <div class="utility-page-content">
+      <img src="https://d3e54v103j8qbb.cloudfront.net/static/page-not-found.211a85e40c.svg" alt="" class="image-18">
+
+      {% if en %}
+        <h2>Page not found</h2>
+        <div>The page you are looking for does not exist or has been moved<br></div>
+      {% else %}
+        <h2>Страница не найдена</h2>
+        <div>Страница, которую вы ищете, не существует или была перемещена<br></div>
+      {% endif %}
+
     </div>
   </div>
 
   <!--  APPLICATION SECTION -->
-  {% include 'components/ru/application.html' %}
+  {% include 'components/application.html' %}
 
   <!--  FOOTER -->
-  {% include 'components/ru/footer.html' %}
+  {% include 'components/footer.html' %}
 
   <!-- UP BTN -->
   {% include 'components/up.html' %}

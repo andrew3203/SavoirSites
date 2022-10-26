@@ -105,10 +105,13 @@ class SiteData(models.Model):
     @property
     def site_name(self):
         return self.site.name
-
-    def get_lan(self):
+    
+    def get_lang(self):
         dubai_en = 'statusprime.com'
         return 'en' if self.site.domain == dubai_en else 'ru'
+    
+    def is_en(self):
+        return self.get_lang() == 'en'
 
 
 class YouTubeLink(models.Model):

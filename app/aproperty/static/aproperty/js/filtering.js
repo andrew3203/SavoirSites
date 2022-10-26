@@ -7,11 +7,16 @@ class Complex {
         this.shownAmount = 0;
        
         this.choices = new Set();
+        this.decorChoice;
+        this.priceMinMax = [-1, Math.pow(10, 10)];
+        this.squareMinMax = [0, Math.pow(10, 4)];
+        this.roomMinMax = [0, Math.pow(10, 2)];
+
         this.typingTimer;                
         this.typingInterval = 800; 
         let me = this;   
         $.ajax({
-            url: `http://${document.location.hostname}:8081/api/${complexKey}/?ordering=-click_amount`,
+            url: `https://${document.location.hostname}/api/${complexKey}/?ordering=-click_amount`,
             type: "GET",
             success: function (data, textStatus, jqXHR) {
                 me.objList = data;
@@ -26,31 +31,31 @@ class Complex {
 
     clear(){
         $(this.selector).find('.complex-collection').children(
-            '.collection-item-5'
+            '.w-dyn-item'
         ).remove();
         this.shownAmount = 0;
     }
 
     __resaleElement(obj){
         let element = `
-            <div class="collection-item-4">
+            <div class="collection-item-4 w-dyn-item">
             <div data-w-id="983a5740-c762-b0ee-c2fc-3eb3c1b94a89" class="wrapper">
             <img loading="lazy" width="500" src="${ obj.title_image }" style="-webkit-transform:translate3d(0, 0, 0) scale3d(null, null, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(null, null, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(null, null, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(null, null, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" alt="" class="image-8">
             <div class="cover cover-3">
                 <div class="w-layout-grid grid-5 g-5">
-                    <div id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94a8d-e36ab9af" class="div-block-3 dd-3">
                     <a id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94a8e-e36ab9af" href="#" class="link-block-4 l4 w-inline-block">
                         <div class="text-block-7">${ obj.area.name }</div>
-                        <h2 fs-cmsfilter-field="name" class="heading-7 text-link">${ obj.name }</h2>
-                        <div fs-cmsfilter-field="addres" id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94aa7-e36ab9af" class="text-block-21 txt-center t3 t4">${ obj.addres }</div>
-                        <h4 fs-cmsfilter-field="price" class="heading-43 en">${ obj.price } $</h4>
-                        <h4 fs-cmsfilter-field="price" class="heading-43 ru">${ obj.price } ₽</h4>
+                        <h2 class="heading-7 text-link">${ obj.name }</h2>
+                        <div id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94aa7-e36ab9af" class="text-block-21 txt-center t3 t4">${ obj.addres }</div>
+                        <div>
+                            <h4 class="heading-43 en">${ obj.price } $</h4>
+                            <h4 class="heading-43 ru">${ obj.price } ₽</h4>
+                        </div>
                     </a>
-                    </div>
                     <a id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94aaa-e36ab9af"  href="#" class="button download dw-btn w-button en">Request a presentation</a>
                     <a id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94aaa-e36ab9af"  href="#" class="button download dw-btn w-button ru">Запросить презентацию</a>
                     <a href="#" id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94aac-e36ab9af" class="hidden-link">${ obj.url }</a>
-                    <a id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94aae-e36ab9af" href="#" class="link-block-3 w-inline-block">
+                    <a id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94aae-e36ab9af" href="${ obj.url }" class="link-block-3 w-inline-block">
                         <div class="button text-link about en">About</div>
                         <div class="button text-link about ru">Подробнее</div>
                     </a>
@@ -64,34 +69,34 @@ class Complex {
 
     __primaryElement(obj){
         let element = `
-            <div class="collection-item-5">
-            <div data-w-id="32da13cd-eac5-e877-d785-b77c3b085bb5" class="wrapper-2">
-            <img src="${ obj.title_image }" width="500" style="" loading="lazy" alt="" class="image-43 ani-im">
+            <div class="collection-item-4 w-dyn-item">
+            <div data-w-id="983a5740-c762-b0ee-c2fc-3eb3c1b949ea" class="wrapper">
+            <img src="${ obj.title_image }" width="500" style="" loading="lazy" alt="" class="image-8 ani-im">
             <div class="cover cover-3">
-                <div class="w-layout-grid grid-26">
-                <div id="w-node-_32da13cd-eac5-e877-d785-b77c3b085bb9-16e3a100" class="div-block-3 gb">
-                    <a id="w-node-_32da13cd-eac5-e877-d785-b77c3b085bba-16e3a100" href="#" class="link-block-4 w-inline-block">
-                        <div class="text-block-68">${ obj.area.name }</div>
+                <div class="w-layout-grid grid-5">
+                <div id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b949ee-e36ab9af" class="div-block-3 gb">
+                    <a id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b949ef-e36ab9af" href="#" class="link-block-4 w-inline-block">
+                        <div class="text-block-56">${ obj.area.name }</div>
                         <h2 class="heading-7 text-link">${ obj.name }</h2>
                     </a>
-                    <div id="w-node-_32da13cd-eac5-e877-d785-b77c3b085bc1-16e3a100" class="div-block-9">
-                        <div class="en text-block-67 ttx-left">${ obj.squares_en } m<sup>2</sup></div>
-                        <div class="ru text-block-67 ttx-left">${ obj.squares } м<sup>2</sup></div>
+                    <div id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b949f2-e36ab9af" class="div-block-9">
+                        <div class="en text-block-11 ttx-left">${ obj.squares_en } m²</div>
+                        <div class="ru text-block-11 ttx-left">${ obj.squares } м²</div>
                     </div>
-                    <div id="w-node-_32da13cd-eac5-e877-d785-b77c3b085bc7-16e3a100" class="div-block-1108">
+                    <div id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b949fd-e36ab9af" class="div-block-39">
                         <div class="en text-block-21 txtx-left">${ obj.price_from_en } $/m²</div>
                         <div class="ru text-block-21 txtx-left">${ obj.price_from } ₽/м²</div>
                     </div>
                 </div>
-                <a id="w-node-_32da13cd-eac5-e877-d785-b77c3b085bce-16e3a100" href="#" class="button-5 download dw-btn w-button en">Request a presentation</a>
-                <a id="w-node-_32da13cd-eac5-e877-d785-b77c3b085bce-16e3a100" href="#" class="button-5 download dw-btn w-button ru">Запросить презентацию</a>
-                <a href="#" id="w-node-_32da13cd-eac5-e877-d785-b77c3b085bd0-16e3a100" class="hidden-link">${ obj.url }</a>
-                <img src="${ obj.get_logo }" id="w-node-_32da13cd-eac5-e877-d785-b77c3b085bd2-16e3a100" loading="lazy" alt="" class="image-39">
-                <a id="w-node-_32da13cd-eac5-e877-d785-b77c3b085bd3-16e3a100" href="${ obj.url }" class="link-block-21 w-inline-block">
-                    <div class="text-block-69 en">About</div>
-                    <div class="text-block-69 ru">Подробнее</div>
+                <a id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94a03-e36ab9af" data-w-id="983a5740-c762-b0ee-c2fc-3eb3c1b94a03" href="#" class="button download dw-btn w-button en">Request a presentation</a>
+                <a id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94a03-e36ab9af" data-w-id="983a5740-c762-b0ee-c2fc-3eb3c1b94a03" href="#" class="button download dw-btn w-button ru">Запросить презентацию</a>
+                <a href="#" id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94a05-e36ab9af" class="hidden-link">${ obj.url }</a>
+                <img src="${ obj.get_logo }" id="w-node-f7e24c98-67ea-a3cb-9828-fd59f5de34e9-e36ab9af" loading="lazy" alt="" class="image-39">
+                <a id="w-node-_0b5bb57b-8ba5-be3c-5316-ddd084df4e6d-e36ab9af" href="${ obj.url }" class="link-block-16 w-inline-block">
+                    <div class="text-block-52 en">About</div>
+                    <div class="text-block-52 ru">Подробнее</div>
                 </a>
-                <div id="w-node-_32da13cd-eac5-e877-d785-b77c3b085bd6-16e3a100" class="card-logo-wrappper"></div>
+                <div id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94a06-e36ab9af" class="card-logo-wrappper"></div>
                 </div>
             </div>
             </div>
@@ -117,19 +122,19 @@ class Complex {
         let complexLeft = complexAmount - this.shownAmount;
         let count = (complexLeft >= this.nextAmount) ? this.nextAmount : complexLeft
         if(count <= 0){
-            $(this.selector).find("#show-more").hide();
+            $(this.selector).find(".show-more").hide();
             return false
         }
-        $(this.selector).find("#show-more").show();
+        $(this.selector).find(".show-more").show();
         let complexIdsToShow = this.shownResults.slice(this.shownAmount, this.shownAmount+count)
         this.__showNew(complexIdsToShow);
 
         complexLeft = complexAmount - this.shownAmount
         if(complexLeft == 0){
-            $(this.selector).find("#show-more").hide();
+            $(this.selector).find(".show-more").hide();
         }
-        $(this.selector).find("#compl-left").text(complexLeft);
-        $(this.selector).find('#visible-count').text(this.shownAmount)
+        $(this.selector).find(".items-coun").text(complexLeft);
+        $(this.selector).find('.visible-count').text(this.shownAmount)
         return true
     }
 
@@ -144,13 +149,12 @@ class Complex {
             if (r1 + r2 < 2000)
                 searchObjs.push({cId: cId, cOrder: r1 + r2});
         });
-        console.log(searchObjs);
         this.shownResults = searchObjs.sort((a, b) => {
             (a.cOrder >= b.cOrder) ? -1: 1
         }).map(o => o.cId);
     }
 
-    filterArea(query){
+    queryFilterArea(query){
         let filterResults = [];
         this.objList.forEach((complex, cId) => {
             var exsists = false;
@@ -164,16 +168,57 @@ class Complex {
         this.shownResults = filterResults;
     }
 
+    keyFilter(keyField, field){
+        let searchObjs = [];
+        this.objList.forEach((complex, cId) => {
+            let val = complex[keyField];
+            if(val === field )
+                searchObjs.push({cId: cId, cOrder: val});
+        });
+        this.shownResults = searchObjs.sort((a, b) => {
+            (a.cOrder >= b.cOrder) ? -1: 1
+        }).map(o => o.cId);
+    }
+
+    minMaxFilter(keyField, mini, maxi){
+        let searchObjs = [];
+        this.objList.forEach((complex, cId) => {
+            let val = complex[keyField];
+            if(mini <= val && val <= maxi )
+                searchObjs.push({cId: cId, cOrder: val});
+        });
+        console.log(searchObjs);
+        this.shownResults = searchObjs.sort((a, b) => {
+            (a.cOrder >= b.cOrder) ? -1: 1
+        }).map(o => o.cId);
+    }
+
     clearResetResults(){
         this.clear();
         this.shownResults = this.objList.map((obj, i) => i);
-        $(this.selector).find("#show-more").show()
+        $(this.selector).find(".show-more").show()
     }
 
     processFltering(searchVal, newChoice, isChecked){
         (isChecked) ? this.choices.add(newChoice): this.choices.delete(newChoice);
         if(this.choices.size > 0){
-            this.filterArea(Array.from(this.choices));
+            this.queryFilterArea(Array.from(this.choices));
+            this.clear();
+            this.show();
+        }
+        else {
+            if(searchVal)
+                this.search(searchVal);
+            this.clearResetResults();
+            this.show();
+        }
+
+    }
+
+    processMinMaxFltering(keyField, mini, maxi, isChecked){
+        (isChecked) ? this.choices.add(newChoice): this.choices.delete(newChoice);
+        if(this.choices.size > 0){
+            this.queryFilterArea(Array.from(this.choices));
             this.clear();
             this.show();
         }
@@ -213,7 +258,7 @@ class Complex {
 $(function () {
     const primary = new Complex('primary'); 
     var $primaryObj = $(primary.selector);
-    var $input = $primaryObj.find('#search-input');
+    var $input = $primaryObj.find('.search-input');
 
     $input.on('keyup', function () {
         primary.processSearching($input.val())
@@ -221,16 +266,16 @@ $(function () {
     $input.on('keydown', function () {
         primary.clearTimeout();
     });
-    $primaryObj.find("#show-more").click( function() {
+    $primaryObj.find(".show-more").click( function() {
         primary.show()
     });
-    $primaryObj.find("#reset").click( function() {
+    $primaryObj.find(".reset").click( function() {
         $input.val('');
         primary.clearResetResults();
         primary.show()
         $primaryObj.find('.w--redirected-checked').removeClass('w--redirected-checked');
     });
-    $primaryObj.find(".area-checkbox").change( function() {
+    $primaryObj.find(".areas").change( function() {
         let choice = $(this).next().text();
         primary.processFltering($input.val(), choice, this.checked)
     });
@@ -239,13 +284,25 @@ $(function () {
     const resale = new Complex('resale'); 
     var $resaleObj = $(resale.selector);
 
-    $resaleObj.find("#show-more").click( function() {
+    $resaleObj.find(".show-more").click( function() {
         resale.show()
     });
-    $resaleObj.find("#reset").click( function() {
-        $input.val('');
+    $resaleObj.find(".reset").click( function() {
         resale.clearResetResults();
         resale.show()
         $resaleObj.find('.w--redirected-checked').removeClass('w--redirected-checked');
+        $resaleObj.find(".w-radio-input").each(function() {
+            this.checked = false;
+        });
+    });
+    $resaleObj.find(".areas").change( function() {
+        let choice = $(this).next().text();
+        resale.processFltering('', choice, this.checked)
+    });
+    $resaleObj.find(".w-radio-input").change( function() {
+        let choice = $(this).next().text();
+        resale.keyFilter('decor', choice);
+        resale.clear();
+        resale.show();
     });
 });

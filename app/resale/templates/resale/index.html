@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html data-wf-page="628debfda8ef95429f986c06" data-wf-site="620b4a04443ebde9319eea03" lang="{{ site.get_lang }}">
+<head>
+  <meta charset="utf-8">
+  <title>{{ obj.name }}</title>
+  {% if en %}
+    <meta content="Apartment price: {{ obj.price }}. The apartment is located at: {{ obj.addres }}> For all questions call: {{ site.header_phone }}" name="description">
+    <meta content="{{ obj.title_image.url }}" property="og:title">
+    <meta content="Apartment price: {{ obj.price }}. The apartment is located at:  {{ obj.addres }}> For all questions call: {{ site.header_phone }}" property="og:description">
+    <meta content="{{ obj.title_image.url }}" property="og:image">
+    <meta content="{{ obj.title_image.url }}" property="twitter:title">
+    <meta content="Apartment price: {{ obj.price }}. The apartment is located at:  {{ obj.addres }}. For all questions call: {{ site.header_phone }}" property="twitter:description">
+  {% else %}
+    <meta content="Цена квартиры: {{ obj.price }}. Квартира расположена по адресу: {{ obj.addres }}> По всем вопросам звоните: {{ site.header_phone }}" name="description">
+    <meta content="{{ obj.title_image.url }}" property="og:title">
+    <meta content="Цена квартиры: {{ obj.price }}. Квартира расположена по адресу:  {{ obj.addres }}> По всем вопросам звоните: {{ site.header_phone }}" property="og:description">
+    <meta content="{{ obj.title_image.url }}" property="og:image">
+    <meta content="{{ obj.title_image.url }}" property="twitter:title">
+    <meta content="Цена квартиры: {{ obj.price }}. Квартира расположена по адресу:  {{ obj.addres }}. По всем вопросам звоните: {{ site.header_phone }}" property="twitter:description">
+  {% endif %}
+  <meta content="{{ obj.title_image.url }}" property="twitter:image">
+  <meta property="og:type" content="website">
+  <meta content="summary_large_image" name="twitter:card">
+  {% load static %}
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link href="{% static 'aproperty/css/normalize.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'aproperty/css/main.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'aproperty/css/base.css' %}" rel="stylesheet" type="text/css">
+  <style>@media (max-width:767px) and (min-width:480px) {html.w-mod-js:not(.w-mod-ix) [data-w-id="2836e6db-1eb0-afcc-c0d2-1c5ed1e54318"] {width:100%;height:90px;}html.w-mod-js:not(.w-mod-ix) [data-w-id="2836e6db-1eb0-afcc-c0d2-1c5ed1e54326"] {opacity:1;}}@media (max-width:479px) {html.w-mod-js:not(.w-mod-ix) [data-w-id="2836e6db-1eb0-afcc-c0d2-1c5ed1e54318"] {width:100%;height:90px;}html.w-mod-js:not(.w-mod-ix) [data-w-id="2836e6db-1eb0-afcc-c0d2-1c5ed1e54326"] {opacity:1;}}</style>
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script type="text/javascript">WebFont.load({  google: {    families: ["Exo:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic","Roboto:300,regular,italic,500,500italic,700,700italic,900:cyrillic,cyrillic-ext,latin","Manrope:200,regular,500,600,700:cyrillic,latin","Prata:regular:cyrillic,latin"]  }});</script>
+  <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
+  <link href="{% static 'aproperty/images/favicon.png' %}" rel="shortcut icon" type="image/x-icon">
+  <link href="{% static 'aproperty/images/webclip.png' %}" rel="apple-touch-icon">
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8WV1589FMG"></script>
+  <script type="text/javascript">window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-8WV1589FMG', {'anonymize_ip': false});</script>
+  <meta name="format-detection" content="telephone=no">
+  <!--  [Attributes by Finsweet] CMS Slider  -->
+  <script async="" src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsslider@1/cmsslider.js"></script>
+</head>
+
+<body class="body">
+
+  <!--  HEADER -->
+  {% include 'components/header.html' %}
+
+  <!--  about seaction -->
+  <div data-w-id="2836e6db-1eb0-afcc-c0d2-1c5ed1e54301" class="about-section">
+    <section id="feature-section" class="feature-section fs wf-section">
+      <div id="about-complex" class="flex-container container-6 _6 w-container">
+        <div id="w-node-_2836e6db-1eb0-afcc-c0d2-1c5ed1e54307-9f986c06" class="feature-image-mask">
+          <div class="w-layout-grid grid-11 gr-11">
+            <a href="#" id="w-node-_2836e6db-1eb0-afcc-c0d2-1c5ed1e54309-9f986c06" class="w-inline-block w-lightbox">
+              <img src="{{ obj.title_image.url }}" loading="lazy" alt="" class="image-15">
+              <script type="application/json" class="w-json">
+                {
+                  "items": [{"url": "{{ obj.title_image.url }}", "": "image"}],
+                  "group": "complex-about"
+                }
+              </script>
+            </a>
+            <div id="w-node-_2836e6db-1eb0-afcc-c0d2-1c5ed1e5430b-9f986c06" class="images">
+              <div class="collection-list-wrapper-2 w-dyn-list">
+                <div role="list" class="collection-list-4 w-dyn-items">
+                  
+                  {% for im_obj in obj.images %}
+                  <div role="listitem" class="collection-item-2 w-dyn-item">
+                    <a href="#" class="w-inline-block w-lightbox">
+                      <img height="" loading="lazy" src="{{ im_obj.photo.url }}" alt="" class="image-14">
+                      <script type="application/json" class="w-json">
+                        {
+                          "items": [{"url": "{{ im_obj.photo.url }}", "": "image"}],
+                          "group": "complex-about"
+                        }
+                      </script>
+                    </a>
+                  </div>
+                  {% endfor %}
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="w-node-_2836e6db-1eb0-afcc-c0d2-1c5ed1e54314-9f986c06" class="div-block-21">
+          <div class="div-block-23">
+            <a id="btn-1" data-w-id="2836e6db-1eb0-afcc-c0d2-1c5ed1e54316" href="#" class="button-3 w-button">{% if en %}Show all{% else %}Показать все{% endif %}</a>
+          </div>
+          <div data-w-id="2836e6db-1eb0-afcc-c0d2-1c5ed1e54318" class="div-block-22">
+            <div class="rich-text-block r2 w-richtext">{{ obj.description | safe }}</div>
+            <div data-w-id="2836e6db-1eb0-afcc-c0d2-1c5ed1e54326" class="closer"></div>
+          </div>
+        </div>
+        <h2 id="w-node-_42a02e7f-fce1-84ed-4cd0-ca7b9be7d304-9f986c06" class="heading-35">{{ obj.name }}</h2>
+      </div>
+    </section>
+  </div>
+
+  <!--  details seaction -->
+  <div class="info wf-section">
+    <div class="container-6 c6 w-container">
+      <div class="w-layout-grid grid-20">
+        <h1 id="w-node-_81370268-e603-9636-1d13-6d95c1fec3a1-9f986c06" class="heading-14 h-134">
+          {% if en %}
+            Basic information about the object
+          {% else %}
+            Основная информация об объекте
+          {% endif %}
+        </h1>
+        <div id="w-node-_303f7c53-f3cd-55ed-8898-711af21600ad-9f986c06" class="call-card">
+          <div class="price-center">
+            <h3 class="heading-34">{{ obj.price }}</h3>
+            <h3 class="heading-33">RUB</h3>
+          </div>
+          <div class="price-center">
+            <div class="tp-1">{{ obj.addres }}</div>
+          </div>
+          <div>
+            <div class="price-center">
+              <div class="div-block-69">
+                <div class="div-block-51">
+                  <h4 class="heading-34 d34">{{ obj.specialist.name }}</h4>
+                  <div class="div-block-29 d-29">
+                    <a href="https://t.me/STATUScorp"class="contact-icon i2 w-inline-block">
+                      <div class="html-embed-11 w-embed">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentcolor" viewbox="0 0 50 50" width="100%">
+                          <path d="M46.137,6.552c-0.75-0.636-1.928-0.727-3.146-0.238l-0.002,0C41.708,6.828,6.728,21.832,5.304,22.445 c-0.259,0.09-2.521,0.934-2.288,2.814c0.208,1.695,2.026,2.397,2.248,2.478l8.893,3.045c0.59,1.964,2.765,9.21,3.246,10.758 c0.3,0.965,0.789,2.233,1.646,2.494c0.752,0.29,1.5,0.025,1.984-0.355l5.437-5.043l8.777,6.845l0.209,0.125 c0.596,0.264,1.167,0.396,1.712,0.396c0.421,0,0.825-0.079,1.211-0.237c1.315-0.54,1.841-1.793,1.896-1.935l6.556-34.077 C47.231,7.933,46.675,7.007,46.137,6.552z M22,32l-3,8l-3-10l23-17L22,32z"></path>
+                        </svg>
+                      </div>
+                    </a>
+                    <a href="{{ site.wh_link }}" class="contact-icon i2 w-inline-block">
+                      <div class="html-embed-12 w-embed">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentcolor" viewbox="0 0 24 24" width="100%">
+                          <path d="M 12.011719 2 C 6.5057187 2 2.0234844 6.478375 2.0214844 11.984375 C 2.0204844 13.744375 2.4814687 15.462563 3.3554688 16.976562 L 2 22 L 7.2324219 20.763672 C 8.6914219 21.559672 10.333859 21.977516 12.005859 21.978516 L 12.009766 21.978516 C 17.514766 21.978516 21.995047 17.499141 21.998047 11.994141 C 22.000047 9.3251406 20.962172 6.8157344 19.076172 4.9277344 C 17.190172 3.0407344 14.683719 2.001 12.011719 2 z M 12.009766 4 C 14.145766 4.001 16.153109 4.8337969 17.662109 6.3417969 C 19.171109 7.8517969 20.000047 9.8581875 19.998047 11.992188 C 19.996047 16.396187 16.413812 19.978516 12.007812 19.978516 C 10.674812 19.977516 9.3544062 19.642812 8.1914062 19.007812 L 7.5175781 18.640625 L 6.7734375 18.816406 L 4.8046875 19.28125 L 5.2851562 17.496094 L 5.5019531 16.695312 L 5.0878906 15.976562 C 4.3898906 14.768562 4.0204844 13.387375 4.0214844 11.984375 C 4.0234844 7.582375 7.6067656 4 12.009766 4 z M 8.4765625 7.375 C 8.3095625 7.375 8.0395469 7.4375 7.8105469 7.6875 C 7.5815469 7.9365 6.9355469 8.5395781 6.9355469 9.7675781 C 6.9355469 10.995578 7.8300781 12.182609 7.9550781 12.349609 C 8.0790781 12.515609 9.68175 15.115234 12.21875 16.115234 C 14.32675 16.946234 14.754891 16.782234 15.212891 16.740234 C 15.670891 16.699234 16.690438 16.137687 16.898438 15.554688 C 17.106437 14.971687 17.106922 14.470187 17.044922 14.367188 C 16.982922 14.263188 16.816406 14.201172 16.566406 14.076172 C 16.317406 13.951172 15.090328 13.348625 14.861328 13.265625 C 14.632328 13.182625 14.464828 13.140625 14.298828 13.390625 C 14.132828 13.640625 13.655766 14.201187 13.509766 14.367188 C 13.363766 14.534188 13.21875 14.556641 12.96875 14.431641 C 12.71875 14.305641 11.914938 14.041406 10.960938 13.191406 C 10.218937 12.530406 9.7182656 11.714844 9.5722656 11.464844 C 9.4272656 11.215844 9.5585938 11.079078 9.6835938 10.955078 C 9.7955938 10.843078 9.9316406 10.663578 10.056641 10.517578 C 10.180641 10.371578 10.223641 10.267562 10.306641 10.101562 C 10.389641 9.9355625 10.347156 9.7890625 10.285156 9.6640625 C 10.223156 9.5390625 9.737625 8.3065 9.515625 7.8125 C 9.328625 7.3975 9.131125 7.3878594 8.953125 7.3808594 C 8.808125 7.3748594 8.6425625 7.375 8.4765625 7.375 z"></path>
+                        </svg>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="div-block-51">
+                  <div class="tp-1">{{ obj.specialist.role }}</div>
+                </div>
+              </div>
+            </div>
+            <div class="price-center">
+              <a href="#" class="link-block-11 w-inline-block">
+                <div class="text-block-40">{{ obj.specialist.phone }}</div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div id="w-node-_1ce6dc16-6163-c3ed-3a77-dfac15547cab-9f986c06" class="div-block-49">
+          <h4 id="w-node-_4b68733e-e89a-f6ad-ef1d-d2d9c9bb982f-9f986c06" class="heading-32">Обьект</h4>
+          <div id="w-node-e5366f5c-845a-b962-bf7b-597b6e491bb3-9f986c06" class="div-block-48">
+            <div class="text-block-41">Общая площадь</div>
+            <div class="text-block-39">. . . . . . . . . . </div>
+            <div>{{ obj.square }} м<sup>2</sup></div>
+          </div>
+          <div id="w-node-e6e0478b-6b37-54ca-f228-32b0a5c94787-9f986c06" class="div-block-48">
+            <div class="text-block-41">Комнат</div>
+            <div class="text-block-39">. . . . . . . . . . . . . . . . . . . . . . . . . .</div>
+            <div>{{ obj.rooms_number }}</div>
+          </div>
+          <div id="w-node-b41131b4-6960-3efe-5ae2-869055c3498c-9f986c06" class="div-block-48">
+            <div class="text-block-41">Этаж</div>
+            <div class="text-block-39">. . . . . . . . . . . . . . . . . . . . . . . . . . . .</div>
+            <div>{{ obj.floor }}</div>
+          </div>
+          <div id="w-node-e7cf4af2-5031-b447-bd8b-c064420fa4a4-9f986c06" class="div-block-48">
+            <div class="text-block-41">Всего этажей</div>
+            <div class="text-block-39">. . . . . . . . . . . . . .</div>
+            <div>{{ obj.floors_number }}</div>
+          </div>
+          {% if obj.window_to %}
+          <div id="w-node-cd632867-5d7e-9da7-2360-c164a1a8a33d-9f986c06" class="div-block-48">
+            <div class="text-block-41">Окна выходят</div>
+            <div class="text-block-39"> . . . . . . . . . . . . . </div>
+            <div>{{ obj.window_to }}</div>
+          </div>
+          {% endif %}
+          {% if obj.decor %}
+          <div id="w-node-_1848ff1f-c806-4ad6-a853-e85165009800-9f986c06" class="div-block-48">
+            <div class="text-block-41">Ремонт</div>
+            <div class="text-block-39">. . . . . . . . . . . . . . . . . . . . . . .</div>
+            <div>{{ obj.decor }}</div>
+          </div>
+          {% endif %}
+        </div>
+        <div id="w-node-ac41bdd3-2e5d-9373-ee73-3f9cb5284559-9f986c06" class="div-block-49 d-49">
+          <div id="w-node-d5be5161-df55-05d3-21b2-109661e92e82-9f986c06">
+            <div class="div-block-50 d-50"></div>
+            <h4 id="w-node-ac41bdd3-2e5d-9373-ee73-3f9cb528455a-9f986c06" class="heading-32">Дом</h4>
+          </div>
+          {% if obj.construction_year %}
+          <div id="w-node-ac41bdd3-2e5d-9373-ee73-3f9cb528455c-9f986c06" class="div-block-48">
+            <div class="text-block-41">Год постройки</div>
+            <div class="text-block-39">. . . . . . . . . . . . . . . . . . . . </div>
+            <div>{{ obj.construction_year }}</div>
+          </div>
+          {% endif %}
+          {% if obj.rooms_in_hous %}
+          <div id="w-node-a5e23c9c-0541-586c-8b08-0413ad2578c8-9f986c06" class="div-block-48">
+            <div class="text-block-41">Квартир в доме</div>
+            <div class="text-block-39">. . . . . . .. . . . . . . . . . . . </div>
+            <div>{{ obj.rooms_in_hous }}</div>
+          </div>
+          {% endif %}
+          {% if obj.rooms_on_floor %}
+          <div id="w-node-_8b621137-97b5-bd5f-5a2c-183882fe6fd0-9f986c06" class="div-block-48">
+            <div class="text-block-41">Квартир на этаже</div>
+            <div class="text-block-39">. . . . . . . . . . . . . . . </div>
+            <div>{{ obj.rooms_on_floor }}</div>
+          </div>
+          {% endif %}
+          {% if obj.entrances %}
+          <div id="w-node-c8b5b32b-2481-8998-84c1-c1751e207a09-9f986c06" class="div-block-48">
+            <div class="text-block-41">Кол-во подъездов</div>
+            <div class="text-block-39">. . . . . . . . . . . . . . . </div>
+            <div>{{ obj.entrances }}</div>
+          </div>
+          {% endif %}
+          {% if obj.bulding_material %}
+          <div id="w-node-ac41bdd3-2e5d-9373-ee73-3f9cb5284566-9f986c06" class="div-block-48">
+            <div class="text-block-41">Тип (материал) дома</div>
+            <div class="text-block-39">. . . . . . .. . .</div>
+            <div>{{ obj.bulding_material }}</div>
+          </div>
+          {% endif %}
+          {% if obj.ceiling_height %}
+          <div id="w-node-ac41bdd3-2e5d-9373-ee73-3f9cb528456c-9f986c06" class="div-block-48">
+            <div class="text-block-41">Высота потолков</div>
+            <div class="text-block-39">. . . . . . . . . . . . . . . . </div>
+            <div>{{ obj.ceiling_height }} м</div>
+          </div>
+          {% endif %}
+          {% if obj.freight_elevators %}
+          <div id="w-node-ac41bdd3-2e5d-9373-ee73-3f9cb5284572-9f986c06" class="div-block-48">
+            <div class="text-block-41">Грузовых лифтов</div>
+            <div class="text-block-39">. . . . . . . . . . . . . . . . </div>
+            <div>{{ obj.freight_elevators }}</div>
+          </div>
+          {% endif %}
+          {% if obj.elevators %}
+          <div id="w-node-_5d01bc56-8da1-ec42-97ad-0b62a78bc286-9f986c06" class="div-block-48">
+            <div class="text-block-41">Пасажирских лифтов</div>
+            <div class="text-block-39">. . . . . . . . . . . . . . . . </div>
+            <div>{{ obj.elevators }}</div>
+          </div>
+          {% endif %}
+          {% if obj.area.name %}
+          <div id="w-node-ac41bdd3-2e5d-9373-ee73-3f9cb5284578-9f986c06" class="div-block-48">
+            <div class="text-block-41">Район</div>
+            <div class="text-block-39">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . ... . </div>
+            <div>{{ obj.area.name }}</div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--  stat seaction -->
+  <div class="stat wf-section">
+    <div class="container-6 w-container">
+      <h1 class="heading-26">{% if en %}Surrounding infrastructure{% else %}Окружающая инфраструктура{% endif %}</h1>
+      <div class="w-layout-grid grid-18">
+
+        {% for area in obj.areas_data %}
+        <div class="card">
+          <div class="div-block-19">
+            <h1 class="heading-25">{{ area.amount }}</h1>
+            <h4 class="heading-20">{{ area.name }}</h4>
+            <div class="ico w-embed">
+              <img src='{{ area.photo.url }}'>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        
+      </div>
+      <div data-delay="4000" data-animation="slide" class="slider-3 w-slider" data-autoplay="false" data-easing="ease-in-out-circ" data-hide-arrows="false" data-disable-swipe="false" data-autoplay-limit="0" data-nav-spacing="3" data-duration="800" data-infinite="true">
+        <div class="mask-3 w-slider-mask">
+          
+          {% for area in obj.areas_data %}
+          <div class="slide-info w-slide">
+            <div class="card">
+              <div class="div-block-19">
+                <div class="ico w-embed">
+                  <img src='{{ area.photo.url }}'>
+                </div>
+                <h1 class="heading-25">{{ area.amount }}</h1>
+                <h4 class="heading-20">{{ area.name }}</h4>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+        <div class="w-slider-arrow-left">
+          <div class="icon-3 w-icon-slider-left"></div>
+        </div>
+        <div class="w-slider-arrow-right">
+          <div class="icon-2 w-icon-slider-right"></div>
+        </div>
+        <div class="slide-nav-3 w-slider-nav w-round"></div>
+      </div>
+    </div>
+  </div>
+
+   <!--  map seaction -->
+  <div id="map" class="map wf-section">
+    <div class="container-6 w-container">
+      <div class="div-block-17">
+        <div class="html-embed-4 w-embed w-script">
+          {{ obj.map_script | safe}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--  APPLICATION SECTION -->
+  {% include 'components/application.html' %}
+
+  <!--  cards seaction -->
+  <div class="cards wf-section">
+    <div class="container-6 w-container">
+      <div class="div-block-14">
+        <h1 class="heading-13">
+          {% if en %}Similar rooms{% else %}Похожие квартиры{% endif %}
+        </h1>
+      </div>
+
+      <div data-delay="4000" data-animation="slide" class="slider-2 w-slider" data-autoplay="false" data-easing="ease-in-out-quart" data-hide-arrows="false" data-disable-swipe="false" data-autoplay-limit="0" data-nav-spacing="8" data-duration="800" data-infinite="true" fs-cmsslider-element="slider">
+        <div class="mask-2 w-slider-mask">
+
+          {% for recomend_complex in obj.get_recomend %}
+          <div class="slide-2 slide w-slide">
+            <div class="collection-item-3 w-dyn-item">
+              <div class="card card-2">
+                <a href="{{ recomend_complex.get_absolute_url }}" class="link-block-17 w-inline-block">
+                  <div class="card-head">
+                    <img  src="{{ recomend_complex.title_image.url }}" data-w-id="24cb643b-7861-d775-92d5-4fad081cd71e" loading="lazy" style="-webkit-transform:translate3d(0, 0, 0) scale3d(null, null, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(null, null, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(null, null, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(null, null, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" alt="" class="image-16">
+                  </div>
+                  <div class="card-content">
+                    <h3 class="h-33">{{ recomend_complex.name }}</h3>
+                    <div id="w-node-_24cb643b-7861-d775-92d5-4fad081cd728-9f986c06" class="div-block-42">
+                      {% if en %}
+                        <div class="money">{{ recomend_complex.price }} $</div>
+                      {% else %}
+                        <div class="money">{{ recomend_complex.price }} ₽</div>
+                      {% endif %}
+                    </div>
+                    <div class="div-block-1101">
+                      <div class="html-embed-1012 w-embed">
+                        <svg viewbox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M6 7C5.28125 7 4.65625 6.40625 4.65625 5.65625C4.65625 4.9375 5.28125 4.34375 6 4.34375C6.71875 4.34375 7.34375 4.9375 7.34375 5.65625C7.34375 6.40625 6.71875 7 6 7ZM10 5.8125C10 3.375 8.21875 1.65625 6 1.65625C3.78125 1.65625 2 3.375 2 5.8125C2 7.375 3.3125 9.4375 6 11.9062C8.6875 9.4375 10 7.375 10 5.8125ZM6 0.34375C8.8125 0.34375 11.3438 2.46875 11.3438 5.8125C11.3438 8 9.5625 10.625 6 13.6562C2.4375 10.625 0.65625 8 0.65625 5.8125C0.65625 2.46875 3.1875 0.34375 6 0.34375Z" fill="#282828"></path>
+                        </svg>
+                      </div>
+                      <div class="area">{{ recomend_complex.addres }}</div>
+                    </div>
+                    <div class="div-block-1101">
+                      <div class="html-embed-1012 w-embed">
+                        <svg viewbox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M13.2812 6.59375L7.375 0.71875C7.125 0.46875 6.8125 0.34375 6.4375 0.34375H1.65625C0.9375 0.34375 0.34375 0.9375 0.34375 1.65625V6.4375C0.34375 6.8125 0.46875 7.125 0.71875 7.375L6.625 13.2812C7.125 13.7812 7.96875 13.7812 8.5 13.2812L13.2812 8.5C13.8125 7.96875 13.8125 7.125 13.2812 6.59375ZM7.5625 12.3438L1.65625 6.4375V1.65625H6.4375L12.3438 7.5625L7.5625 12.3438ZM2.34375 3.34375C2.34375 2.78125 2.78125 2.34375 3.34375 2.34375C3.875 2.34375 4.34375 2.78125 4.34375 3.34375C4.34375 3.875 3.875 4.34375 3.34375 4.34375C2.78125 4.34375 2.34375 3.875 2.34375 3.34375Z" fill="#282828"></path>
+                        </svg>
+                      </div>
+                      {% if en %}
+                        <div class="area">{{ recomend_complex.square }} m²</div>
+                      {% else %}
+                        <div class="area">{{ recomend_complex.square }} м²</div>
+                      {% endif %}
+                    </div>
+                    {% if recomend_complex.decor %}
+                    <div class="div-block-1101">
+                      <div class="html-embed-1012 w-embed">
+                        <svg viewbox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8.1875 9.125L9.59375 7.6875L13.5938 11.6875L12.1875 13.125L8.1875 9.125ZM10.6562 5.65625C11.9688 5.65625 13 4.625 13 3.34375C13 2.9375 12.9062 2.59375 12.7188 2.28125L10.9375 4.0625L9.9375 3.0625L11.7188 1.28125C11.4062 1.09375 11.0625 1 10.6562 1C9.375 1 8.34375 2.03125 8.34375 3.34375C8.34375 3.59375 8.375 3.875 8.46875 4.09375L7.25 5.34375L6.0625 4.15625L6.53125 3.6875L5.59375 2.75L7 1.3125C6.21875 0.53125 4.96875 0.53125 4.1875 1.3125L1.8125 3.6875L2.75 4.625H0.875L0.40625 5.09375L2.75 7.46875L3.21875 7V5.09375L4.1875 6.03125L4.65625 5.5625L5.84375 6.75L0.90625 11.6875L2.3125 13.0938L9.90625 5.53125C10.125 5.625 10.4062 5.65625 10.6562 5.65625Z" fill="#282828"></path>
+                        </svg>
+                      </div>
+                      <div class="area">{{ recomend_complex.decor }}</div>
+                    </div>
+                    {% endif %}
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          {% endfor%}
+
+        </div>
+        <div class="left-arrow-2 w-slider-arrow-left">
+          <div class="icon-wrap">
+            <div class="icon w-icon-slider-left"></div>
+          </div>
+        </div>
+        <div class="right-arrow-2 w-slider-arrow-right">
+          <div class="icon-wrap pre">
+            <div class="icon w-icon-slider-right"></div>
+          </div>
+        </div>
+        <div class="slide-nav-2 w-slider-nav w-round"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!--  MODAL -->
+  {% include 'components/modal.html' %}
+
+  <!--  FOOTER -->
+  {% include 'components/footer.html' %}
+
+  <!-- UP BTN -->
+  {% include 'components/up.html' %}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="{% static 'aproperty/js/main.js' %}" type="text/javascript"></script>
+  <script src="{% static 'aproperty/js/script.js' %}" type="text/javascript"></script>
+</body>
+</html>

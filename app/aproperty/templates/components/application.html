@@ -1,0 +1,69 @@
+<section id="application" class="application wf-section">
+    <div class="container-6 w-container">
+        <h1 class="heading-8">
+            {% if en %}
+                Leave a request and we will tell you more!
+            {% else %}
+                Оставьте заявку и мы расскажем вам больше!
+            {% endif %}
+        </h1>
+      <div class="div-block-6">
+        <div class="form-block-4 w-form">
+          <form id="Application-Form" name="wf-form-Application-Form" data-name="Application-Form" method="post" class="form-3" action="api/create-client/">
+            {% csrf_token %}
+
+            {% if en %}
+                <input type="text" class="input inp w-node-_7fe136a5-c324-a294-825a-ee6df6980bec-f6980be4 w-input" maxlength="256" name="name" data-name="name" placeholder="First Name" id="Name-4" required="">
+                <input type="tel" class="input inp w-node-_7fe136a5-c324-a294-825a-ee6df6980bed-f6980be4 w-input" maxlength="256" name="phone" data-name="phone" placeholder="Phone number" id="Tel-2" required="">
+                <input type="email" class="input inp w-node-_7fe136a5-c324-a294-825a-ee6df6980bee-f6980be4 w-input" maxlength="256" name="email" data-name="email" placeholder="E-mail" id="Email-6" required="">
+                <label id="w-node-_71b8706c-38a7-847b-9ce6-167938c68021-f6980be4" data-w-id="71b8706c-38a7-847b-9ce6-167938c68021" class="w-checkbox checkbox-field popcorn">
+                    <input type="checkbox" id="checkbox-4" name="checkbox-4" data-name="Checkbox 4" class="w-checkbox-input checkbox">
+                    <span class="checkbox-label w-form-label" for="checkbox-4">I agree to the processing of my personal data</span>
+                </label>
+            {% else %}
+                <input type="text" class="input inp w-node-_7fe136a5-c324-a294-825a-ee6df6980bec-f6980be4 w-input" maxlength="256" name="name" data-name="name" placeholder="Ваше Имя" id="Name-4" required="">
+                <input type="tel" class="input inp w-node-_7fe136a5-c324-a294-825a-ee6df6980bed-f6980be4 w-input" maxlength="256" name="phone" data-name="phone" placeholder="Ваш Телефон" id="Tel-2" required="">
+                <input type="email" class="input inp w-node-_7fe136a5-c324-a294-825a-ee6df6980bee-f6980be4 w-input" maxlength="256" name="email" data-name="email" placeholder="E-mail" id="Email-6" required="">
+                <label id="w-node-_71b8706c-38a7-847b-9ce6-167938c68021-f6980be4" data-w-id="71b8706c-38a7-847b-9ce6-167938c68021" class="w-checkbox checkbox-field popcorn">
+                    <input type="checkbox" id="checkbox-4" name="checkbox-4" data-name="Checkbox 4" class="w-checkbox-input checkbox">
+                    <span class="checkbox-label w-form-label" for="checkbox-4">Я согласен на обработку моих персональных данных</span>
+                </label>
+            {% endif %}
+            
+            <input type="text" class="input hidden hidden-inp w-input" maxlength="10" name="site" data-name="site" value="{{ site_id }}" hidden style='display: none;'>
+            <input type="text" class="input hidden hidden-inp w-input" maxlength="256" name="complex" data-name="complex" hidden style='display: none;'>
+            
+            <div id="w-node-_32015332-43bf-c76f-a7af-ad9e7f38536d-f6980be4" class="div-block-46">
+                {% include 'components/policy.html' %}
+
+                {% if en %}
+                    <input type="submit" value="Send" data-wait="Sending..." id="w-node-_7fe136a5-c324-a294-825a-ee6df6980bef-f6980be4" class="button applic-btn w-button">
+                {% else %}
+                    <input type="submit" value="ОТПРАВИТЬ ЗАЯВКУ" data-wait="ОТПРАВЛЯЕМ..." id="w-node-_7fe136a5-c324-a294-825a-ee6df6980bef-f6980be4" class="button applic-btn w-button">
+                {% endif %}
+            </div>
+            
+          </form>
+          <div class="success-message-2 w-form-done">
+            <div class="text-block-10">
+                {% if en %}
+                    Thank you! Your application is accepted!
+                {% else %}
+                    Спасибо! Ваша заявка принята!
+                {% endif %}
+            </div>
+          </div>
+          <div class="error-message-2 w-form-fail">
+            <div>
+                {% if en %}
+                    Ouch! Something went wrong while submitting the form.
+                {% else %}
+                    Ой! Что-то пошло не так при отправке формы.
+                {% endif %}
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>

@@ -1,0 +1,85 @@
+<div class="modal section wf-section">
+    <div class="container w-container">
+      <div class="form-block">
+        <div data-w-id="ca888c12-6875-e13d-6ea9-32021e4833a5" class="close-icon w-embed">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="100%" viewbox="0 0 512.000000 512.000000" preserveaspectratio="xMidYMid meet">
+            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="currentcolor" stroke="none">
+              <path d="M271 5109 c-104 -20 -194 -91 -239 -187 -22 -47 -27 -71 -27 -137 0 -155 -68 -78 1075 -1220 l1010 -1010 -1019 -1020 c-827 -829 -1022 -1029 -1041 -1070 -34 -71 -35 -199 -2 -270 29 -63 93 -129 157 -163 72 -37 187 -42 270 -12 58 22 94 56 1083 1044 l1022 1021 1018 -1016 c817 -816 1027 -1021 1067 -1040 42 -20 65 -24 145 -24 83 0 101 4 145 27 62 32 129 103 158 166 32 68 30 197 -3 267 -19 41 -214 241 -1041 1070 l-1019 1020 1010 1010 c1143 1142 1075 1065 1075 1220 0 65 -5 90 -26 135 -81 172 -284 242 -454 158 -26 -13 -391 -370 -1057 -1036 l-1018 -1017 -1017 1017 c-667 666 -1032 1023 -1058 1036 -34 17 -145 45 -164 41 -3 -1 -26 -5 -50 -10z"></path>
+            </g>
+          </svg>
+        </div>
+        <h1 class="heading">
+          {% if en %}
+            Fill out the form<br>to download the presentation
+          {% else %}
+            Заполните форму,<br>чтобы скачать презентацию
+          {% endif %}
+        </h1>
+        <div id="Contact-Form" class="form-block-2 w-form">
+          <form id="wf-form-Request-Prez-Form" name="wf-form-Request-Prez-Form" data-name="Request Prez Form" method="post" class="form" action="api/create-client/">
+            {% csrf_token %}
+
+            {% if en %}
+              <input type="text" class="input w-input" autofocus="true" maxlength="256" name="name" data-name="Name" placeholder="First Name *" id="name" required="">
+              <input type="tel" class="input w-input" maxlength="256" name="phone" data-name="phone" placeholder="Phone number *" id="phone" required="">
+              <input type="email" class="input w-input" maxlength="256" name="email" data-name="email" placeholder="Email *" id="email" required="">
+              <label data-w-id="bc2ca248-da9c-03d7-df54-2877a3168b5b" class="w-checkbox checkbox-field popcorn">
+                  <input type="checkbox" id="checkbox-4" name="checkbox-4" data-name="Checkbox 4" required="" class="w-checkbox-input checkbox">
+                  <span class="checkbox-label w-form-label" for="checkbox-4">I agree to the processing of my personal data</span>
+              </label>
+            {% else %}
+              <input type="text" class="input w-input" autofocus="true" maxlength="256" name="name" data-name="Name" placeholder="Ваше имя *" id="name" required="">
+              <input type="tel" class="input w-input" maxlength="256" name="phone" data-name="phone" placeholder="Ваш телефон *" id="phone" required="">
+              <input type="email" class="input w-input" maxlength="256" name="email" data-name="email" placeholder="Ваша почта *" id="email" required="">
+              <label data-w-id="bc2ca248-da9c-03d7-df54-2877a3168b5b" class="w-checkbox checkbox-field popcorn">
+                <input type="checkbox" id="checkbox-4" name="checkbox-4" data-name="Checkbox 4" required="" class="w-checkbox-input checkbox">
+                <span class="checkbox-label w-form-label" for="checkbox-4">Я согласен на обработку моих персональных данных</span>
+              </label>
+            {% endif %}
+
+            <input type="text" class="input hidden hidden-inp w-input" maxlength="10" name="site" data-name="site" value="{{ site_id }}" hidden style='display: none;'>
+            <input type="text" class="input hidden hidden-inp w-input" maxlength="256" name="complex" data-name="complex" hidden style='display: none;'>
+
+            <div class="btn-block forb-btn-block">
+              {% include 'components/policy.html' %}
+
+              {% if en %}
+                <input type="submit" value="Send" data-wait="Sending..." class="button form-btn w-button">
+              {% else %}
+                <input type="submit" value="Отправить" data-wait="Отправка..." class="button form-btn w-button">
+              {% endif %}
+
+            </div>
+          </form>
+          <div class="success-message w-form-done">
+            <div class="content">
+                <div class="text-block-4">
+                  {% if en %}
+                    Thank you! Your application is accepted!<br><br>We will send you a presentation soon!<br>
+                  {% else %}
+                    Спасибо! Ваша заявка принята!<br><br>В скором времени мы вышлем Вам презентацию!
+                  {% endif %}
+                </div>
+                <div id="download-btn" data-w-id="d816c3b9-76cd-9be5-ec1f-55af126efcb8" class="down-arrow w-embed">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="100%" viewbox="0 0 512.000000 512.000000" preserveaspectratio="xMidYMid meet">
+                      <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="currentcolor" stroke="none">
+                          <path d="M2490 5104 c-45 -20 -68 -41 -91 -86 -18 -36 -19 -91 -19 -1850 l0 -1813 -312 312 c-319 318 -350 343 -420 343 -41 0 -106 -30 -135 -61 -47 -51 -57 -143 -24 -207 29 -55 957 -977 1003 -997 49 -20 94 -19 143 4 49 23 989 962 1004 1004 24 63 10 150 -32 196 -27 29 -93 61 -127 61 -80 0 -92 -9 -422 -338 l-318 -316 0 1812 c0 1759 -1 1814 -19 1850 -23 46 -46 67 -94 87 -45 19 -92 19 -137 -1z"></path>
+                          <path d="M295 1811 c-51 -23 -91 -70 -105 -122 -8 -27 -10 -233 -7 -642 3 -661 0 -625 67 -758 39 -76 132 -172 211 -217 32 -18 92 -41 135 -52 76 -20 115 -20 1964 -20 1849 0 1888 0 1964 20 187 47 325 181 394 379 14 40 16 129 19 648 3 409 1 615 -7 642 -20 75 -100 140 -173 141 -66 0 -137 -48 -168 -115 -17 -37 -19 -78 -19 -623 0 -472 -3 -589 -14 -615 -16 -39 -61 -82 -99 -96 -20 -8 -601 -11 -1898 -11 -1565 0 -1875 2 -1902 14 -39 16 -82 61 -96 99 -7 19 -11 224 -11 610 0 544 -2 585 -19 622 -22 48 -54 79 -103 100 -49 20 -84 19 -133 -4z"></path>
+                      </g>
+                    </svg>
+                </div>
+            </div>
+          </div>
+          <div class="error-message w-form-fail">
+            <div>
+              {% if en %}
+                Ouch! Something went wrong while submitting the form.
+              {% else %}
+                Ой! Что-то пошло не так при отправке формы.
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
