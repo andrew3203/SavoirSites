@@ -1,3 +1,5 @@
+from django.core.mail import send_mail
+from django.conf import settings
 from rest_framework import generics
 from api import serializers
 from primary.models import PrimaryProperty
@@ -7,6 +9,9 @@ from rest_framework import filters
 from rest_framework.permissions import IsAdminUser
 from django.contrib.sites.shortcuts import get_current_site
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import status
+from rest_framework.response import Response
+from api.utils import get_html_msg, get_text_msg
 
 
 class PropertyBase(generics.ListAPIView):
@@ -52,4 +57,21 @@ class ResalePropertyAPIView(generics.CreateAPIView):
 class ClientCreateAPIView(generics.CreateAPIView):
     serializer_class = serializers.ClientSerializer
     queryset = Client.objects.all()
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        contact = serializer.save()
+        try:
+            send_mail(
+                subject=f'Новый контакт {contact.site}', 
+                message=get_text_msg(contact),
+                html_message=get_text_msg(contact),
+                from_email=settings.EMAIL_HOST_USER,
+                recipient_list=settings.RECIPIENT_ADDRESS,
+            )
+        except Exception as e:
+            pass
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
