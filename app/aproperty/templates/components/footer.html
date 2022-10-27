@@ -117,7 +117,7 @@
                     <div class="div-block-11">
                         {% csrf_token %}
                         {% if en %}
-                            <input type="text" class="text-field-2 w-input" maxlength="256" name="Name" data-name="name" placeholder="First Name" id="Name-7" required="">
+                            <input type="text" class="text-field-2 w-input" maxlength="256" name="name" data-name="name" placeholder="First Name" id="Name-7" required="">
                         {% else %}
                             <input type="text" class="text-field-2 w-input" maxlength="256" name="Name" data-name="name" placeholder="Ваше Имя" id="Name-7" required="">
                         {% endif %}
@@ -235,7 +235,7 @@
         <h4 class="heading-28">
             {% if en %}Request an expert call{% else %}Закажите звонок эксперта{% endif %}
         </h4>
-        <form id="wf-form-Footer-Form-2" name="wf-form-Footer-Form-2" data-name="Footer Form 2" method="get" class="form-7">
+        <form id="wf-form-Footer-Form-2" name="wf-form-Footer-Form-2" data-name="Footer Form 2" method="post" class="form-7" action="api/create-client/">
             <div>
                 {% csrf_token %}
 
