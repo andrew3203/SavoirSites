@@ -8781,13 +8781,13 @@ h2 {
   }
 
   .tab {
-    width: 43vw;
+    width: 40vw;
     padding-right: 5px;
     padding-left: 5px;
   }
 
   .tab.w--current {
-    width: 48vw;
+    width: 40vw;
     margin-left: 0px;
   }
 
