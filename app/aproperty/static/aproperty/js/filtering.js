@@ -17,7 +17,7 @@ class Complex {
         this.typingInterval = 800;
         let me = this;
         $.ajax({
-            url: `http://${document.location.hostname}:8081/api/${complexKey}/?ordering=-click_amount`,
+            url: `https://${document.location.hostname}/api/${complexKey}/?ordering=-click_amount`,
             type: "GET",
             success: function (data, textStatus, jqXHR) {
                 me.objList = data;
