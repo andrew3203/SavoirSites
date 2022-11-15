@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from aproperty.models import Area, SiteData
-from primary.models import PrimaryProperty
+from primary.models import PrimaryProperty, LivingType
 from resale.models import ResaleProperty
 from django.contrib.sites.shortcuts import get_current_site
 
@@ -12,7 +12,7 @@ def index(request):
 
     rs_count = ResaleProperty.objects.filter(site=s, is_published=True).count()
     context = {
-        'main_complexses': queryset.exclude(logo='')[:10],
+        'main_complexses': queryset.exclude(logo='')[:12],
         'areas': areas,
         'count': queryset.count(),
         'site': s,
@@ -21,7 +21,9 @@ def index(request):
         'slides': s.slides,
         'site_id': s.site.pk,
         'resale': (rs_count > 0),
-        'en': s.is_en()
+        'en': s.is_en(),
+        'logo_list': queryset.exclude(logo='').order_by('click_amount'),
+        'living_types': LivingType.objects.filter(site=s)
     }
     return render(request, f'aproperty/index.html', context)
 

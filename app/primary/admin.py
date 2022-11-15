@@ -1,5 +1,5 @@
 from django.contrib import admin
-from primary.models import PrimaryProperty, Image
+from primary.models import PrimaryProperty, Image, LivingType
 from aproperty.admin import SiteFilter
 
 # Register your models here.
@@ -40,6 +40,7 @@ class PrimaryPropertyAdmin(admin.ModelAdmin):
                 ('description',),
                 ("title_image", "second_image"),
                 ('logo', 'presentation'),
+                ('living_type',)
             ),
         }),
         ('Дополнительно', {
@@ -65,3 +66,10 @@ class PrimaryPropertyAdmin(admin.ModelAdmin):
     actions = [publish, unpublish]
     publish.short_description = 'Опубликовать обьекты'
     unpublish.short_description = 'Снять с публикации'
+
+
+@admin.register(LivingType)
+class LivingTypeAdmin(admin.ModelAdmin):
+    list_display = ['site_name', 'name']
+    list_filter = [SiteFilter]
+    search_fields = ('name',)

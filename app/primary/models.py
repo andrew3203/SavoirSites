@@ -1,14 +1,43 @@
 from django.db import models
 import re
 from django.urls import reverse
+from django.core.validators import ValidationError
 from aproperty.models import *
 
+
+def validate_logo(file, **kwargs):
+    val = file.name.lower().rsplit('.', 1)[-1]
+    if val not in ['jpeg', 'png', 'svg', 'jpg']:
+        raise ValidationError("Не веррый формат изображения")
+
+
+class LivingType(models.Model):
+    site = models.ForeignKey(
+        SiteData,
+        verbose_name='Сайт',
+        on_delete=models.CASCADE
+    )
+    name = models.CharField(
+        'Название',
+        max_length=100
+    )
+
+    class Meta:
+        verbose_name = 'Тип жилья'
+        verbose_name_plural = 'Типы жилья'
+
+    def __str__(self) -> str:
+        return f'{self.site_name} - {self.name}'
+
+    @property
+    def site_name(self):
+        return self.site.site.name
 
 
 class PrimaryProperty(PropertyBase):
     lots_number = models.IntegerField(
         'Кол-во лотов',
-         default=0,
+        default=0,
     )
     district = models.CharField(
         'Округ',
@@ -45,37 +74,43 @@ class PrimaryProperty(PropertyBase):
         'Доп. фото',
         help_text='Первая фото в фотографиях комплекса',
         upload_to=complex_dir_path,
-         **nb
+        **nb
     )
-    logo = models.ImageField(
+    logo = models.FileField(
         'Логотип',
         upload_to=complex_dir_path,
-        null=True, blank=True
+        null=True, blank=True,
+        validators=[validate_logo]
     )
     presentation = models.FileField(
         'Презентация лота',
         upload_to=complex_dir_path,
-         **nb
+        **nb
+    )
+    living_type = models.ManyToManyField(
+        LivingType,
+        blank=True, default=None,
+        verbose_name='Тип жилья'
     )
 
     class Meta:
         verbose_name = 'Новостройка'
         verbose_name_plural = 'Новостройки'
-    
+
     def __str__(self) -> str:
         return f'{self.name}'
-    
-    def get_absolute_url(self):       
+
+    def get_absolute_url(self):
         return reverse('primary', args=[str(self.slug)])
-    
+
     @property
     def images(self):
         return Image.objects.filter(property=self)
-    
+
     @property
     def url(self):
         return self.get_absolute_url()
-    
+
     @property
     def price_from(self):
         price = re.findall('\d+', self.price.replace(' ', ''))
@@ -84,7 +119,7 @@ class PrimaryProperty(PropertyBase):
             if price != 0 and self.min_square != 0:
                 return f'От  {price / self.min_square:,.0f}'.replace(',', ' ')
         return 'по запросу'
-    
+
     @property
     def price_from_en(self):
         price = re.findall('\d+', self.price.replace(' ', ''))
@@ -93,11 +128,11 @@ class PrimaryProperty(PropertyBase):
             if price != 0 and self.min_square != 0:
                 return f'from  {price / self.min_square:,.0f}'.replace(',', ' ')
         return 'on request'
-    
+
     @property
     def squares(self):
         return self.min_square
-    
+
     @property
     def squares_en(self):
         return self.min_square
@@ -105,7 +140,7 @@ class PrimaryProperty(PropertyBase):
     @property
     def get_logo(self):
         return self.logo.url if self.logo else ''
-    
+
     def get_recomend(self):
         queryset = PrimaryProperty.objects.filter(
             site=self.site,
@@ -113,7 +148,6 @@ class PrimaryProperty(PropertyBase):
         ).exclude(name=self.name).order_by('-click_amount')
         end = min(12, queryset.count())
         return queryset[:end]
-    
 
 
 class Image(ImageBase):

@@ -171,6 +171,27 @@
                     </div>
                   </div>
 
+                  {% if living_types %}
+                  <div id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c2с949cb-e36ab9af">
+                    <label class="label">{% if en %}Living type{% else %}Тип жилья{% endif %}</label>
+                    <div id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b949ce-e36ab9af" class="collection-list-wrapper-4 w-dyn-list">
+                      <div class="collection-list-2 w-dyn-items">
+                        
+                        {% for living_type in living_types %}
+                        <div id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b949d0-e36ab9af" class="collection-item-5 w-dyn-item">
+                          <label class="w-checkbox filter-items">
+                            <div class="w-checkbox-input w-checkbox-input--inputType-custom filter-items-btn"></div>
+                            <input class="living_types" type="checkbox" id="checkbox-32" name="checkbox-32" data-name="Checkbox 3" style="opacity:0;position:absolute;z-index:-1">
+                            <span class="checkbox-label-2 w-form-label" for="checkbox-3">{{ living_type.name }}</span>
+                          </label>
+                        </div>
+                        {% endfor %}
+
+                      </div>
+                    </div>
+                  </div>
+                  {% endif %}
+
                   <div id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b949cb-e36ab9af">
                     <label class="label">{% if en %}Areas{% else %}Районы{% endif %}</label>
                     <div id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b949ce-e36ab9af" class="collection-list-wrapper-4 w-dyn-list">
