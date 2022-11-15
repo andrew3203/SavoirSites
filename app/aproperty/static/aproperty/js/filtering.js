@@ -301,14 +301,15 @@ class Complex {
     processFltering2(newChoice, isChecked, key, choice) {
         this.clearResetResults();
 
-        if (newChoice & isChecked)
-            this.choices.add(newChoice)
-        else if(newChoice & !isChecked)
-            this.choices.delete(newChoice);
+        if (newChoice) 
+            (isChecked) ? this.choices.add(newChoice) : this.choices.delete(newChoice);
+        
+        if (this.choices.size > 0) 
+            this.queryFilter('area', this.choices);
 
-        if (key & choice)
+        if (key) 
             this.keyFilter(key, choice);
-
+        
         this.show();
     } 
 }
