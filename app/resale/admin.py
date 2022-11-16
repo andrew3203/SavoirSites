@@ -34,6 +34,7 @@ class ResalePropertyAdmin(admin.ModelAdmin):
             'fields': (
                 ('description',),
                 ("title_image",),
+                ('living_type',)
             ),
         }),
         ('О лоте (дополнительно)', {
