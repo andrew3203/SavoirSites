@@ -74,44 +74,6 @@
     <!--  APPLICATION SECTION -->
     {% include 'components/application.html' %}
 
-    {% if slides_count > 0 %}
-    <div class='wf-section'>
-      <div class="container-6 w-container">
-        <h1 class="heading-8">
-          {% if en %}
-          Our offices in other cities!
-          {% else %}
-          Наши офисы в других городах!
-          {% endif %}
-      </h1>
-        <div id="w-node-_90e407d4-7650-94cd-6ed9-a0bed0c91406-e36ab9af" class="div-block-62">
-          <div data-delay="4000" data-animation="slide" class="slider-6 w-slider" data-autoplay="true" data-easing="ease" data-hide-arrows="false" data-disable-swipe="false" data-autoplay-limit="0" data-nav-spacing="10" data-duration="500" data-infinite="true">
-            <div class="w-slider-mask">
-
-              {% for slide in slides %}
-              <div class="slide-5 w-slide">
-                <div class="div-block-63">
-                  <a href="{{ slide.link }}" target="_blank" class="link-block-14 w-inline-block">
-                    <img src="{{ slide.logo.url }}" loading="lazy" srcset="{{ slide.logo.url }} 800w" sizes="80px" alt="" class="image-32"></a>
-                </div>
-                <img src="{{ slide.image.url }}" loading="lazy" srcset="{{ slide.image.url }} 800w"  sizes="100vw" alt="" class="image-33">
-              </div>
-              {% endfor %}
-     
-            </div>
-            <div class="w-slider-arrow-left">
-              <div class="icon-5 w-icon-slider-left"></div>
-            </div>
-            <div class="w-slider-arrow-right">
-              <div class="icon-5 w-icon-slider-right"></div>
-            </div>
-            <div class="slide-nav-6 w-slider-nav"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    {% endif %}
-
     <!--  VIDEOS SECTION -->
     {% if site.videos.count > 0 %}
     <section class="videos wf-section">
@@ -147,6 +109,45 @@
           </div>
         </div>
     </section>
+    {% endif %}
+
+    <!--  SLIDES SECTION -->
+    {% if slides_count > 0 %}
+    <div class='wf-section'>
+      <div class="container-6 w-container">
+        <h1 class="heading-8">
+          {% if en %}
+          Our offices in other cities!
+          {% else %}
+          Наши офисы в других городах!
+          {% endif %}
+      </h1>
+        <div id="w-node-_90e407d4-7650-94cd-6ed9-a0bed0c91406-e36ab9af" class="div-block-62" style='margin-top: 20px; margin-bottom: 40px;'>
+          <div data-delay="4000" data-animation="slide" class="slider-6 w-slider" data-autoplay="true" data-easing="ease" data-hide-arrows="false" data-disable-swipe="false" data-autoplay-limit="0" data-nav-spacing="10" data-duration="500" data-infinite="true">
+            <div class="w-slider-mask">
+
+              {% for slide in slides %}
+              <div class="slide-5 w-slide">
+                <div class="div-block-63">
+                  <a href="{{ slide.link }}" target="_blank" class="link-block-14 w-inline-block">
+                    <img src="{{ slide.logo.url }}" loading="lazy" srcset="{{ slide.logo.url }} 800w" sizes="80px" alt="" class="image-32"></a>
+                </div>
+                <img src="{{ slide.image.url }}" loading="lazy" srcset="{{ slide.image.url }} 800w"  sizes="100vw" alt="" class="image-33">
+              </div>
+              {% endfor %}
+     
+            </div>
+            <div class="w-slider-arrow-left">
+              <div class="icon-5 w-icon-slider-left"></div>
+            </div>
+            <div class="w-slider-arrow-right">
+              <div class="icon-5 w-icon-slider-right"></div>
+            </div>
+            <div class="slide-nav-6 w-slider-nav"></div>
+          </div>
+        </div>
+      </div>
+    </div>
     {% endif %}
 
     <!--  MODAL -->
