@@ -1,37 +1,7 @@
 from django.db import models
 import re
 from django.urls import reverse
-from django.core.validators import ValidationError
 from aproperty.models import *
-
-
-def validate_logo(file, **kwargs):
-    val = file.name.lower().rsplit('.', 1)[-1]
-    if val not in ['jpeg', 'png', 'svg', 'jpg']:
-        raise ValidationError("Не веррый формат изображения")
-
-
-class LivingType(models.Model):
-    site = models.ForeignKey(
-        SiteData,
-        verbose_name='Сайт',
-        on_delete=models.CASCADE
-    )
-    name = models.CharField(
-        'Название',
-        max_length=100
-    )
-
-    class Meta:
-        verbose_name = 'Тип жилья'
-        verbose_name_plural = 'Типы жилья'
-
-    def __str__(self) -> str:
-        return f'{self.site_name} - {self.name}'
-
-    @property
-    def site_name(self):
-        return self.site.site.name
 
 
 class PrimaryProperty(PropertyBase):

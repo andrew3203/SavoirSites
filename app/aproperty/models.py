@@ -2,9 +2,16 @@ from django.db import models
 from django.contrib.sites.models import Site
 import cyrtranslit
 import re
+from django.core.validators import ValidationError
+from ckeditor.fields import RichTextField
 
 
 nb = dict(null=True, blank=True, default=None)
+
+def validate_logo(file, **kwargs):
+    val = file.name.lower().rsplit('.', 1)[-1]
+    if val not in ['jpeg', 'png', 'svg', 'jpg']:
+        raise ValidationError("Не верный формат изображения")
 
 
 def _get_name(name, filename):
@@ -154,9 +161,10 @@ class MainSlider(models.Model):
         "Фото",
         upload_to=complex_dir_path11
     )
-    logo = models.ImageField(
+    logo = models.FileField(
         "Лого",
-        upload_to=complex_dir_path11
+        upload_to=complex_dir_path11,
+        validators=[validate_logo]
     )
     link = models.CharField(
         'Ссылка',
@@ -337,10 +345,10 @@ class PropertyBase(models.Model):
         'Скрипт карты',
         max_length=500
     )
-    description = models.TextField(
-        'Полное описание лота',
-        help_text='Можно использовать html, до 1500 символов',
-        max_length=1500
+    description = RichTextField(
+        verbose_name='Полное описание лота',
+        help_text=' До 2000 символов',
+        max_length=2000
     )
     title_image = models.ImageField(
         'Обложка',
@@ -414,3 +422,38 @@ class ImageBase(models.Model):
 
     def __str__(self) -> str:
         return f'{self.name}'
+
+
+class LivingPropertyType(models.TextChoices):
+    PRIMARY = 'PRIMARY', 'Первичная недвижимость'
+    RESALE = 'RESALE', 'Вторичная недвижимость'
+
+
+class LivingType(models.Model):
+    site = models.ForeignKey(
+        SiteData,
+        verbose_name='Сайт',
+        on_delete=models.CASCADE
+    )
+    name = models.CharField(
+        'Название',
+        max_length=100
+    )
+    ltype = models.CharField(
+        'Тип недвижимости',
+        max_length=25,
+        choices=LivingPropertyType.choices,
+        default=LivingPropertyType.PRIMARY,
+    )
+
+    class Meta:
+        verbose_name = 'Тип жилья'
+        verbose_name_plural = 'Типы жилья'
+
+    def __str__(self) -> str:
+        return f'{self.site_name} - {self.name}'
+
+    @property
+    def site_name(self):
+        return self.site.site.name
+

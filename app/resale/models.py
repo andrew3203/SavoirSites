@@ -4,6 +4,14 @@ from django.urls import reverse
 
 # Create your models here.
 
+class DecorType(models.TextChoices):
+    NO = 'NO', 'Без ремонта'
+    SIMPLE = 'SIMPLE', 'Косметический'
+    EURO = 'EURO', 'Евроремонт'
+    DESIGN = 'DESIGN', 'Дизайнерский'
+    
+
+
 class ResaleProperty(PropertyBase):
     square = models.IntegerField(
         'Площадь',
@@ -24,7 +32,9 @@ class ResaleProperty(PropertyBase):
     decor = models.CharField(
         'Ремонт',
         max_length=80,
-        **nb
+        choices=DecorType.choices,
+        default=DecorType.NO,
+        blank=True
     )
     construction_year = models.CharField(
         'Год постройки',
@@ -64,10 +74,6 @@ class ResaleProperty(PropertyBase):
         'Квартир на этаже',
         **nb
     )
-    penthouse = models.BooleanField(
-        'Пентхаус',
-        default=False
-    )
     terrace = models.BooleanField(
         'Терраса',
         default=False
@@ -81,6 +87,12 @@ class ResaleProperty(PropertyBase):
         max_length=100,
         **nb
     )
+    living_type = models.ManyToManyField(
+        LivingType,
+        blank=True, default=None,
+        verbose_name='Тип жилья'
+    )
+
     
     class Meta:
         verbose_name = 'Втричная недвижимость'

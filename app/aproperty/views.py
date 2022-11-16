@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from aproperty.models import Area, SiteData
-from primary.models import PrimaryProperty, LivingType
+from aproperty.models import Area, SiteData, LivingType, LivingPropertyType
+from primary.models import PrimaryProperty
 from resale.models import ResaleProperty
 from django.contrib.sites.shortcuts import get_current_site
 
@@ -23,7 +23,8 @@ def index(request):
         'resale': (rs_count > 0),
         'en': s.is_en(),
         'logo_list': queryset.exclude(logo='').order_by('click_amount'),
-        'living_types': LivingType.objects.filter(site=s)
+        'living_types': LivingType.objects.filter(site=s, ltype=LivingPropertyType.PRIMARY),
+        'living_types_resale': LivingType.objects.filter(site=s, ltype=LivingPropertyType.RESALE)
     }
     return render(request, f'aproperty/index.html', context)
 

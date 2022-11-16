@@ -83,6 +83,13 @@ class AreaAdmin(admin.ModelAdmin):
         AreaPeculiarityInline,
     ]
 
+@admin.register(LivingType)
+class LivingTypeAdmin(admin.ModelAdmin):
+    list_display = ['site_name', 'name']
+    list_filter = [SiteFilter, 'ltype']
+    search_fields = ('name',)
+
+
 admin.site.site_header = 'STATUS Админ панель'
 admin.site.site_title ='Панель администратора STATUS'
 admin.site.index_title = 'Администратор'

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from resale.models import ResaleProperty, Image
-from aproperty.admin import SiteFilter
+from aproperty.admin import SiteFilter, LivingType, LivingPropertyType
 
 
 class ImageInline(admin.TabularInline):
@@ -38,16 +38,15 @@ class ResalePropertyAdmin(admin.ModelAdmin):
         }),
         ('О лоте (дополнительно)', {
             'fields': (
-                ('area', 'square'),
                 ('map_script'),
-                ('ownership', "penthouse", "terrace",),
-                ('parking',),
-                ("rooms_on_floor", "rooms_in_hous"),
+                ('area', 'square'),
+                ('ownership', "terrace",),
+                ('parking', "rooms_on_floor", "rooms_in_hous"),
                 ("floor", "floors_number"),
                 ("elevators", "freight_elevators"),
                 ('window_to', 'rooms_number'),
                 ("bulding_material", "construction_year"),
-                ('entrances', 'decor', 'ceiling_height'),
+                ('decor', 'entrances', 'ceiling_height'),
             ),
         }),
     )
@@ -65,3 +64,4 @@ class ResalePropertyAdmin(admin.ModelAdmin):
     actions = [publish, unpublish]
     publish.short_description = 'Опубликовать обьекты'
     unpublish.short_description = 'Снять с публикации'
+    

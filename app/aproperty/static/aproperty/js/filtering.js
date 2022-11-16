@@ -298,17 +298,20 @@ class Complex {
 
     }
 
-    processFltering2(newChoice, isChecked, key, choice) {
+    processFltering2(setKey, newChoice, isChecked, key, choice) {
         this.clearResetResults();
 
         if (newChoice) 
-            (isChecked) ? this.choices.add(newChoice) : this.choices.delete(newChoice);
+            (isChecked) ? this[setKey].add(newChoice) : this[setKey].delete(newChoice);
         
         if (this.choices.size > 0) 
             this.queryFilter('area', this.choices);
 
         if (key) 
             this.keyFilter(key, choice);
+        
+        if (this.living_choices.size > 0) 
+            this.queryFilterLivingType(this.living_choices);
         
         this.show();
     } 
@@ -360,10 +363,14 @@ $(function () {
     });
     $resaleObj.find(".areas").change(function () {
         let choice = $(this).next().text();
-        resale.processFltering2(choice, this.checked, '', '')
+        resale.processFltering2('area', choice, this.checked, '', '')
     });
     $resaleObj.find(".w-radio-input").change(function () {
         let choice = $(this).next().text();
-        resale.processFltering2('', false, 'decor', choice)
+        resale.processFltering2('', '', false, 'decor', choice)
+    });
+    $resaleObj.find(".living_types").change(function () {
+        let choice = $(this).next().text();
+        primary.processFltering2('living_choices', choice, this.checked, '', '')
     });
 });

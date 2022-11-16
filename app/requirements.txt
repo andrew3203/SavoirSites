@@ -20,6 +20,7 @@ django-cleanup
 # Prepocessing
 flashtext
 cyrtranslit
+django-ckeditor
 
 # Server
 gunicorn==20.1.0
