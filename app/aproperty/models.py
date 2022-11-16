@@ -451,7 +451,7 @@ class LivingType(models.Model):
         verbose_name_plural = 'Типы жилья'
 
     def __str__(self) -> str:
-        return f'{self.site_name} - {self.name}'
+        return f'{self.site_name[:2].upper()}: - {self.name}, ({self.ltype})'
 
     @property
     def site_name(self):
