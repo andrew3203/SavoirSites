@@ -1,5 +1,6 @@
 from django.core.mail import send_mail
 from django.conf import settings
+from rest_framework.authentication import TokenAuthentication
 from rest_framework import generics
 from api import serializers
 from primary.models import PrimaryProperty
@@ -12,6 +13,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
 from rest_framework.response import Response
 from api.utils import get_html_msg, get_text_msg
+from rest_framework.permissions import IsAuthenticated
 
 
 class PropertyBase(generics.ListAPIView):
@@ -26,6 +28,8 @@ class PropertyBase(generics.ListAPIView):
 
 class PrimaryPropertyListView(PropertyBase):
     serializer_class = serializers.PrimaryMainSerializer
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
 
     def get_queryset(self):
         site = get_current_site(self.request)
@@ -35,6 +39,8 @@ class PrimaryPropertyListView(PropertyBase):
 
 class ResalePropertyListView(PropertyBase):
     serializer_class = serializers.ResaleMainSerializer
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
 
     def get_queryset(self):
         site = get_current_site(self.request)
@@ -46,17 +52,21 @@ class PrimaryPropertyAPIView(generics.CreateAPIView):
     serializer_class = serializers.PrimaryPropertySerializer
     queryset = PrimaryProperty.objects.all()
     permission_classes = [IsAdminUser]
+    authentication_classes = [TokenAuthentication]
 
 
 class ResalePropertyAPIView(generics.CreateAPIView):
     serializer_class = serializers.ResalePropertySerializer
     queryset = ResaleProperty.objects.all()
     permission_classes = [IsAdminUser]
+    authentication_classes = [TokenAuthentication]
 
 
 class ClientCreateAPIView(generics.CreateAPIView):
     serializer_class = serializers.ClientSerializer
     queryset = Client.objects.all()
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)

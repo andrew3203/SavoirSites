@@ -5,6 +5,7 @@ requests
 Django==4.0
 django-timezone-field 
 django-cors-headers
+drf-yasg
 
 # DRF
 django-filter

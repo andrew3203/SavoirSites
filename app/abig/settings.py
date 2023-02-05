@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     
     'rest_framework',
+    'drf_yasg',
     'rest_framework.authtoken',
     'django_filters',
     'django_cleanup.apps.CleanupConfig',
@@ -173,3 +174,8 @@ EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 
 RECIPIENT_ADDRESS = os.environ.get('RECIPIENT_ADDRESS').strip().split(',')
+
+SITE_ID=1
+
+# REST_FRAMEWORK = { 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' }
+

@@ -19,6 +19,7 @@ class Complex {
         $.ajax({
             url: `https://${document.location.hostname}/api/${complexKey}/?ordering=-click_amount`,
             type: "GET",
+            headers: {"Authorization": "Token 5665cc8e6e3b3fe647727c92d233065e22eed513"},
             success: function (data, textStatus, jqXHR) {
                 me.objList = data;
                 me.shownResults = data.map((obj, i) => {
