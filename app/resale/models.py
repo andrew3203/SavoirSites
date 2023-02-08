@@ -97,13 +97,7 @@ class ResaleProperty(PropertyBase):
     class Meta:
         verbose_name = 'Втричная недвижимость'
         verbose_name_plural = 'Втричная недвижимость'
-    
-    def get_absolute_url(self):       
-        return reverse('resale', args=[str(self.slug)])
-    
-    @property
-    def url(self):
-        return self.get_absolute_url()
+
     
     @property
     def images(self):
