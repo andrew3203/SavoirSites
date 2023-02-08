@@ -1,44 +1,20 @@
-from rest_framework import serializers
+from aproperty.serializers import *
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from primary.selectors import *
+from primary import models
 
-
-class LivingTypeSerializer(serializers.Serializer):
-    name = serializers.CharField()
-
-class ImageSerializer(serializers.Serializer):
-   photo = serializers.ImageField()
 
 
 class PrimaryListApi(APIView):
-    #authentication_classes = [TokenAuthentication]
-    #permission_classes = [IsAuthenticated]
-
-
-    class OutputSerializer(serializers.Serializer):
-        name = serializers.CharField()
-        id = serializers.IntegerField()
-        url = serializers.CharField()
-        slug = serializers.SlugField()
-        price = serializers.CharField()
-        price_from = serializers.CharField()
-        area = serializers.CharField()
-        decor = serializers.CharField()
-        rooms_number = serializers.IntegerField()
-        min_square = serializers.IntegerField()
-        title_image = serializers.ImageField()
-        logo = serializers.FileField()
-        presentation = serializers.FileField()
-        click_amount = serializers.IntegerField()
-        living_type = LivingTypeSerializer(many=True)
-        
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         data = primaryList_get(**request.query_params)
-        serializer = self.OutputSerializer(data, many=True)
+        serializer = PropertySerializer(data, many=True)
         return Response(serializer.data)
 
 
@@ -46,17 +22,15 @@ class PrimaryRecomendListApi(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
-    def get(self, request, site_domain):
-        site = primaryRecomend_get(site_domain=site_domain, **request.query_params)
-
-        serializer = serializers.PrimarySerializer(site, many=True)
-
+    def get(self, request):
+        data = primaryRecomend_get(**request.query_params)
+        serializer = PropertySerializer(data, many=True)
         return Response(serializer.data)
 
 
 class PrimaryDetailApi(APIView):
-    #authentication_classes = [TokenAuthentication]
-    #permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
     class OutputSerializer(serializers.ModelSerializer):
         living_type = LivingTypeSerializer(many=True)

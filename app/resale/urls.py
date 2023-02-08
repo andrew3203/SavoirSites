@@ -1,9 +1,10 @@
-from django.urls import path
 from resale import views
 from rest_framework import routers
+from django.urls import path
 
 
-router = routers.SimpleRouter()
-router.register(r'', views.ResaleViewSet, basename='resale')
-
-urlpatterns = router.urls
+urlpatterns = [
+    path('', views.ResaleListApi.as_view(), name='resale-list'),
+    path('<int:id>/', views.ResaleDetailApi.as_view(), name='resale-detail'),
+    path('recomend/', views.ResaleRecomendListApi.as_view(), name='resale-recomend'),
+] 
