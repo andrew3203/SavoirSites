@@ -42,7 +42,7 @@ class ResalePropertyAdmin(admin.ModelAdmin):
                 ('map_script'),
                 ('area', 'square'),
                 ('ownership', "terrace",),
-                ('parking', "rooms_on_floor", "rooms_in_hous"),
+                ('parking', "rooms_on_floor", "rooms"),
                 ("floor", "floors_number"),
                 ("elevators", "freight_elevators"),
                 ('window_to', 'rooms_number'),

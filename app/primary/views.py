@@ -17,12 +17,13 @@ class PrimaryListApi(APIView):
     #authentication_classes = [TokenAuthentication]
     #permission_classes = [IsAuthenticated]
 
+
     class OutputSerializer(serializers.Serializer):
         name = serializers.CharField()
         id = serializers.IntegerField()
         url = serializers.CharField()
         slug = serializers.SlugField()
-        price = serializers.IntegerField()
+        price = serializers.CharField()
         price_from = serializers.CharField()
         area = serializers.CharField()
         decor = serializers.CharField()
