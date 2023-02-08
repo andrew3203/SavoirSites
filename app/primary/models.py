@@ -2,6 +2,7 @@ from django.db import models
 import re
 from django.urls import reverse
 from aproperty.models import *
+from django.utils.translation import gettext as _
 
 
 class PrimaryProperty(PropertyBase):
@@ -57,11 +58,6 @@ class PrimaryProperty(PropertyBase):
         upload_to=complex_dir_path,
         **nb
     )
-    living_type = models.ManyToManyField(
-        LivingType,
-        blank=True, default=None,
-        verbose_name='Тип жилья'
-    )
 
     class Meta:
         verbose_name = 'Новостройка'
@@ -73,6 +69,10 @@ class PrimaryProperty(PropertyBase):
     @property
     def images(self):
         return Image.objects.filter(property=self)
+    
+    @property
+    def url(self):
+        return reverse('primary-detail', args=[str(self.id)])
 
     @property
     def price_from(self) -> str:
@@ -80,12 +80,8 @@ class PrimaryProperty(PropertyBase):
         if price:
             price = int(price[0])
             if price != 0 and self.min_square != 0:
-                return f'{price / self.min_square}'
-        return ''
-
-    @property
-    def logo(self):
-        return self.logo.url if self.logo else ''
+                return f"{price / self.min_square}"
+        return _('по запросу')
 
     def get_recomend(self):
         queryset = PrimaryProperty.objects.filter(

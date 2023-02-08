@@ -7,7 +7,7 @@ class PrimarySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PrimaryProperty
-        fields = '__all__'
+        exclude = ['site']
         depth = 1
 
 

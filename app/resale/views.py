@@ -9,5 +9,5 @@ class ResaleViewSet(viewsets.ReadOnlyModelViewSet):
 
     queryset = models.ResaleProperty.objects.all()
     serializer_class = serializers.ResaleSerializer
-    permission_classes =[IsAuthenticated]
-    authentication_classes = [TokenAuthentication]
+    #permission_classes =[IsAuthenticated]
+    #authentication_classes = [TokenAuthentication]

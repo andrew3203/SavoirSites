@@ -7,6 +7,6 @@ class ResaleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ResaleProperty
-        fields = '__all__'
+        exclude = ['site']
         depth = 1
 

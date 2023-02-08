@@ -4,9 +4,15 @@ import cyrtranslit
 import re
 from django.core.validators import ValidationError
 from ckeditor.fields import RichTextField
-
+from django.utils.translation import gettext as _
 
 nb = dict(null=True, blank=True, default=None)
+
+class DecorType(models.TextChoices):
+    NO = 'NO', _('Без отделки')
+    SIMPLE = 'SIMPLE', _('WhiteBox')
+    EURO = 'EURO', _('С отделкой')
+    DESIGN = 'DESIGN', ('Дизайнерский')
 
 def validate_logo(file, **kwargs):
     val = file.name.lower().rsplit('.', 1)[-1]
@@ -35,6 +41,11 @@ def complex_dir_path1(instance, filename):
 def complex_dir_path11(instance, filename):
     name = instance.site.site.name
     return _get_name(name, filename)
+
+class LivingPropertyType(models.TextChoices):
+    PRIMARY = 'PRIMARY', 'Первичная недвижимость'
+    RESALE = 'RESALE', 'Вторичная недвижимость'
+
 
 
 class SiteData(models.Model):
@@ -120,6 +131,34 @@ class SiteData(models.Model):
     def is_en(self):
         return self.get_lang() == 'en'
 
+
+class LivingType(models.Model):
+    site = models.ForeignKey(
+        SiteData,
+        verbose_name='Сайт',
+        on_delete=models.CASCADE
+    )
+    name = models.CharField(
+        'Название',
+        max_length=100
+    )
+    ltype = models.CharField(
+        'Тип недвижимости',
+        max_length=25,
+        choices=LivingPropertyType.choices,
+        default=LivingPropertyType.PRIMARY,
+    )
+
+    class Meta:
+        verbose_name = 'Тип жилья'
+        verbose_name_plural = 'Типы жилья'
+
+    def __str__(self) -> str:
+        return f'{self.site_name[:2].upper()}: - {self.name}, ({self.ltype})'
+
+    @property
+    def site_name(self):
+        return self.site.site.name
 
 class YouTubeLink(models.Model):
     site = models.ForeignKey(
@@ -376,6 +415,22 @@ class PropertyBase(models.Model):
         null=True,
         verbose_name='Специалист'
     )
+    rooms_number = models.IntegerField(
+        'Кол-во комнат',
+        **nb
+    )
+    decor = models.CharField(
+        'Ремонт',
+        max_length=80,
+        choices=DecorType.choices,
+        default=DecorType.EURO,
+        blank=True
+    )
+    living_type = models.ManyToManyField(
+        LivingType,
+        blank=True, default=None,
+        verbose_name='Тип жилья'
+    )
     is_published = models.BooleanField(
         'Опубликован',
         help_text='Доступен ли обьект на сайте',
@@ -422,38 +477,4 @@ class ImageBase(models.Model):
 
     def __str__(self) -> str:
         return f'{self.name}'
-
-
-class LivingPropertyType(models.TextChoices):
-    PRIMARY = 'PRIMARY', 'Первичная недвижимость'
-    RESALE = 'RESALE', 'Вторичная недвижимость'
-
-
-class LivingType(models.Model):
-    site = models.ForeignKey(
-        SiteData,
-        verbose_name='Сайт',
-        on_delete=models.CASCADE
-    )
-    name = models.CharField(
-        'Название',
-        max_length=100
-    )
-    ltype = models.CharField(
-        'Тип недвижимости',
-        max_length=25,
-        choices=LivingPropertyType.choices,
-        default=LivingPropertyType.PRIMARY,
-    )
-
-    class Meta:
-        verbose_name = 'Тип жилья'
-        verbose_name_plural = 'Типы жилья'
-
-    def __str__(self) -> str:
-        return f'{self.site_name[:2].upper()}: - {self.name}, ({self.ltype})'
-
-    @property
-    def site_name(self):
-        return self.site.site.name
 

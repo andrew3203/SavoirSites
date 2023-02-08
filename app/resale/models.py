@@ -3,22 +3,12 @@ from aproperty.models import *
 from django.urls import reverse
 
 # Create your models here.
-
-class DecorType(models.TextChoices):
-    NO = 'NO', 'Без ремонта'
-    SIMPLE = 'SIMPLE', 'Косметический'
-    EURO = 'EURO', 'Евроремонт'
-    DESIGN = 'DESIGN', 'Дизайнерский'
     
 
 
 class ResaleProperty(PropertyBase):
     square = models.IntegerField(
         'Площадь',
-        **nb
-    )
-    rooms_number = models.IntegerField(
-        'Кол-во комнат',
         **nb
     )
     floor = models.IntegerField(
@@ -28,13 +18,6 @@ class ResaleProperty(PropertyBase):
     floors_number= models.IntegerField(
         'Кол-во этажей в доме',
         **nb
-    )
-    decor = models.CharField(
-        'Ремонт',
-        max_length=80,
-        choices=DecorType.choices,
-        default=DecorType.NO,
-        blank=True
     )
     construction_year = models.CharField(
         'Год постройки',
@@ -78,7 +61,7 @@ class ResaleProperty(PropertyBase):
         'Терраса',
         default=False
     )
-    rooms_in_hous = models.IntegerField(
+    rooms = models.IntegerField(
         'Квартир в доме',
         **nb
     )
@@ -86,11 +69,6 @@ class ResaleProperty(PropertyBase):
         'Окна выходят',
         max_length=100,
         **nb
-    )
-    living_type = models.ManyToManyField(
-        LivingType,
-        blank=True, default=None,
-        verbose_name='Тип жилья'
     )
 
     

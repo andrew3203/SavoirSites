@@ -23,4 +23,5 @@ urlpatterns = [
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('client/', views.ClientCreateAPIView.as_view(), name='client'),
+    path('site/<str:site_domain>', views.SiteDataApiView.as_view(), name='site'),
 ]
