@@ -81,6 +81,11 @@ class ResaleProperty(PropertyBase):
     def images(self):
         return Image.objects.filter(property=self)
     
+    @property
+    def url(self):
+        return reverse('resale-detail', args=[str(self.id)])
+
+    
     def get_recomend(self):
         queryset = ResaleProperty.objects.filter(
             site=self.site,

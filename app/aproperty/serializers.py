@@ -29,3 +29,9 @@ class PropertySerializer(serializers.Serializer):
 class PrimaryPropertySerializer(PropertySerializer):
     price_from = serializers.CharField()
   
+
+class AreaSerializer(serializers.Serializer):
+    name = serializers.CharField()
+    id = serializers.IntegerField()
+    url = serializers.CharField()
+    slug = serializers.SlugField()

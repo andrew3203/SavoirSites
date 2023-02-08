@@ -8,3 +8,10 @@ def site_get(site_domain: str) -> models.SiteData:
         return models.SiteData.objects.get(site=site)
     except models.Site.DoesNotExist:
         raise NotFound
+
+
+def area_peculiarity_get(id: int) -> models.Area:
+    try:
+        return models.Area.objects.get(id=id)
+    except models.Area.DoesNotExist:
+        raise NotFound

@@ -3,7 +3,7 @@ from django.conf import settings
 from rest_framework.authentication import TokenAuthentication
 from rest_framework import generics
 from rest_framework import serializers
-from aproperty.models import Client, SiteData
+from aproperty.models import Client, SiteData, Area
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
@@ -11,15 +11,13 @@ from rest_framework.permissions import IsAuthenticated
 from api.selectors import *
 
 
-
 def get_text_msg(contact):
     text = f"Новый контакт: {contact.site}" + "\n\n" \
         f"Имя: {contact.name}" + "\n\n"  \
         f"Телефон: {contact.phone}" + "\n\n"  \
         f"Почта: {contact.email}" + "\n\n"  \
-        f"Объект: {contact.complex}" 
+        f"Объект: {contact.complex}"
     return text
-
 
 
 class ClientCreateAPIView(generics.CreateAPIView):
@@ -40,7 +38,7 @@ class ClientCreateAPIView(generics.CreateAPIView):
         contact = serializer.save()
         try:
             send_mail(
-                subject=f'Новый контакт {contact.site}', 
+                subject=f'Новый контакт {contact.site}',
                 message=get_text_msg(contact),
                 html_message=get_text_msg(contact),
                 from_email=settings.EMAIL_HOST_USER,
@@ -50,7 +48,6 @@ class ClientCreateAPIView(generics.CreateAPIView):
             pass
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-
 
 
 class SiteDataApiView(APIView):
@@ -66,5 +63,29 @@ class SiteDataApiView(APIView):
         site = site_get(site_domain=site_domain)
 
         serializer = self.OutputSerializer(site)
+
+        return Response(serializer.data)
+
+
+class AreaPeculiaritySerializer(serializers.Serializer):
+    name = serializers.CharField()
+    amount = serializers.IntegerField()
+    photo = serializers.ImageField()
+
+
+class AreaDetailView(APIView):
+    #authentication_classes = [TokenAuthentication]
+    #permission_classes = [IsAuthenticated]
+
+    class OutputSerializer(serializers.Serializer):
+        id = serializers.IntegerField()
+        name = serializers.CharField()
+        peculiarity = AreaPeculiaritySerializer(many=True)
+
+
+    def get(self, request, id):
+        data = area_peculiarity_get(id=id)
+
+        serializer = self.OutputSerializer(data)
 
         return Response(serializer.data)

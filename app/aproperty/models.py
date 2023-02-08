@@ -322,7 +322,7 @@ class Area(models.Model):
         return f'{self.name}'
 
     @property
-    def about(self):
+    def peculiarity(self):
         return AreaPeculiarity.objects.filter(area=self)
 
     @property
