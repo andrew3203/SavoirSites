@@ -9,3 +9,5 @@ class PrimaryViewSet(viewsets.ReadOnlyModelViewSet):
 
     queryset = models.PrimaryProperty.objects.all()
     serializer_class = serializers.PrimarySerializer
+    permission_classes =[IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
