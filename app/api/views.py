@@ -3,63 +3,21 @@ from django.conf import settings
 from rest_framework.authentication import TokenAuthentication
 from rest_framework import generics
 from api import serializers
-from primary.models import PrimaryProperty
-from resale.models import ResaleProperty
 from aproperty.models import Client
-from rest_framework import filters
-from rest_framework.permissions import IsAdminUser
-from django.contrib.sites.shortcuts import get_current_site
-from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
 from rest_framework.response import Response
-from api.utils import get_html_msg, get_text_msg
 from rest_framework.permissions import IsAuthenticated
 
 
-class PropertyBase(generics.ListAPIView):
-    search_fields = ['name','area__name']
-    filter_backends = [
-        filters.SearchFilter, 
-        DjangoFilterBackend,
-        filters.OrderingFilter, 
-    ]
-    filterset_fields = ['area__name',]
 
+def get_text_msg(contact):
+    text = f"Новый контакт: {contact.site}" + "\n\n" \
+        f"Имя: {contact.name}" + "\n\n"  \
+        f"Телефон: {contact.phone}" + "\n\n"  \
+        f"Почта: {contact.email}" + "\n\n"  \
+        f"Объект: {contact.complex}" 
+    return text
 
-class PrimaryPropertyListView(PropertyBase):
-    serializer_class = serializers.PrimaryMainSerializer
-    permission_classes = [IsAuthenticated]
-    authentication_classes = [TokenAuthentication]
-
-    def get_queryset(self):
-        site = get_current_site(self.request)
-        queryset = PrimaryProperty.objects.filter(site__site=site, is_published=True)
-        return queryset
-
-
-class ResalePropertyListView(PropertyBase):
-    serializer_class = serializers.ResaleMainSerializer
-    permission_classes = [IsAuthenticated]
-    authentication_classes = [TokenAuthentication]
-
-    def get_queryset(self):
-        site = get_current_site(self.request)
-        queryset = ResaleProperty.objects.filter(site__site=site, is_published=True)
-        return queryset
-
-
-class PrimaryPropertyAPIView(generics.CreateAPIView):
-    serializer_class = serializers.PrimaryPropertySerializer
-    queryset = PrimaryProperty.objects.all()
-    permission_classes = [IsAdminUser]
-    authentication_classes = [TokenAuthentication]
-
-
-class ResalePropertyAPIView(generics.CreateAPIView):
-    serializer_class = serializers.ResalePropertySerializer
-    queryset = ResaleProperty.objects.all()
-    permission_classes = [IsAdminUser]
-    authentication_classes = [TokenAuthentication]
 
 
 class ClientCreateAPIView(generics.CreateAPIView):

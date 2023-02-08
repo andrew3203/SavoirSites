@@ -1,13 +1,11 @@
-from django.shortcuts import render, get_object_or_404
 from resale import models
-from aproperty.models import SiteData
-from django.contrib.sites.shortcuts import get_current_site
+from resale import serializers 
+from rest_framework import viewsets
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 
+class ResaleViewSet(viewsets.ReadOnlyModelViewSet):
 
-def index(request, slug):
-    s = SiteData.objects.get(site=get_current_site(request))
-    obj = get_object_or_404(models.ResaleProperty, slug=slug, site=s, is_published=True)
-    obj.click_amount += 1; obj.save()
-    context = {'obj': obj, 'site': s, 'site_id': s.site.pk, 'en': s.is_en()}
-    return render(request, f'resale/index.html', context)
+    queryset = models.ResaleProperty.objects.all()
+    serializer_class = serializers.ResaleSerializer

@@ -70,45 +70,21 @@ class PrimaryProperty(PropertyBase):
     def __str__(self) -> str:
         return f'{self.name}'
 
-    def get_absolute_url(self):
-        return reverse('primary', args=[str(self.slug)])
-
     @property
     def images(self):
         return Image.objects.filter(property=self)
 
     @property
-    def url(self):
-        return self.get_absolute_url()
-
-    @property
-    def price_from(self):
+    def price_from(self) -> str:
         price = re.findall('\d+', self.price.replace(' ', ''))
         if price:
             price = int(price[0])
             if price != 0 and self.min_square != 0:
-                return f'От  {price / self.min_square:,.0f}'.replace(',', ' ')
-        return 'по запросу'
+                return f'{price / self.min_square}'
+        return ''
 
     @property
-    def price_from_en(self):
-        price = re.findall('\d+', self.price.replace(' ', ''))
-        if price:
-            price = int(price[0])
-            if price != 0 and self.min_square != 0:
-                return f'from  {price / self.min_square:,.0f}'.replace(',', ' ')
-        return 'on request'
-
-    @property
-    def squares(self):
-        return self.min_square
-
-    @property
-    def squares_en(self):
-        return self.min_square
-
-    @property
-    def get_logo(self):
+    def logo(self):
         return self.logo.url if self.logo else ''
 
     def get_recomend(self):

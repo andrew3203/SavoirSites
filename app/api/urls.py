@@ -22,9 +22,5 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    path('primary/', views.PrimaryPropertyListView.as_view()),
-    path('resale/', views.ResalePropertyListView.as_view()),
-    path('create-primary/', views.PrimaryPropertyAPIView.as_view()),
-    path('create-resale/', views.ResalePropertyAPIView.as_view()),
-    path('create-client/', views.ClientCreateAPIView.as_view()),
+    path('client/', views.ClientCreateAPIView.as_view(), name='client'),
 ]
