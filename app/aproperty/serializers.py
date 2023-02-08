@@ -15,7 +15,6 @@ class PropertySerializer(serializers.Serializer):
     url = serializers.CharField()
     slug = serializers.SlugField()
     price = serializers.CharField()
-    price_from = serializers.CharField()
     area = serializers.CharField()
     decor = serializers.CharField()
     rooms_number = serializers.IntegerField()
@@ -25,3 +24,8 @@ class PropertySerializer(serializers.Serializer):
     presentation = serializers.FileField()
     click_amount = serializers.IntegerField()
     living_type = LivingTypeSerializer(many=True)
+
+
+class PrimaryPropertySerializer(PropertySerializer):
+    price_from = serializers.CharField()
+  

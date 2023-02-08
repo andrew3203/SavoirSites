@@ -14,7 +14,7 @@ class PrimaryListApi(APIView):
 
     def get(self, request):
         data = primaryList_get(**request.query_params)
-        serializer = PropertySerializer(data, many=True)
+        serializer = PrimaryPropertySerializer(data, many=True)
         return Response(serializer.data)
 
 
@@ -24,7 +24,7 @@ class PrimaryRecomendListApi(APIView):
 
     def get(self, request):
         data = primaryRecomend_get(**request.query_params)
-        serializer = PropertySerializer(data, many=True)
+        serializer = PrimaryPropertySerializer(data, many=True)
         return Response(serializer.data)
 
 

@@ -12,7 +12,7 @@ class ResaleListApi(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        data = resalList_get(**request.query_params)
+        data = resaleList_get(**request.query_params)
         serializer = PropertySerializer(data, many=True)
         return Response(serializer.data)
 
@@ -22,7 +22,7 @@ class ResaleRecomendListApi(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        data = resalRecomend_get(**request.query_params)
+        data = resaleRecomend_get(**request.query_params)
         serializer = PropertySerializer(data, many=True)
         return Response(serializer.data)
 
