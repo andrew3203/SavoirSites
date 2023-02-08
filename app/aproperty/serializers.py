@@ -18,7 +18,6 @@ class PropertySerializer(serializers.Serializer):
     area = serializers.CharField()
     decor = serializers.CharField()
     rooms_number = serializers.IntegerField()
-    min_square = serializers.IntegerField()
     title_image = serializers.ImageField()
     logo = serializers.FileField()
     presentation = serializers.FileField()
@@ -27,6 +26,7 @@ class PropertySerializer(serializers.Serializer):
 
 
 class PrimaryPropertySerializer(PropertySerializer):
+    min_square = serializers.IntegerField()
     price_from = serializers.CharField()
   
 
