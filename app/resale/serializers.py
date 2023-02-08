@@ -4,7 +4,6 @@ from resale.models import ResaleProperty
 
 
 class ResaleSerializer(serializers.ModelSerializer):
-    url = serializers.CharField()
 
     class Meta:
         model = ResaleProperty
