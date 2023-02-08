@@ -19,13 +19,13 @@ class PropertySerializer(serializers.Serializer):
     decor = serializers.CharField()
     rooms_number = serializers.IntegerField()
     title_image = serializers.ImageField()
-    logo = serializers.FileField()
-    presentation = serializers.FileField()
     click_amount = serializers.IntegerField()
     living_type = LivingTypeSerializer(many=True)
 
 
 class PrimaryPropertySerializer(PropertySerializer):
+    presentation = serializers.FileField()
+    logo = serializers.FileField()
     min_square = serializers.IntegerField()
     price_from = serializers.CharField()
   
