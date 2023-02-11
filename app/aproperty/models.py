@@ -436,6 +436,12 @@ class PropertyBase(models.Model):
         help_text='Доступен ли обьект на сайте',
         default=True
     )
+    latitude = models.FloatField(
+        'latitude', **nb
+    )
+    longitude = models.FloatField(
+        'longitude', **nb
+    )
 
     class Meta:
         abstract = True

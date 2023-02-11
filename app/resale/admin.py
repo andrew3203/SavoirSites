@@ -27,6 +27,7 @@ class ResalePropertyAdmin(admin.ModelAdmin):
                 ('click_amount', 'is_published'),
                 ('price',),
                 ('addres',),
+                ('latitude', 'longitude'),
                 ('specialist',)
             ),
         }),

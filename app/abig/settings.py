@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", 'nSAVJHASBVFDHJL23R3434BR45234114R')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(os.environ.get("DEBUG", default=0))
-CORS_ORIGIN_ALLOW_ALL = DEBUG
+CORS_ORIGIN_ALLOW_ALL = bool(DEBUG)
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split('||')
 CSRF_TRUSTED_ORIGINS = os.environ.get('CSRF_TRUSTED_ORIGINS', 'http://localhost').split('||')

@@ -31,6 +31,7 @@ class PrimaryPropertyAdmin(admin.ModelAdmin):
                 ('price',),
                 ('lots_number',),
                 ('addres', 'district'),
+                ('latitude', 'longitude'),
                 ('specialist',)
             ),
         }),

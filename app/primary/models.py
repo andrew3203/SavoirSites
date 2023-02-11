@@ -80,7 +80,7 @@ class PrimaryProperty(PropertyBase):
         if price:
             price = int(price[0])
             if price != 0 and self.min_square != 0:
-                return f"{price / self.min_square}"
+                return f"{int(price / self.min_square)}"
         return _('по запросу')
 
     def get_recomend(self):
