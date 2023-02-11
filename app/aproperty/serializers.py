@@ -22,7 +22,7 @@ class PropertySerializer(serializers.Serializer):
     longitude = serializers.FloatField()
     title_image = serializers.ImageField()
     click_amount = serializers.IntegerField()
-    living_type = LivingTypeSerializer(many=True)
+    living_type = LivingTypeSerializer(read_only=True, many=True, source="living_type")
 
 
 class PrimaryPropertySerializer(PropertySerializer):
