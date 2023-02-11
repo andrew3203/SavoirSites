@@ -18,6 +18,8 @@ class PropertySerializer(serializers.Serializer):
     area = serializers.CharField()
     decor = serializers.CharField()
     rooms_number = serializers.IntegerField()
+    latitude = serializers.FloatField()
+    longitude = serializers.FloatField()
     title_image = serializers.ImageField()
     click_amount = serializers.IntegerField()
     living_type = LivingTypeSerializer(many=True)
