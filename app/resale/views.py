@@ -33,7 +33,6 @@ class ResaleDetailApi(APIView):
 
     class OutputSerializer(serializers.ModelSerializer):
         living_type = LivingTypeSerializer(many=True)
-        price_from = serializers.CharField()
         images = ImageSerializer(many=True)
 
         class Meta:
