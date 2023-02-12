@@ -28,6 +28,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", 'nSAVJHASBVFDHJL23R3434BR45234114R')
 DEBUG = int(os.environ.get("DEBUG", default=0))
 CORS_ORIGIN_ALLOW_ALL = bool(DEBUG)
 
+
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split('||')
 CSRF_TRUSTED_ORIGINS = os.environ.get('CSRF_TRUSTED_ORIGINS', 'http://localhost').split('||')
 CORS_ALLOWED_ORIGINS = CSRF_TRUSTED_ORIGINS
@@ -65,12 +66,13 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'abig.urls'
