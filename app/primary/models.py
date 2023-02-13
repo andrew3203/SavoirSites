@@ -76,7 +76,7 @@ class PrimaryProperty(PropertyBase):
 
     @property
     def get_absolute_url(self):
-        return reverse('primary', args=[str(self.slug)])
+        return reverse('my-primary', args=[str(self.slug)])
     
     @property
     def price_from(self) -> str:
