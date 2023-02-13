@@ -23,7 +23,7 @@ def index(request):
         'site_id': s.site.pk,
         'resale': (rs_count > 0),
         'en': s.is_en(),
-        'logo_list': queryset.exclude(logo='').order_by('click_amount'),
+        'logo_list': queryset.exclude(logo='').exclude(logo__isnull=True).order_by('click_amount'),
         'living_types': LivingType.objects.filter(site=s, ltype=LivingPropertyType.PRIMARY),
         'living_types_resale': LivingType.objects.filter(site=s, ltype=LivingPropertyType.RESALE)
     }

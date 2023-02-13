@@ -84,6 +84,9 @@ class ResaleProperty(PropertyBase):
     @property
     def url(self):
         return reverse('resale-detail', args=[str(self.id)])
+    
+    def get_absolute_url(self):
+        return reverse("primary", kwargs={"pk": self.pk})
 
     
     def get_recomend(self):

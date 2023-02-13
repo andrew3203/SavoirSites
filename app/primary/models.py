@@ -74,6 +74,9 @@ class PrimaryProperty(PropertyBase):
     def url(self):
         return reverse('primary-detail', args=[str(self.id)])
 
+    def get_absolute_url(self):
+        return reverse("primary", kwargs={"pk": self.pk})
+    
     @property
     def price_from(self) -> str:
         price = re.findall('\d+', self.price.replace(' ', ''))
@@ -82,6 +85,13 @@ class PrimaryProperty(PropertyBase):
             if price != 0 and self.min_square != 0:
                 return f"{int(price / self.min_square)}"
         return _('по запросу')
+    
+    @property
+    def get_logo(self) -> str:
+        if self.logo:
+            return self.logo.url
+        else:
+            return ''
 
     def get_recomend(self):
         queryset = PrimaryProperty.objects.filter(

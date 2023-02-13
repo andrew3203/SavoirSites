@@ -4,7 +4,7 @@
             {% for logo in logo_list %}
     
             <div class="swiper-slide">
-                <img src="{{ logo.logo.url }}">
+                <img src="{{ logo.get_logo }}">
             </div>
             {% endfor %}
             

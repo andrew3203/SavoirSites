@@ -185,7 +185,7 @@ EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 
 RECIPIENT_ADDRESS = os.environ.get('RECIPIENT_ADDRESS').strip().split(',')
 
-SITE_ID=1
+#SITE_ID=1
 
 # REST_FRAMEWORK = { 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' }
 
