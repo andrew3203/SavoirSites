@@ -91,7 +91,7 @@ class ResaleProperty(PropertyBase):
     
     @property
     def squares(self):
-        return self.min_square
+        return self.square
 
     
     def get_recomend(self):

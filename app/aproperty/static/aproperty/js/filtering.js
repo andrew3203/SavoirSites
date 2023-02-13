@@ -103,7 +103,6 @@ class Complex {
                 <a id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94a03-e36ab9af" data-w-id="983a5740-c762-b0ee-c2fc-3eb3c1b94a03" href="#" class="button download dw-btn w-button en">Request a presentation</a>
                 <a id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94a03-e36ab9af" data-w-id="983a5740-c762-b0ee-c2fc-3eb3c1b94a03" href="#" class="button download dw-btn w-button ru">Запросить презентацию</a>
                 <a href="#" id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94a05-e36ab9af" class="hidden-link">${obj.get_absolute_url}</a>
-                <img src="${obj.get_logo}" id="w-node-f7e24c98-67ea-a3cb-9828-fd59f5de34e9-e36ab9af" loading="lazy" alt="" class="image-39">
                 <a id="w-node-_0b5bb57b-8ba5-be3c-5316-ddd084df4e6d-e36ab9af" href="${obj.get_absolute_url}" class="link-block-16 w-inline-block">
                     <div class="text-block-52 en">About</div>
                     <div class="text-block-52 ru">Подробнее</div>

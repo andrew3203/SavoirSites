@@ -89,7 +89,7 @@ class PrimaryProperty(PropertyBase):
         
     @property
     def squares(self):
-        return self.min_square
+        return f"от {self.min_square} до {self.max_square}"
 
     @property
     def get_logo(self) -> str:
