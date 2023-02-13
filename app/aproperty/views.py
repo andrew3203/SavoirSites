@@ -13,7 +13,7 @@ def index(request):
 
     rs_count = ResaleProperty.objects.filter(site=s, is_published=True).count()
     context = {
-        'main_complexses': queryset.exclude(logo='').filter(logo__isnull=False)[:12],
+        'main_complexses': queryset[:12],
         'areas': areas,
         'count': queryset.count(),
         'site': s,
@@ -23,7 +23,7 @@ def index(request):
         'site_id': s.site.pk,
         'resale': (rs_count > 0),
         'en': s.is_en(),
-        'logo_list': queryset.exclude(logo='').filter(logo__isnull=False).order_by('click_amount'),
+        'logo_list': queryset.exclude(logo='').order_by('click_amount'),
         'living_types': LivingType.objects.filter(site=s, ltype=LivingPropertyType.PRIMARY),
         'living_types_resale': LivingType.objects.filter(site=s, ltype=LivingPropertyType.RESALE)
     }
