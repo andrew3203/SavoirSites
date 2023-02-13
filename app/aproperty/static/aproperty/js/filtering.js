@@ -18,11 +18,11 @@ class Complex {
         let me = this;
         let site_id = 1;
         if(document.location.hostname.split('.')[0] === 'spb')
-            site_id = 2;
-        else if (document.location.hostname.split('.')[0] === 'msk')
             site_id = 1;
-        else
+        else if (document.location.hostname.split('.')[0] === 'msk')
             site_id = 3;
+        else
+            site_id = 4;
 
         $.ajax({
             url: `https://${document.location.hostname}/api/${complexKey}/?site_id=${site_id}`,
@@ -56,7 +56,7 @@ class Complex {
             <div class="cover cover-3">
                 <div class="w-layout-grid grid-5 g-5">
                     <a id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94a8e-e36ab9af" href="#" class="link-block-4 l4 w-inline-block">
-                        <div class="text-block-7">${obj.area.name}</div>
+                        <div class="text-block-7">${obj.area}</div>
                         <h2 class="heading-7 text-link">${obj.name}</h2>
                         <div id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b94aa7-e36ab9af" class="text-block-21 txt-center t3 t4">${obj.addres}</div>
                         <div>
@@ -88,7 +88,7 @@ class Complex {
                 <div class="w-layout-grid grid-5">
                 <div id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b949ee-e36ab9af" class="div-block-3 gb">
                     <a id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b949ef-e36ab9af" href="#" class="link-block-4 w-inline-block">
-                        <div class="text-block-56">${obj.area.name}</div>
+                        <div class="text-block-56">${obj.area}</div>
                         <h2 class="heading-7 text-link">${obj.name}</h2>
                     </a>
                     <div id="w-node-_983a5740-c762-b0ee-c2fc-3eb3c1b949f2-e36ab9af" class="div-block-9">

@@ -88,6 +88,10 @@ class ResaleProperty(PropertyBase):
     @property
     def get_absolute_url(self):
         return reverse('my-resale', args=[str(self.slug)])
+    
+    @property
+    def squares(self):
+        return self.min_square
 
     
     def get_recomend(self):

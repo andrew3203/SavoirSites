@@ -24,6 +24,7 @@ class PropertySerializer(serializers.Serializer):
     click_amount = serializers.IntegerField()
     living_type = LivingTypeSerializer(read_only=True, many=True)
     get_absolute_url = serializers.CharField()
+    squares = serializers.CharField()
 
 
 class PrimaryPropertySerializer(PropertySerializer):

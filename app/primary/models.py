@@ -86,7 +86,11 @@ class PrimaryProperty(PropertyBase):
             if price != 0 and self.min_square != 0:
                 return f"{int(price / self.min_square)}"
         return _('по запросу')
-    
+        
+    @property
+    def squares(self):
+        return self.min_square
+
     @property
     def get_logo(self) -> str:
         if self.logo:
