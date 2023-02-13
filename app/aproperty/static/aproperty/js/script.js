@@ -28,6 +28,7 @@ $(function () {
         var action = $(this).attr('action');
         $.ajax({
             url: `https://${document.location.hostname}/${action}`,
+            headers: {"Authorization": "Token 5665cc8e6e3b3fe647727c92d233065e22eed513"},
             type: "POST",
             data: my_data,
             success: function (data, textStatus, jqXHR) {
