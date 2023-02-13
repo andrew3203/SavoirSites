@@ -16,8 +16,16 @@ class Complex {
         this.typingTimer;
         this.typingInterval = 800;
         let me = this;
+        let site_id = 1;
+        if(document.location.hostname.split('.')[0] === 'spb')
+            site_id = 2;
+        else if (document.location.hostname.split('.')[0] === 'msk')
+            site_id = 1;
+        else
+            site_id = 3;
+
         $.ajax({
-            url: `https://${document.location.hostname}/api/${complexKey}/?ordering=-click_amount`,
+            url: `https://${document.location.hostname}/api/${complexKey}/?site_id=${site_id}`,
             type: "GET",
             headers: {"Authorization": "Token 5665cc8e6e3b3fe647727c92d233065e22eed513"},
             success: function (data, textStatus, jqXHR) {
