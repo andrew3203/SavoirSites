@@ -23,6 +23,7 @@ class PropertySerializer(serializers.Serializer):
     title_image = serializers.ImageField()
     click_amount = serializers.IntegerField()
     living_type = LivingTypeSerializer(read_only=True, many=True)
+    get_absolute_url = serializers.CharField()
 
 
 class PrimaryPropertySerializer(PropertySerializer):
