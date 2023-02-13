@@ -74,6 +74,7 @@ class PrimaryProperty(PropertyBase):
     def url(self):
         return reverse('primary-detail', args=[str(self.id)])
 
+    @property
     def get_absolute_url(self):
         return reverse('primary', args=[str(self.slug)])
     

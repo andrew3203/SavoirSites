@@ -113,7 +113,7 @@
                 {% endif %}
             </h4>
             <div class="w-form">
-                <form id="wf-form-Footer-Form" name="wf-form-Footer-Form" data-name="Footer Form" method="post" class="mn-form" action="api/create-client/">
+                <form id="wf-form-Footer-Form" name="wf-form-Footer-Form" data-name="Footer Form" method="post" class="mn-form" action="api/client/">
                     <div class="div-block-11">
                         {% csrf_token %}
                         {% if en %}
@@ -235,7 +235,7 @@
         <h4 class="heading-28">
             {% if en %}Request an expert call{% else %}Закажите звонок эксперта{% endif %}
         </h4>
-        <form id="wf-form-Footer-Form-2" name="wf-form-Footer-Form-2" data-name="Footer Form 2" method="post" class="form-7" action="api/create-client/">
+        <form id="wf-form-Footer-Form-2" name="wf-form-Footer-Form-2" data-name="Footer Form 2" method="post" class="form-7" action="api/client/">
             <div>
                 {% csrf_token %}
 
