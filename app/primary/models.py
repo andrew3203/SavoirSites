@@ -83,8 +83,8 @@ class PrimaryProperty(PropertyBase):
         price = re.findall('\d+', self.price.replace(' ', ''))
         if price:
             price = int(price[0])
-            if price != 0:
-                return f"{price}"
+            if price != 0 and self.min_square > 0:
+                return f"{int(price / self.min_square)}"
         return _('по запросу')
     
     @property
